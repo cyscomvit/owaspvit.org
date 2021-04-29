@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OWASP VITCC | Leaderboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link href="https://owaspvit.com/assets/owasp-logo.png" rel="icon">
+  <meta name="author" content="Apratim Shukla">
+  <meta name="description" content="The official leaderboard for OWASP VITCC.">
+</head>
+<body>
+<div class="sample-header">
+  <div class="sample-header-section">
+    <h1 style="font-weight: 700; font-size: 72px;"><img src="{{ url_for('static', filename='images/owasp-logo.png') }}" style="height: 1em;"> OWASP VITCC</h1>
+    <h2>THE OFFICIAL LEADERBOARD OF OWASP VITCC</h2>
+  </div>
+</div>
+<div class="sample-section-wrap">
+  <div class="sample-section">
+    <table class="board">
+        <tr class="heading">
+            <th class="special-black-left"><img src="{{ url_for('static', filename='images/immortal-badge.png') }}"></th>
+            <th colspan="3" class="middle">OWASP LEADERBOARD</th>
+            <th class="special-black-right">SEASON 2021</th>
+        </tr>
+        <tbody>
+            <tr class="sub-heading">
+                <td class="center-text">Rank</td>
+                <td class="center-text" colspan="2">Rating</td>
+                <td></td>
+                <td class="center-text">Contributions</td>
+            </tr>
+            {% for i in users %}
+            <tr class="data">
+                <td class="rank">{{ loop.index }}</td>
+                {% if (i['Rating']>=-100 and i['Rating']<10) %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/unranked.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=10 and i['Rating']<20)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/iron-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=20 and i['Rating']<30)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/iron-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=30 and i['Rating']<40)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/iron-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=40 and i['Rating']<50)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/bronze-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=50 and i['Rating']<60)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/bronze-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=60 and i['Rating']<75)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/bronze-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=75 and i['Rating']<100)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/silver-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=100 and i['Rating']<125)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/silver-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=125 and i['Rating']<150)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/silver-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=150 and i['Rating']<175)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/gold-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=175 and i['Rating']<200)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/gold-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=200 and i['Rating']<250)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/gold-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=250 and i['Rating']<300)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/platinum-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=300 and i['Rating']<350)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/platinum-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=350 and i['Rating']<500)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/platinum-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=500 and i['Rating']<600)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/diamond-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=600 and i['Rating']<700)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/diamond-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=700 and i['Rating']<850)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/diamond-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=850 and i['Rating']<1000)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/immortal-badge.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=1000)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/radiant.png') }}" style="height: 2em;"></td>
+                {% endif %}
+                <td class="rating"><span class="rating-value">{{ i['Rating'] }}</span></td>
+                <td class="player">{{ i['Name'] }}<span class="discord-tag">#{{ i['Discord'] }}</span></td>
+                <td class="ongoing">{{ i['Contributions'] }} Contributions</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+
+<script src='https://code.jquery.com/jquery-latest.min.js'></script>
+<script  src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

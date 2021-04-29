@@ -1,0 +1,9 @@
+venv/
+
+__pycache__/
+
+.idea/
+
+data.py
+
+bot_token.py

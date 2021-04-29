@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Rajdhani", sans-serif;
+  background-color: #ece8e1;
+}
+.sample-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-image: url("../images/banner.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.sample-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: MidnightBlue;
+  opacity: 0.3;
+}
+.sample-header-section {
+  position: relative;
+  padding: 15% 0 10%;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+h1 {
+  font-weight: 500;
+}
+h2 {
+  font-weight: 400;
+}
+.sample-section-wrap {
+  position: relative;
+  background-color: #ece8e1;
+}
+.sample-section {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  color: #768079;
+  width: 90%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+.heading {
+    background: #0f1923;
+    color: #DBD9D2;
+    font-size: 2.4rem;
+}
+
+.middle {
+    text-align: center;
+    border-right: 1px solid #DBD9D2;
+    border-left: 1px solid #DBD9D2;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.special-black-right {
+    text-align: center;
+}
+
+.special-black-left {
+    text-align: center;
+}
+
+.sub-heading {
+    background: #ece8e1;
+    color: #768079;
+    font-weight: bolder;
+}
+
+.rating {
+    background: #dbd9d2;
+    font-size: 1.6rem;
+}
+
+.rating-image {
+    background: #dbd9d2;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.rank {
+    font-size: 2.4rem;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.player {
+    font-size: 1.6rem;
+    background: rgba(219,217,210,0.6);
+}
+
+.ongoing {
+    font-size: 1.6rem;
+    text-align: center;
+}
+.data {
+    background: #e3dfd9;
+    color: black;
+}
+
+.discord-tag {
+    color: #888;
+}
+
+.rating-value {
+    padding: 0px;
+}
