@@ -4,7 +4,7 @@ from firebase_admin import db
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'abc123@567$#'
+app.config['SECRET_KEY'] = os.environ.get('OWASP_SECRET_KEY')
 
 # Initialize Firebase app
 firebase_admin.initialize_app(options={'databaseURL': 'https://vitask.firebaseio.com/'})
