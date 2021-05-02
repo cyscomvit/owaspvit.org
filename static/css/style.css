@@ -133,3 +133,17 @@ th, td {
 .rating-value {
     padding: 0px;
 }
+
+.divider {
+    background: #dbd9d2;
+    height: 80px;
+    color: #768079;
+    font-weight: bolder;
+    border-top: 2px solid #cccac2;
+    border-bottom: 2px solid #cccac2;
+}
+
+.seperate {
+    text-align: center;
+    font-size: 2.4rem;
+}

@@ -34,7 +34,64 @@
             </tr>
             {% for i in users %}
             <tr class="data">
-                <td class="rank">{{ loop.index }}</td>
+                {% if (loop.index<=7) %}
+                                     
+                <td class="rank">{{ '#' }}</td>
+                {% if (i['Rating']>=-100 and i['Rating']<10) %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/unranked.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=10 and i['Rating']<20)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/iron-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=20 and i['Rating']<30)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/iron-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=30 and i['Rating']<40)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/iron-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=40 and i['Rating']<50)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/bronze-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=50 and i['Rating']<60)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/bronze-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=60 and i['Rating']<75)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/bronze-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=75 and i['Rating']<100)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/silver-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=100 and i['Rating']<125)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/silver-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=125 and i['Rating']<150)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/silver-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=150 and i['Rating']<175)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/gold-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=175 and i['Rating']<200)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/gold-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=200 and i['Rating']<250)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/gold-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=250 and i['Rating']<300)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/platinum-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=300 and i['Rating']<350)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/platinum-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=350 and i['Rating']<500)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/platinum-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=500 and i['Rating']<600)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/diamond-1.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=600 and i['Rating']<700)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/diamond-2.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=700 and i['Rating']<850)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/diamond-3.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=850 and i['Rating']<1000)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/immortal-badge.png') }}" style="height: 2em;"></td>
+                {% elif (i['Rating']>=1000)  %}
+                <td class="rating-image"><img src="{{ url_for('static', filename='images/radiant.png') }}" style="height: 2em;"></td>
+                {% endif %}
+                <td class="rating"><span class="rating-value">&#8734;</span></td>
+                <td class="player">{{ i['Name'] }}<span class="discord-tag">#{{ i['Discord'] }}</span></td>
+                <td class="ongoing">&#8734; Contributions</td>
+                
+                {% if (loop.index==7) %}
+                <tr class="divider">
+                    <td colspan="5" class="seperate">Members Leaderboard</td>
+                </tr>
+                {% endif %}
+                                     
+                {% elif (loop.index>7) %}
+                <td class="rank">{{ loop.index-7 }}</td>
                 {% if (i['Rating']>=-100 and i['Rating']<10) %}
                 <td class="rating-image"><img src="{{ url_for('static', filename='images/unranked.png') }}" style="height: 2em;"></td>
                 {% elif (i['Rating']>=10 and i['Rating']<20)  %}
@@ -81,6 +138,7 @@
                 <td class="rating"><span class="rating-value">{{ i['Rating'] }}</span></td>
                 <td class="player">{{ i['Name'] }}<span class="discord-tag">#{{ i['Discord'] }}</span></td>
                 <td class="ongoing">{{ i['Contributions'] }} Contributions</td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
