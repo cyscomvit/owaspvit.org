@@ -133,7 +133,7 @@ async def contribution(ctx, name, discord_name, task):
                 elif(task.casefold()=="discord".casefold()):
                     points = 10
                 elif(task.casefold()=="marketing".casefold()):
-                    points = 1
+                    points = 2
                 elif(task.casefold()=="mini project".casefold()):
                     points = 100
                 elif(task.casefold()=="complete project".casefold()):
