@@ -8,6 +8,9 @@ from urllib import parse, request
 import re
 
 from bot_token import get_token
+import aiocron
+import asyncio
+
 
 firebase_admin.initialize_app(options={'databaseURL': 'https://vitask.firebaseio.com/'})
 
@@ -178,6 +181,31 @@ async def fetch_data(ctx, name, discord_name):
 
             await ctx.send(embed=embed)
 
+
+#sheet commands
+@bot.command()
+async def sheets(ctx, arg):
+    if arg == "Technical":
+      sheet_range = "Technical!a1:u3"
+    
+    values = easy(sheet_range)
+    print(values)
+    for i in values:
+      name = i[0]
+      discord_name = i[1]
+      task = i[2]
+      for j in range(int(i[3])):
+        finale = "!owasp contribution " + name + " " + discord_name + " " + task
+        await ctx.send(finale)
+        await contribution(ctx, name, discord_name, task)
+
+
+@bot.command()
+async def cleanup(ctx,arg):
+    if arg == "Technical":
+      sheet_range = "Technical!C2:U"
+
+
 # Events
 @bot.event
 async def on_ready():
@@ -244,5 +272,14 @@ async def on_message(message):
     if "owasp website" in message.content.lower():
         await message.channel.send('Our Website is https://owaspvit.com')
         await bot.process_commands(message)
+
+
+#crontab
+@aiocron.crontab('0 0 * * 0')
+async def five():
+    ctx = bot.get_channel(840086439202521111)
+    await sheets(ctx,'Technical')
+    await cleanup(ctx, 'Technical')
+
 
 bot.run(get_token())
