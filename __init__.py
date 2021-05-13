@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, render_template, url_for, request, redirect
 import firebase_admin
 from firebase_admin import db
@@ -6,14 +7,21 @@ import random
 
 from github import Github
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/var/www/FlaskApp/FlaskApp/firebase.json"
-
-# GitHub Access Token
-g = Github("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")
+from bot_token import github_token
 
 # Initialize Flask app
 app = Flask(__name__)
 application = app
+
+
+# Set the port for Flask app
+port = int(os.environ.get('PORT', 5000))
+
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/var/www/FlaskApp/FlaskApp/firebase.json"
+
+# GitHub Access Token
+g = Github(github_token())
+
 
 # Initialize Firebase app
 firebase_admin.initialize_app(options={'databaseURL': 'https://vitask.firebaseio.com/'})
@@ -62,4 +70,4 @@ def projects():
     return render_template('projects.html', projects = projects)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=port)

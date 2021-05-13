@@ -11,3 +11,5 @@ bot_token.py
 keys.json
 
 firebase.json
+
+flaskapp.wsgi

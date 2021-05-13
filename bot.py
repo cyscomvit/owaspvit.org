@@ -6,12 +6,15 @@ from firebase_admin import db
 
 from urllib import parse, request
 import re
+import os
 
 from bot_token import get_token
 import aiocron
 import asyncio
 
 from sheet import *
+
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/var/www/FlaskApp/FlaskApp/firebase.json"
 
 
 firebase_admin.initialize_app(options={'databaseURL': 'https://vitask.firebaseio.com/'})
