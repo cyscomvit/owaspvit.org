@@ -6,11 +6,14 @@ import random
 
 from github import Github
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/var/www/FlaskApp/FlaskApp/firebase.json"
+
 # GitHub Access Token
 g = Github("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")
 
+# Initialize Flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('OWASP_SECRET_KEY')
+application = app
 
 # Initialize Firebase app
 firebase_admin.initialize_app(options={'databaseURL': 'https://vitask.firebaseio.com/'})
@@ -59,4 +62,4 @@ def projects():
     return render_template('projects.html', projects = projects)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

@@ -9,3 +9,5 @@ data.py
 bot_token.py
 
 keys.json
+
+firebase.json
