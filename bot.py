@@ -226,6 +226,7 @@ async def cleanup(ctx,arg):
         
     elif arg == "Web-dev":
         sheet_range = "Web-dev!C2:U"
+    clear(sheet_range)
         
         
 @bot.command(pass_context=True)
