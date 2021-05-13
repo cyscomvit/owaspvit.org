@@ -11,12 +11,15 @@ from bot_token import get_token
 import aiocron
 import asyncio
 
+from sheet import *
+
 
 firebase_admin.initialize_app(options={'databaseURL': 'https://vitask.firebaseio.com/'})
 
 ref = db.reference('vitask')
 tut_ref = ref.child('owasp')
 new_ref = tut_ref.child('leaderboard')
+proj_ref = tut_ref.child('projects')
 
 bot = commands.Bot(command_prefix='!owasp ', description="The official OWASP VITCC Discord Bot.")
 
@@ -66,6 +69,7 @@ async def add_data(ctx, name, discord_name, rating=0, contributions=0):
         
     except Exception as e:
         print(e)
+        
         
 @bot.command(pass_context=True)
 @commands.has_any_role("Board Member")
@@ -186,24 +190,82 @@ async def fetch_data(ctx, name, discord_name):
 @bot.command()
 async def sheets(ctx, arg):
     if arg == "Technical":
-      sheet_range = "Technical!a1:u3"
+        sheet_range = "Technical!a1:u21"
+        
+    elif arg == "Operations":
+        sheet_range = "Operations!a1:u23"
+        
+    elif arg == "Design":
+        sheet_range = "Design!a1:u6"
+        
+    elif arg == "Web-dev":
+        sheet_range = "Web-dev!a1:u17"
     
     values = easy(sheet_range)
-    print(values)
+    #print(values)
     for i in values:
-      name = i[0]
-      discord_name = i[1]
-      task = i[2]
-      for j in range(int(i[3])):
-        finale = "!owasp contribution " + name + " " + discord_name + " " + task
-        await ctx.send(finale)
-        await contribution(ctx, name, discord_name, task)
+        name = i[0]
+        discord_name = i[1]
+        task = i[2]
+        for j in range(int(i[3])):
+            finale = "!owasp contribution " + name + " " + discord_name + " " + task
+            await ctx.send(finale)
+            await contribution(ctx, name, discord_name, task)
 
 
 @bot.command()
 async def cleanup(ctx,arg):
     if arg == "Technical":
-      sheet_range = "Technical!C2:U"
+        sheet_range = "Technical!C2:U"
+        
+    elif arg == "Operations":
+        sheet_range = "Operations!C2:U"
+        
+    elif arg == "Design":
+        sheet_range = "Design!C2:U"
+        
+    elif arg == "Web-dev":
+        sheet_range = "Web-dev!C2:U"
+        
+        
+@bot.command(pass_context=True)
+@commands.has_any_role("Board Member")
+async def add_project(ctx, project_name, username, repo_name, project_tag):
+    try:
+        data = ref.child("owasp").child("projects").get()
+        count = 0
+        for i in data:
+            # Check if already added
+            if(data[i]["Username"].casefold()==username.casefold() and data[i]["RepoName"].casefold()==repo_name.casefold()):
+                count += 1
+                embed = discord.Embed(title=f"{ctx.guild.name}", description="Project already exists.", color=discord.Color.blue())
+                embed.add_field(name="Project Name", value=f"{data[i]['ProjectName']}")
+                embed.add_field(name="Username", value=f"{data[i]['Username']}")
+                embed.add_field(name="Repo Name", value=f"{data[i]['RepoName']}")
+                embed.add_field(name="Project Tag", value=f"{data[i]['ProjectTag']}")
+                embed.set_thumbnail(url="https://owaspvit.com/assets/owasp-logo.png")
+                
+                await ctx.send(embed=embed)
+         
+        if(count==0):
+            # Insert if not added already
+            proj_ref.push({
+                'ProjectName': project_name,
+                'Username': username,
+                'RepoName': repo_name,
+                'ProjectTag': project_tag
+            })
+            embed = discord.Embed(title=f"{ctx.guild.name}", description="Added project to OWASP Projects.", color=discord.Color.blue())
+            embed.add_field(name="Project Name", value=f"{project_name}")
+            embed.add_field(name="Username", value=f"{username}")
+            embed.add_field(name="Repo Name", value=f"{repo_name}")
+            embed.add_field(name="Project Tag", value=f"{project_tag}")
+            embed.set_thumbnail(url="https://owaspvit.com/assets/owasp-logo.png")
+
+            await ctx.send(embed=embed)
+        
+    except Exception as e:
+        print(e)
 
 
 # Events
@@ -280,6 +342,15 @@ async def five():
     ctx = bot.get_channel(840086439202521111)
     await sheets(ctx,'Technical')
     await cleanup(ctx, 'Technical')
+    
+    await sheets(ctx,'Operations')
+    await cleanup(ctx, 'Operations')
+    
+    await sheets(ctx,'Design')
+    await cleanup(ctx, 'Design')
+    
+    await sheets(ctx,'Web-dev')
+    await cleanup(ctx, 'Web-dev')
 
 
 bot.run(get_token())

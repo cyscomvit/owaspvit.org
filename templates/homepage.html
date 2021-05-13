@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>OWASP VITCC | Open Source</title>
+  <link href="https://owaspvit.com/assets/owasp-logo.png" rel="icon">
+  <meta name="author" content="Apratim Shukla">
+  <meta name="description" content="Check out the awesome open source projects powered by OWASP VITCC!">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home/css/style.css') }}">
+</head>
+<body>
+
+<body class="bg-purple">
+        
+        <div class="stars">
+            <div class="custom-navbar">
+                <div class="brand-logo">
+                    <img src="{{ url_for('static', filename='home/images/logo.png') }}" width="80px">
+                </div>
+                <div class="navbar-links">
+                    <ul>
+                      <li><a href="https://owaspvit.com">Home</a></li>
+                      <li><a href="https://blog.owaspvit.com">Blog</a></li>
+                      <li><a href="https://medium.owaspvit.com">Medium</a></li>
+                      <li><a href="https://github.com/owaspvit" class="btn-request" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="central-body">
+                <h1 class="image-404" style="color:white; font-size: 80px;">OWASP VITCC</h1>
+                <p style="font-size: 50px; font-weight: bolder;"><span style="color: red;">&#10084;</span> <span style="color:white;">Open Source</span></p>
+                <span>
+                    <a href="{{ url_for('leaderboard') }}" class="btn-go-home" target="_blank">Leaderboard</a>
+                    <a href="{{ url_for('projects') }}" class="btn-go-home" target="_blank">Projects</a>
+                </span>
+            </div>
+            <div class="objects">
+                <img class="object_rocket" src="{{ url_for('static', filename='home/images/rocket.svg') }}" width="40px">
+                <div class="earth-moon">
+                    <img class="object_earth" src="{{ url_for('static', filename='home/images/earth.svg') }}" width="100px">
+                    <img class="object_moon" src="{{ url_for('static', filename='home/images/moon.svg') }}" width="80px">
+                </div>
+                <div class="box_astronaut">
+                    <img class="object_astronaut" src="{{ url_for('static', filename='home/images/astronaut.svg') }}" width="140px">
+                </div>
+            </div>
+            <div class="glowing_stars">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+  <script  src="{{ url_for('static', filename='home/js/script.js') }}"></script>
+
+</body>
+</html>

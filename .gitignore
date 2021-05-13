@@ -7,3 +7,5 @@ __pycache__/
 data.py
 
 bot_token.py
+
+keys.json

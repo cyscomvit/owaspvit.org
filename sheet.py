@@ -16,30 +16,30 @@ service = build('sheets', 'v4', credentials=creds)
 
 
 def easy(name):
-  # The ID and range of a sample spreadsheet.
-  
-  SAMPLE_RANGE_NAME = name
-  # Call the Sheets API
-  sheet = service.spreadsheets()
-  result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+    # The ID and range of a sample spreadsheet.
+    SAMPLE_RANGE_NAME = name
+    # Call the Sheets API
+    sheet = service.spreadsheets()
+    result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
                                 range=SAMPLE_RANGE_NAME).execute()
-  values = result.get('values', [])
-  #print(values)
+    #print(result)
+    values = result.get('values', [])
+    #print(values)
 
-  final =[]
-  for i in range(1,len(values)):
-    name = values[i][0]
-    disc_name = values[i][1]
-    for j in range(2,len(values[i])):
-      if values[i][j] == '':
-        continue
-      else:
-        final.append([name, disc_name, values[0][j], values[i][j]])
-  return final
+    final =[]
+    for i in range(1,len(values)):
+        name = values[i][0]
+        disc_name = values[i][1]
+        #print(name)
+        for j in range(2,len(values[i])):
+            if values[i][j] == '' or values[i][j] == ' ':
+                continue
+            else:
+                final.append([name, disc_name, values[0][j], values[i][j]])
+    return final
 
 def clear(name):
-  
-  SAMPLE_RANGE_NAME = name
-  sheet = service.spreadsheets()
-  res = sheet.values().clear(spreadsheetId=SAMPLE_SPREADSHEET_ID,  range=SAMPLE_RANGE_NAME).execute()
-  print(res)
+    SAMPLE_RANGE_NAME = name
+    sheet = service.spreadsheets()
+    res = sheet.values().clear(spreadsheetId=SAMPLE_SPREADSHEET_ID,  range=SAMPLE_RANGE_NAME).execute()
+    print(res)

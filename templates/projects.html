@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OWASP VITCC | Our Projects</title>
+	<meta name="description" content="OWASP VITCC empower students to spearhead projects that address issues, challenges, and opportunities related to OWASP’s mission of promoting cybersecurity." />
+	<meta name="keywords" content="owasp vitcc, owaspvit projects, apratim shukla, apratimshukla6, owasp vit projects, owasp projects, open source, open source projects" />
+	<meta name="author" content="Apratim Shukla" />
+	<link rel="icon" href="https://owaspvit.com/assets/owasp-logo.png">
+	<!-- Feather Icons -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projects/fonts/feather/style.css') }}">
+	<!-- General demo styles & header -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projects/css/demo.css') }}" />
+	<!-- Component styles -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projects/css/component.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
+	<script src="{{ url_for('static', filename='projects/js/modernizr.custom.js') }}"></script>
+</head>
+<body>
+	<!-- Main container -->
+	<div class="container">
+		<!-- Blueprint header -->
+		<header class="bp-header cf">
+			<span>OWASP VITCC <span class="bp-icon bp-icon-about" data-content="OWASP VITCC empower students to spearhead projects that address issues, challenges, and opportunities related to OWASP’s mission of promoting cybersecurity."></span></span>
+			<h1><img src="{{ url_for('static', filename='projects/images/owasp-logo.png') }}" style="height: 1em;"> Projects</h1>
+			<nav>
+				<a href="https://owaspvit.com" class="bp-icon bp-icon-prev" data-info="Return to Home"><span>Home</span></a>
+			</nav>
+		</header>
+		<!-- Grid -->
+		<section class="slider">
+            {% for i in projects %}
+            {% if (loop.index==1) %}
+			<div class="slide slide--current" data-content="content-{{loop.index}}">
+				<div class="slide__mover">
+					<div class="zoomer flex-center">
+						<img class="zoomer__image" src="{{ url_for('static', filename='projects/images/imac.png') }}" />
+						<div class="preview">
+							<div>
+                                <img src="{{ url_for('static', filename='projects/images/opensource.png') }}" style="height: 50px; display: block; margin-left: auto; margin-right: auto;">
+                                <h1>{{ i['ProjectName'] }}</h1>
+                                <p>
+                                    <span><i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{ i['stars'] }} Stars</span>&nbsp;&nbsp;
+                                    <span><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;{{ i['views'] }} Views</span>
+                                </p>
+                                <a href="https://github.com/{{i['Username']}}/{{i['RepoName']}}" target="_blank" class="view">View</a>
+                            </div>
+						</div>
+					</div>
+				</div>
+				<h2 class="slide__title"><span>{{ i['ProjectTag'] }}</span> {{ i['ProjectName'] }}</h2>
+			</div>
+            {% else %}
+			<div class="slide" data-content="content-{{loop.index}}">
+				<div class="slide__mover">
+					<div class="zoomer flex-center">
+						<img class="zoomer__image" src="{{ url_for('static', filename='projects/images/imac.png') }}" />
+						<div class="preview">
+							<div>
+                                <img src="{{ url_for('static', filename='projects/images/opensource.png') }}" style="height: 50px; display: block; margin-left: auto; margin-right: auto;">
+                                <h1>{{ i['ProjectName'] }}</h1>
+                                <p>
+                                    <span><i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{ i['stars'] }} Stars</span>&nbsp;&nbsp;
+                                    <span><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;{{ i['views'] }} Views</span>
+                                </p>
+                                <a href="https://github.com/{{i['Username']}}/{{i['RepoName']}}" target="_blank" class="view">View</a>
+                            </div>
+						</div>
+					</div>
+				</div>
+				<h2 class="slide__title"><span>{{ i['ProjectTag'] }}</span> {{ i['ProjectName'] }}</h2>
+			</div>
+            {% endif %}
+            {% endfor %}
+			
+			<nav class="slider__nav">
+				<button class="button button--nav-prev"><i class="icon icon--arrow-left"></i><span class="text-hidden">Previous product</span></button>
+				<button class="button button--zoom"></button>
+				<button class="button button--nav-next"><i class="icon icon--arrow-right"></i><span class="text-hidden">Next product</span></button>
+			</nav>
+		</section>
+		<!-- /slider-->
+		<section class="content">
+            {% for i in projects %}
+			<div class="content__item" id="content-{{loop.index}}">
+				<img class="content__item-img rounded-right" />
+				<div class="content__item-inner">
+				</div>
+			</div>
+            {% endfor %}
+			
+			<button class="button button--close"><i class="icon icon--circle-cross"></i><span class="text-hidden">Close content</span></button>
+		</section>
+	</div>
+	<script src="{{ url_for('static', filename='projects/js/classie.js') }}"></script>
+	<script src="{{ url_for('static', filename='projects/js/dynamics.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='projects/js/main.js') }}"></script>
+</body>
+</html>
