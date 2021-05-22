@@ -340,7 +340,7 @@ async def on_message(message):
 #crontab
 @aiocron.crontab('0 0 * * 0')
 async def five():
-    ctx = bot.get_channel(840086439202521111)
+    ctx = bot.get_channel(838206269533323304)
     await sheets(ctx,'Technical')
     await cleanup(ctx, 'Technical')
     
