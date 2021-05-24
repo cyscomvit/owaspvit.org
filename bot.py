@@ -116,16 +116,18 @@ async def contribution(ctx, name, discord_name, task):
                 points = 0
                 if(task.casefold()=="pull request".casefold()):
                     points = 20
-                elif(task.casefold()=="blog".casefold()):
-                    points = 5
-                elif(task.casefold()=="sm posting".casefold()):
+                elif(task.casefold()=="blog medium".casefold()):
                     points = 20
+                elif(task.casefold()=="blog".casefold()):
+                    points = 15
+                elif(task.casefold()=="sm posting".casefold()):
+                    points = 7
                 elif(task.casefold()=="weekly work".casefold()):
                     points = 5
                 elif(task.casefold()=="idea".casefold()):
                     points = 3
                 elif(task.casefold()=="brochure".casefold()):
-                    points = 5
+                    points = 10
                 elif(task.casefold()=="news".casefold()):
                     points = 5
                 elif(task.casefold()=="demos".casefold()):
