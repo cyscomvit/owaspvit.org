@@ -6,8 +6,11 @@ The official open-source initiative and corresponding discord bot for OWASP VITC
 ## Preview
 <img src="https://i.imgur.com/BhBQ9VI.png">
 
-The leaderboard is live on: <a href="https://owaspvit.org/leaderboard">https://owaspvit.org/leaderboard</a>
-The projects display is live on: <a href="https://owaspvit.org/projects">https://owaspvit.org/projects</a>
+<ul>
+  <li>The website is live on: <a href="https://owaspvit.org">https://owaspvit.org</a></li>
+  <li>The leaderboard is live on: <a href="https://owaspvit.org/leaderboard">https://owaspvit.org/leaderboard</a></li>
+  <li>The projects page is live on: <a href="https://owaspvit.org/projects">https://owaspvit.org/projects</a></li>
+</ul>
 
 ### Discord Bot
 
