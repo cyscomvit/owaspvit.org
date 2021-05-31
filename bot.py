@@ -2,12 +2,19 @@ import discord
 from discord.ext import commands
 import datetime
 import firebase_admin
-from firebase_admin import db
-
+from firebase_admin import credentials, db, storage
+from PIL import ImageFont, ImageDraw, Image  
+import datetime
+import cv2  
+import numpy as np  
+import os
+import csv
+import urllib.request
+import io
+import img2pdf
+from uuid import uuid4
 from urllib import parse, request
 import re
-import os
-
 from bot_token import get_token
 import aiocron
 import asyncio
@@ -16,13 +23,21 @@ from sheet import *
 
 #os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/var/www/FlaskApp/FlaskApp/firebase.json"
 
-
-firebase_admin.initialize_app(options={'databaseURL': 'https://vitask.firebaseio.com/'})
+cred = credentials.Certificate("firebase.json")
+firebase_admin.initialize_app(cred, {
+    'databaseURL':'https://vitask.firebaseio.com/',        
+    'storageBucket': 'vitask.appspot.com',
+})
 
 ref = db.reference('vitask')
 tut_ref = ref.child('owasp')
 new_ref = tut_ref.child('leaderboard')
 proj_ref = tut_ref.child('projects')
+cert_ref = tut_ref.child('certificates')
+
+bucket = storage.bucket()
+blob = bucket.blob('dynamic certificate/')
+counter = 0
 
 bot = commands.Bot(command_prefix='!owasp ', description="The official OWASP VITCC Discord Bot.")
 
@@ -272,6 +287,65 @@ async def add_project(ctx, project_name, username, repo_name, project_tag):
         
     except Exception as e:
         print(e)
+        
+        
+@bot.command(pass_context=True)
+@commands.has_any_role("Board Member")
+async def add_certificate(ctx, name, discord_name, year):
+    maincounter=0
+    Fname = ''
+    data = ref.child("owasp").child("leaderboard").get()
+    for i in data:
+        if(data[i]["Name"].casefold()==name.casefold() and data[i]["Discord"].casefold()==discord_name.casefold()):
+            Fname = name
+            key = name+"-"+discord_name
+            cert_ref.child(f'{key}').push({
+                'Year':year,
+            })
+            embed = discord.Embed(title=f"{ctx.guild.name}", description="Certificate added.", color=discord.Color.blue())
+            embed.add_field(name="Username", value=f"{name}")
+            embed.add_field(name="Discord Name", value=f"{discord_name}")
+            embed.add_field(name="Year", value=f"{year}")
+            embed.set_thumbnail(url="https://owaspvit.com/assets/owasp-logo.png")
+
+            await ctx.send(embed=embed)
+            maincounter=1
+            break
+            
+    if maincounter==0:
+        embed = discord.Embed(title=f"{ctx.guild.name}", description="Certificate NOT added.", color=discord.Color.blue())
+        embed.add_field(name="Error", value=f"User not found. Make sure the real name and discord name is correct.")
+        embed.set_thumbnail(url="https://owaspvit.com/assets/owasp-logo.png")
+
+        await ctx.send(embed=embed)
+        
+    elif maincounter!=0:
+        username = name+"-"+discord_name
+        useryear = year
+        blob = bucket.blob(f'dynamic certificate/{username}-{useryear}')
+        url = "https://firebasestorage.googleapis.com/v0/b/vitask.appspot.com/o/Certificate.png?alt=media&token=a97843cf-e0da-4bd6-a5e7-3ee86d3e0bea"
+        url_response = urllib.request.urlopen(url)
+        img_array = np.array(bytearray(url_response.read()), dtype=np.uint8)
+        img = cv2.imdecode(img_array, -1)
+        cv2_im_rgb = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+        pil_im = Image.fromarray(cv2_im_rgb)  
+        new_token = uuid4()
+        metadata  = {"firebaseStorageDownloadTokens": new_token}
+        draw = ImageDraw.Draw(pil_im) 
+        font = ImageFont.truetype('botdata/poppins.ttf', 55)
+        x = 625-(len(Fname)*13.6)
+        draw.text(xy=(x,350),text=Fname,fill=(255,255,255),font=font)
+        draw.text(xy=(775,565),text=year,fill=(255,255,255),font=font)
+        img_bytes = io.BytesIO()
+        pil_im.save(img_bytes, format = 'PNG')
+        img_byte_arr = img_bytes.getvalue()
+
+        blob.metadata = metadata
+        blob.upload_from_string(img_byte_arr,content_type = 'image/png')
+        url = blob.generate_signed_url(datetime.timedelta(seconds = 600), method = 'GET')
+
+        await ctx.send(f'{url}')    
+
 
 
 # Events
