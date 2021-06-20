@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+OWASP VITCC | Digital Locker
+{% endblock %}
+
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='certificate/css/dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+<section>
+    <img src="{{ url_for('static', filename='certificate/images/crop.jpg') }}" id="bg">
+    <img src="{{ url_for('static', filename='certificate/images/moon.png') }}" id="moon">
+    <img src="{{ url_for('static', filename='certificate/images/road.png') }}" id="road">
+    <h2 id="text">{{user.name}} Certificates</h2>
+</section>
+<br>
+<br><br>
+<div class="cards-container">
+    {% if user.year|length == 0 %}
+    <div class="card">
+    <div class = "content">
+     <div class = "cert-name"> You don't have any certificates </div>
+    </div>
+    </div>
+    {% endif %}
+    {% for i in range(user.year|length) %}
+    <div class="card">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <img src={{user.url[i]}} class="img_img">
+      <div class="content">
+        <div class = "cert-number">{{ user.year[i] }}</div>
+        <form action="/certificate" method="POST" target="_blank">
+            <input type="hidden" name="url" value={{user.url[i] }} />
+            <button class = "click-button">  VIEW </button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </div>
+<script type="text/javascript">
+    let bg = document.getElementById("bg")
+    let moon = document.getElementById("moon")
+    let mountain = document.getElementById("mountain")
+    let road = document.getElementById("road")
+    let text = document.getElementById("text")
+    console.log(text)
+    window.addEventListener('scroll',function(){
+        var value = window.scrollY;
+
+        bg.style.top = value*0.5 + 'px';
+        moon.style.left = -value*1.5 + 'px';
+        road.style.top = value*0.15 + 'px';
+        text.style.top = value*1 + 'px';
+    })
+</script>
+
+{% endblock %}

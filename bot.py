@@ -298,7 +298,7 @@ async def add_certificate(ctx, name, discord_name, year):
     for i in data:
         if(data[i]["Name"].casefold()==name.casefold() and data[i]["Discord"].casefold()==discord_name.casefold()):
             Fname = name
-            key = name+"-"+discord_name
+            key = name.casefold()+"-"+discord_name.casefold()
             cert_ref.child(f'{key}').push({
                 'Year':year,
             })
@@ -320,7 +320,7 @@ async def add_certificate(ctx, name, discord_name, year):
         await ctx.send(embed=embed)
         
     elif maincounter!=0:
-        username = name+"-"+discord_name
+        username = name.casefold()+"-"+discord_name.casefold()
         useryear = year
         blob = bucket.blob(f'dynamic certificate/{username}-{useryear}')
         url = "https://firebasestorage.googleapis.com/v0/b/vitask.appspot.com/o/Certificate.png?alt=media&token=a97843cf-e0da-4bd6-a5e7-3ee86d3e0bea"

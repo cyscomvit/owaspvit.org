@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+OWASP VITCC | Certificates
+{% endblock %}
+
+{% block head %}
+<link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename='certificate/icons/owasp-logo.png') }}">
+<script src="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.js"></script>
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.css" />
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{{ url_for('static', filename='certificate/css/style.css') }}" />
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<!-- remember, jQuery is completely optional -->
+<!-- <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script> -->
+<script type='text/javascript' src="{{ url_for('static', filename='certificate/js/jquery.particleground.js') }}"></script>
+<script type='text/javascript' src="{{ url_for('static', filename='certificate/js/demo.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='certificate/css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<div id="particles">
+    <div id="intro">
+      <h1 class="header"><span aria-hidden="hidden">Certificates</span><span aria-hidden="hidden">Certificates</span><span aria-hidden="hidden">Certificates</span><span aria-hidden="hidden">Certificates</span><span aria-hidden="hidden">Certificates</span>Certificates<span aria-hidden="hidden">Certificates</span></h1>
+      <img src="{{ url_for('static', filename='certificate/icons/owasp-logo.png') }}" class="logo">
+      <form action="/data" method="POST">
+        <div class="search-form">
+              <input name="id" type="text" placeholder="Identifier">
+              <div class = "button" style="cursor:pointer"></div>
+              <button style="cursor: pointer;"><a type="submit" value="Submit" class="submit-btn"><i class="fas fa-space-shuttle"></i></a></button>
+        </div>
+      </form>
+      <div><h2 style="font-size: 2.5vw;" class="error">{{ error }}</h2></div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='certificate/js/firstclone.js') }}"></script>
+{% endblock %}

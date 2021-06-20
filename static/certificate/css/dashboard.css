@@ -1,0 +1,516 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body
+{
+    background: #0a2a43;
+    min-height: 1500px;
+}
+section
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section::before
+{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, #0a2a43, transparent);
+    z-index: 10000;
+}
+
+section::after
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a2a43;
+    z-index: 10000;
+    mix-blend-mode: color;
+}
+
+section img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+#text
+{
+    position: relative;
+    color: white;
+    font-size: 10em;
+    z-index: 1;
+    color:white;
+    margin-top: 35rem;
+    animation: melava 1s;
+    animation-fill-mode: forwards;
+}
+/* #bg
+{
+  transform:translateY(-40rem);
+  animation: bgkeezhava 1s forwards;
+} */
+
+#road
+{
+    z-index: 2;
+}
+#moon
+{
+  position: absolute;
+  top: 4%;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.img_img
+{
+  width: 100%;
+  height: 100%;
+  transition: 0.3s;
+}
+.cards-container{
+    height: 100%;
+    padding: 5rem;
+    width: calc(100% - 10px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #0a2a43;
+    overflow: hidden;
+    margin-top: 0;
+  }
+  .card{
+    width: 25rem;
+    height: 17rem;
+    position: relative;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-right: 3rem;
+    opacity: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    box-shadow: 0.2rem 0.2rem 2rem black;
+    overflow: hidden;
+    transition: 0.5s;
+  }
+  .card:hover{
+    opacity: 1;
+    box-shadow: 1rem 1rem 4rem black;
+  }
+  .card:hover .img_img{
+    filter: blur(0.15rem);
+  }
+  /* .card::before{
+    content: '';
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+  } */
+  .card:hover::before{
+    animation: rotate_before 0.5s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes rotate_before{
+    0%{
+      width: 50%;
+      height: 100%;
+    }
+    50%{
+      width: 100%;
+      height: 50%;
+      bottom: 0;
+      left: 0;
+    }
+    100%{
+      width: 50%;
+      height: 100%;
+      top:0;
+      left: 50%;
+    }
+  }
+  .cert-number, .cert-name{
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 700;
+  }
+  .cert-number{
+    font-size: 300%;
+    position: absolute;
+    left: 21%;
+    top: 55%;
+    color: rgb(52, 255, 255);
+    text-shadow: 0 0 5px rgb(52, 255, 255);
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .card:hover .cert-number{
+    opacity: 1;
+    transform: translateY(-3.5rem);
+  }
+  .cert-name{
+    font-size: 2rem;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .card:hover .cert-name{
+    opacity: 1;
+  }
+  .click-button{
+    padding: 1rem;
+    width: 5rem;
+    background-color: rgba(255, 255, 255, 0.45);
+    color: #fff;
+    border:none;
+    outline:none;
+    cursor: pointer;
+    position: absolute;
+    text-decoration: none;
+    top: 75%;
+    left: 75%;
+    clip-path: polygon(100% 1%, 100% 47%, 100% 100%, 0 100%, 0 0);
+    transition: all 0.25s;
+  }
+  .click-button:hover{
+    clip-path: polygon(79% 0, 100% 51%, 76% 100%, 0 100%, 0 0);
+    padding-left: 0.5rem;
+    text-decoration: none;
+    color: #fff;
+  }
+  .card span{
+    opacity: 0;
+  }
+  .card:hover span{
+    opacity:1;
+  }
+  .card span:nth-child(1){
+    width: 100%;
+    height: 0.3rem;
+    background: linear-gradient(to right,transparent,red);
+    position: absolute;
+    top:0;
+    left: 0;
+    animation: animation1 2s linear infinite;
+  }
+  @keyframes animation1 {
+    0%{
+      left: -100%;
+    }
+    100%{
+      left: 100%;
+    }
+  }
+  .card span:nth-child(2){
+    height: 100%;
+    width: 0.3rem;
+    background: linear-gradient(to bottom,transparent,red);
+    position: absolute;
+    top:0;
+    right: 0;
+    animation: animation2 2s 1s linear infinite;
+  }
+  @keyframes animation2 {
+    0%{
+      top: -100%;
+    }
+    100%{
+      top: 100%;
+    }
+  }
+  .card span:nth-child(3){
+    width: 100%;
+    height: 0.3rem;
+    background: linear-gradient(to left,transparent,#1779ff);
+    position: absolute;
+    bottom:0;
+    right: 0;
+    animation: animation3 2s linear infinite;
+  }
+  @keyframes animation3{
+    0%{
+      right: -100%;
+    }
+    100%{
+      right: 100%;
+    }
+  }
+  .card span:nth-child(4){
+    height: 100%;
+    width: 0.3rem;
+    background: linear-gradient(to top,transparent,#1779ff);
+    position: absolute;
+    bottom:0;
+    left: 0;
+    animation: animate4 2s 1s linear infinite;
+  }
+  @keyframes animate4 {
+    0%{
+      bottom: -100%;
+    }
+    100%{
+      bottom: 100%;
+    }
+  }
+  @keyframes melava
+  {
+    0%
+    {
+      margin-top: 35rem;
+    }
+    100%
+    {
+      margin-top:-2rem;
+    }
+  }
+  /* @keyframes bgkeezhava
+  {
+    0%
+    {
+      margin-top: 40rem;
+    }
+    100%{
+      margin-top: 70rem;
+    }
+  } */
+
+
+  /* mobile responsive */
+  @media screen and (max-width: 1000px){
+      #text{
+          font-size: 8em;
+          margin-top: 40rem;
+      }
+      .cards-container{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+      }
+      .card{
+          margin-right: 0rem;
+          margin-bottom: 1.5rem;
+      }
+      #moon{
+          margin-left: -5rem;
+          top: 2%;
+      }
+      @keyframes melava{
+        0%
+        {
+        margin-top: 35rem;
+        }
+        100%
+        {
+        margin-top: -2rem;
+        }
+      }
+  }
+  @media(max-width: 900px)
+  {
+      #moon{
+          display: none;
+      }
+  }
+  @media(max-width: 800px)
+  {
+    #text{
+        font-size: 7em;
+    }
+  }
+  @media(max-width: 700px)
+  {
+      #text{
+          font-size: 6em;
+      }
+      @keyframes melava{
+        0%
+        {
+        margin-top: 35rem;
+        }
+        100%
+        {
+        margin-top:2rem;
+        }
+  }
+  }
+  @media(max-width: 600px)
+  {
+    #text{
+        font-size: 4em;
+    }
+    @keyframes melava{
+      0%
+      {
+      margin-top: 35rem;
+      }
+      100%
+      {
+      margin-top: 4rem;
+      }
+    }
+  }
+  @media(max-width: 530px)
+  {
+      .card{
+          width: 20rem;
+          height: 13rem;
+      }
+      .cert-number, .cert-name{
+        font-size: 1.5rem;
+      }
+      @keyframes melava{
+        0%
+        {
+        margin-top: 35rem;
+        }
+        100%
+        {
+        margin-top: 6rem;
+        }
+      }
+      .cert-number{
+        font-size: 250%;
+        position: absolute;
+        left: 21%;
+        top: 55%;
+        color: rgb(52, 255, 255);
+        text-shadow: 0 0 5px rgb(52, 255, 255);
+        opacity: 0;
+        transition: 0.5s;
+      }
+
+      button{
+        border-width: 0;
+      }
+
+      .click-button{
+        border : 0;
+        padding: 0.5rem;
+        width: 5rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        cursor: pointer;
+        position: absolute;
+        text-decoration: none;
+        top: 75%;
+        left: 70%;
+        font-size: 1rem;
+        clip-path: polygon(100% 1%, 100% 47%, 100% 100%, 0 100%, 0 0);
+        transition: all 0.25s;
+      }
+  }
+  @media(max-width: 430px){
+    #text{
+        font-size: 3em;
+    }
+    @keyframes melava{
+        0%
+        {
+        margin-top: 35rem;
+        }
+        100%
+        {
+        margin-top: 8rem;
+        }
+      }
+      .card{
+        width: 15rem;
+        height: 10rem;
+        }
+        .cert-number, .cert-name{
+         font-size: 1rem;
+        }
+        .cert-number{
+            font-size: 175%;
+            position: absolute;
+            left: 22%;
+            top: 65%;
+            color: rgb(52, 255, 255);
+            text-shadow: 0 0 5px rgb(52, 255, 255);
+            opacity: 0;
+            transition: 0.5s;
+          }
+
+          .click-button{
+            padding: 0.5rem;
+            width: 4rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            position: absolute;
+            text-decoration: none;
+            top: 75%;
+            left: 70%;
+            font-size: 0.75rem;
+            clip-path: polygon(100% 1%, 100% 47%, 100% 100%, 0 100%, 0 0);
+            transition: all 0.25s;
+          }
+  }
+
+  @media screen and (max-width:360px){
+    .card
+    {
+      transform: translateX(-2rem);
+    }
+  }
+  @media screen and (max-width:300px) {
+    .card{
+      transform: translateX(-3rem);
+    }
+  }
+
+::-webkit-scrollbar {
+  width: 10px;
+  scrollbar-width: 10px;
+  background: rgba(4, 12, 31, 0.103);
+}
+
+/* Track /
+::-webkit-scrollbar-track {
+  / box-shadow: inset 0 0 5px rgb(253, 253, 253); /
+  border-radius: 10px;
+}
+
+/ Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(125deg,#8dcefa,#07315a);
+  border-radius: 10px;
+}

@@ -1,0 +1,670 @@
+/*
+CSS Reset
+http://meyerweb.com/eric/tools/css/reset/
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* particleground demo */
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: linear-gradient(45deg,rgb(0, 0, 0),rgb(0, 0, 0,0.8));
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+#particles {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#intro {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  padding: 0 20px;
+  width: 100%;
+  text-align: center;
+}
+h1 {
+  text-transform: uppercase;
+  font-size: 85px;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
+/*h1::after {
+  content: '';
+  width: 80px;
+  display: block;
+  background: #fff;
+  height: 10px;
+  margin: 30px auto;
+  line-height: 1.1;
+}*/
+p {
+  margin: 0 0 30px 0;
+  font-size: 24px;
+}
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border: 2px solid #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: all 0.4s;
+     -moz-transition: all 0.4s;
+       -o-transition: all 0.4s;
+          transition: all 0.4s;
+}
+.btn:hover {
+  color: #005544;
+  border-color: #005544;
+}
+
+/* own */
+@font-face {
+  font-family: Hacked;
+  src: url(https://hackedfont.com/HACKED.ttf);
+}
+.logo
+{
+  z-index: 1000;
+  position: absolute;
+  width: 6.25vw;
+  height: 6.25vw;
+  background-color: black;
+  left: 2vw;
+  top: -42vh;
+  border-radius: 50%;
+  animation: animateme 2s infinite;
+}
+.header
+{   
+    position: fixed;
+    z-index: 1;
+    top: 15%;
+    left: 25%;
+    font-size: 10vw;
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    font-family: Hacked;
+    /* font-weight: 700;
+    font-style: italic; */
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    color: white;
+    animation: glitch 500ms infinite;
+    /* background: -webkit-linear-gradient(white, #38495a); */
+}
+
+.header span{
+  position: fixed;
+  top: 15%;
+  left: 25%;
+}
+.header span:nth-child(1){
+  animation: break1 10s infinite;
+  clip-path: polygon(100% 0, 100% 41%, 0 71%, 0 0);
+}
+.header span:nth-child(2){
+  animation: break2 10s infinite;
+  clip-path: polygon(100% 69%, 100% 89%, 0 100%, 0 38%);
+}
+.header span:nth-child(3){
+  animation: break3 7s infinite;
+  clip-path: polygon(100% 0, 100% 41%, 0 71%, 0 0);
+}
+.header span:nth-child(4){
+  animation: break4 7s infinite;
+  clip-path: polygon(100% 69%, 100% 89%, 0 100%, 0 38%);
+}
+.header span:nth-child(5){
+  animation: break5 1s infinite;
+  clip-path: polygon(100% 0, 100% 41%, 0 71%, 0 0);
+}
+.header span:nth-child(6){
+  animation: break6 3s infinite;
+  clip-path: polygon(100% 69%, 100% 89%, 0 100%, 0 38%);
+}
+
+@keyframes glitch{
+  0%{
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  19%{
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  20%{
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  59%{
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  60%{
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  99%{
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100%{
+    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+@keyframes break1 {
+  0%{
+    transform: translate(0em, 0em);
+  }
+  99%{
+    transform: translate(0em, 0em);
+  }
+  100%{
+    transform: translate(-1em, -0.025em);
+  }
+}
+@keyframes break2 {
+  0%{
+    transform: translate(0em, 0em);
+  }
+  99%{
+    transform: translate(0em, 0em);
+  }
+  100%{
+    transform: translate(1em, 0.025em);
+  }
+}
+@keyframes break3 {
+  0%{
+    transform: translate(0em, 0em);
+  }
+  99%{
+    transform: translate(0em, 0em);
+  }
+  100%{
+    transform: translate(0.25em, -0.05em);
+  }
+}
+@keyframes break4 {
+  0%{
+    transform: translate(0em, 0em);
+  }
+  99%{
+    transform: translate(0em, 0em);
+  }
+  100%{
+    transform: translate(-0.25em, 0.05em);
+  }
+}
+@keyframes break5{
+  0%{
+    transform: translate(0em, 0em);
+  }
+  90%{
+    transform: translate(0em, 0em);
+  }
+  100%{
+    transform: translate(0.1em, 0.05em);
+  }
+}
+@keyframes break6{
+  0%{
+    transform: translate(0em, 0em);
+  }
+  90%{
+    transform: translate(0em, 0em);
+  }
+  100%{
+    transform: translate(-0.1em, 0.05em);
+  }
+}
+/* .disc-id-input
+{   
+    position: absolute;
+    z-index:1;
+    margin-left: 5rem;
+    width: 400px;
+    margin-top: 5rem;
+    height:80px;
+    font-size: 1.5rem;
+    padding: 1rem;
+} */
+.search-form {
+  position: fixed;
+  /* margin: 150px auto 0; */
+  top: 60%;
+  left: 35%;
+  z-index: 1;
+}
+/* .search-form:before {
+  content: ' ';
+  position: absolute;
+  left: 25px;
+  top: 14px;
+  width: 20%;
+  height: 36px;
+  transform: scale(0);
+  z-index: 1;
+  background: rgb(71, 136, 135);
+  transition: all 0.5s cubic-bezier(.87, -.41, .19, 1.44);
+} */
+
+/* .active:before {
+  transform: scale(1);
+  transition-delay: 0.3s;
+  position: absolute;
+  animation: 0.6s cubic-bezier(.87, -.41, .19, 1.44) 0.5s infinite forwards focus;
+} */
+
+input {
+  border-radius: 50%;
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  transition: all 0.5s cubic-bezier(.87, -.41, .19, 1.44);
+  border:none;
+  outline: none;
+}
+
+.active input {
+  width: 23.4375vw;
+  padding-left: 25px;
+  position: absolute;
+  border-radius: 36px;
+  font-size: 1.5vw;
+  font-family: 'Poiret One',cursive;
+  font-weight:900;
+  border:none;
+  outline: none;
+}
+
+.button {
+  background: rgba(255, 255, 255, 1);
+  position: absolute;
+  height: 100%;
+  border-radius: 50%;
+  width: 5vw;
+  height: 5vw;
+  border: none;
+  outline: none;
+  transition: all 0.5s cubic-bezier(.87, -.41, .19, 1.44);
+}
+.button::before {
+  content: ' ';
+  position: absolute;
+  width: 2.34375vw;
+  height: 2.34375vw;
+  left: 0;
+  right: 0;
+  top: 1.328125vw;
+  transform: scale(1);
+  transform-origin: left top;
+  margin: 0 auto;
+  background: black;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.8s ease;
+}
+
+.active .button {
+  transform: translateX(20.3125vw);
+  position: absolute;
+  border: none;
+}
+
+.active .button::before {
+  transform: scale(1)  translateY(-0.2vw);
+  position: absolute;
+  width: 2.34375vw;
+  height: 2.34375vw;
+  border: 0.15625vw red solid ;
+  background-color: white;
+}
+
+.focus:before {
+  transform: scale(0);
+  animation: none;
+  position: absolute;
+}
+
+@keyframes focus {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.submit-btn{
+    position: absolute;
+    z-index: 1000;
+    left: 26vw;
+    top: 0.5vw;
+    cursor:pointer;
+}
+.submit-btn i{
+    font-size: 4vw;
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    color: rgb(107, 255, 107);
+    animation: aadudhal 0.5s infinite;
+    transition: 1s;
+}  
+.active .submit-btn i{
+    opacity: 1;
+}
+
+.error
+{
+  size: 10vw;
+  text-transform: uppercase;
+}
+@keyframes aadudhal
+{
+    0%
+    {
+        transform: translateX(0);
+    }
+    50%{
+      transform: translateX(0.4rem);    
+    }
+    100%
+    {
+        transform: translateX(0);
+    }   
+
+}
+@media only screen and (max-width: 1000px) {
+  h1 {
+    font-size: 70px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .active input{
+    width: 27vw;
+    top: -5rem;
+  }
+  .button{
+    top: -5rem;
+  }
+  input{
+    top:-5rem;
+  }
+  .active .button{
+    transform: translateX(23.5vw);
+    top: -5rem;
+  }
+  .submit-btn{
+    left: 29vw;
+    top: -4.75rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #intro {
+    padding: 0 10px;
+  }
+  .active input{
+    width: 30vw;
+    height: 7vw;
+    top: -5rem;
+    font-size: 2vw;
+  }
+  .button{
+    top: -5rem;
+    height: 7vw;
+    width: 7vw;
+  }
+  input{
+    top:-5rem;
+    height: 7vw;
+    width: 7vw;
+  }
+  .active .button{
+    transform: translateX(23.5vw);
+    top: -5rem;
+    height: 7vw;
+    width: 7vw;
+  }
+  .button::before{
+    width: 3.5vw;
+    top: 0.65rem;
+    height: 3.5vw;  
+  }
+  .active .button::before{
+    width: 3.5vw;
+    top: 0.65rem;
+    height: 3.5vw;  
+  }
+  .submit-btn{
+    left: 33vw;
+    top: -4.75rem;
+  }
+  .submit-btn i{
+    font-size: 6vw;
+  }
+  h1::after{
+    display: none;
+  }
+  .header{
+    top: 30vw;
+    left: 18vw;
+    font-size: 11vw;
+  }
+  .header span{
+    top: 30vw;
+    left: 18vw;
+  }
+  .logo{
+    top: -50vw;
+    width: 12vw;
+    height: 12vw;
+  }
+}
+@media only screen and (max-width: 500px)
+{
+  #intro {
+    padding: 0 10px;
+  }
+  .active input{
+    width: 30vw;
+    height: 7vw;
+    top: -5rem;
+    font-size: 2vw;
+  }
+  .button{
+    top: -5rem;
+    height: 7vw;
+    width: 7vw;
+  }
+  input{
+    top:-5rem;
+    height: 7vw;
+    width: 7vw;
+  }
+  .active .button{
+    transform: translateX(23.5vw);
+    top: -5rem;
+    height: 7vw;
+    width: 7vw;
+  }
+  .button::before{
+    width: 3.5vw;
+    top: 1.8vw;
+    height: 3.5vw;  
+  }
+  .active .button::before{
+    width: 3.5vw;
+    top: 1.8vw;
+    height: 3.5vw;  
+  }
+  .submit-btn{
+    left: 33vw;
+    top: -4.75rem;
+  }
+  .submit-btn i{
+    font-size: 6vw;
+  }
+  h1::after{
+    display: none;
+  }
+  .header{
+    top: 30vh;
+    left: 16vw;
+    font-size: 11vw;
+  }
+  .header span{
+    top: 30vh;
+    left: 16vw;
+  }
+  .logo{
+    top: -45vh;
+    width: 12vw;
+    height: 12vw;
+  }
+}
+@media only screen and (max-width: 400px)
+{
+  #intro {
+    padding: 0 10px;
+  }
+  .active input{
+    width: 35vw;
+    height: 9vw;
+    top: -8rem;
+    left: -6vw;
+    font-size: 3vw;
+  }
+  .button{
+    top: -8rem;
+    height: 9vw;
+    left: -6vw;
+    width: 9vw;
+  }
+  input{
+    top:-8rem;
+    left: -6vw;
+    height: 9vw;
+    width: 9vw;
+  }
+  .active .button{
+    transform: translateX(23.5vw);
+    top: -8rem;
+    height: 9vw;
+    width: 9vw;
+    left: 0vw;
+  }
+  .button::before{
+    width: 3.5vw;
+    top: 3vw;
+    height: 3.5vw;  
+  }
+  .active .button::before{
+    width: 3.5vw;
+    top: 3vw;
+    height: 3.5vw;  
+  }
+  .submit-btn{
+    left: 33vw;
+    top: -7.75rem;
+  }
+  .submit-btn i{
+    font-size: 8vw;
+  }
+  h1::after{
+    display: none;
+  }
+  .header{
+    top: 28vh;
+    left: 13vw;
+    font-size: 10.5vw;
+  }
+  .header span{
+    top: 28vh;
+    left: 13vw;
+  }
+  .logo{
+    top: -45vh;
+    width: 12vw;
+    height: 12vw;
+  }
+}
+
