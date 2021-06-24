@@ -30,7 +30,7 @@ g = Github(github_token())
 # Initialize Firebase app
 #cred = credentials.Certificate("firebase.json")
 # Production
-cred = credentials.Certificate("/var/www/FlaskApp/firebase.json")
+cred = credentials.Certificate("firebase.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL':'https://vitask.firebaseio.com/',
     'storageBucket': 'vitask.appspot.com',
@@ -146,4 +146,4 @@ def landingpage():
     return render_template('certificate.html')
 
 if __name__ == '__main__':
-    app.run(port=port)
+    app.run(port=port, debug=True)
