@@ -49,7 +49,7 @@ html, body{
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    
     font-family: 'Dosis', sans-serif;
     font-weight: 300;
     -webkit-user-select: none; /* Safari 3.1+ */
@@ -60,16 +60,16 @@ html, body{
 
 .bg-purple{
     background: url("../images/bg.png");
-    background-repeat: repeat-x;
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: left top;
-    height: 100%;
+    
     overflow: hidden;
     
 }
 
 .custom-navbar{
-    padding-top: 15px;
+    position: relative ;
+    top: 25px;
 }
 
 .brand-logo{
@@ -167,7 +167,6 @@ li a:hover {
 .central-body{
 
     width: 100%;
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -291,6 +290,15 @@ li a:hover {
     .central-body{
         position: relative;
         top: -100px;
+    }
+    .image-404 {
+        font-size: 2.5rem !important;
+    }
+    .central-body p {
+        font-size: 2.3rem !important;
+    }
+    .btn-go-home {
+        margin: 5px auto;
     }
     .box_astronaut {
         top: 90%;
