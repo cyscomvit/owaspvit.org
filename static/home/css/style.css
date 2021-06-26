@@ -47,6 +47,7 @@
 
 html, body{
     margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
     font-family: 'Dosis', sans-serif;
@@ -164,9 +165,15 @@ li a:hover {
 }
 
 .central-body{
-/*    width: 100%;*/
-    padding: 17% 5% 10% 5%;
+
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: center;
     text-align: center;
+    height: 100vh;
 }
 
 .objects img{
@@ -225,6 +232,7 @@ li a:hover {
     background-repeat: repeat;
     background-size: contain;
     background-position: left top;
+    height: 100vh;
 }
 
 .glowing_stars .star{
@@ -281,6 +289,12 @@ li a:hover {
     }
     
     .central-body{
-        padding-top: 25%;
+        position: relative;
+        top: -100px;
     }
+    .box_astronaut {
+        top: 90%;
+        animation: move-astronaut 50s infinite linear both alternate;
+    }
+
 }
