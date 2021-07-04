@@ -15,21 +15,18 @@ from bot_token import github_token
 # Initialize Flask app
 app = Flask(__name__)
 application = app
-#app.secret_key = "secret key"
+app.secret_key = "secret key"
 
 
 # Set the port for Flask app
 port = int(os.environ.get('PORT', 5000))
 
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/var/www/FlaskApp/FlaskApp/firebase.json"
 
 # GitHub Access Token
 g = Github(github_token())
 
 
 # Initialize Firebase app
-#cred = credentials.Certificate("firebase.json")
-# Production
 cred = credentials.Certificate("firebase.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL':'https://vitask.firebaseio.com/',
