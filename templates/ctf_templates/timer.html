@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ctf_static/timer/css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ctf_static/challenge/css/styles.css') }}">
+    <script>
+        window.addEventListener("pageshow", function (event) {
+            var historyTraversal = event.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2);
+            if (historyTraversal) {
+                window.location.reload();
+            }
+        });
+    </script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>OWASP CTF | Countdown</title>
+</head>
+
+<body>
+    <nav class="navigation container-fluid">
+        <div class="row ">
+            <div class="col-xl-7 col-lg-12  my-2 logo-wrapper">
+                <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo">
+            </div>
+
+            <div class="col-lg-1 my-4 links">
+                <i class="fas fa-user" style="margin-top: 10px; margin-left: 20px" onClick="modalControl()"></i>
+                <span class="nav-link no-hover" style="margin-top: -30px;" onClick="modalControl()">{{ session.uname }}</span>
+            </div>
+            <div class="col-lg-1 my-4 links ">
+                <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;"><span
+                        class="nav-link text-center">Leaderboard</span></a>
+            </div>
+            <div class="col-lg-1 my-4 links-logout">
+                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;"><span
+                        class="nav-link">Logout</span></a>
+            </div>
+            <div class="bars my-4">
+                <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
+            </div>
+    </nav>
+
+    <div class="sidebar-container">
+        <div class="sidebar">
+            <div class="close-row">
+                <i class="fas fa-times close-icon" onClick="handleClose()"></i>
+            </div>
+            <div class="sidebar-links">
+                <i class="fas fa-user"></i>
+                <p style="display: inline;">{{ session.uname }}</p>
+                <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; margin-top: 15px;">Leaderboard</p>
+                    <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
+                        <p style="width: fit-content; ">Log Out</p>
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal-container ">
+        <div class="modal-box">
+            <i class="fas fa-times close-icon-modal" onClick="modalControl()"></i>
+            <div class="row" style="border-bottom: 1px solid gray;">
+                <h2 class="add">Add A Profile Picture</h2>
+            </div>
+            <label for="user-flag" class="label my-2">Upload A Picture</label>
+            <input type="file" class="form-control-file" id="user-flag" accept=".png, .jpg, .gif">
+            <div class="btn-override my-4">SUBMIT
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="main container-fluid">
+        <div class="container">
+            <h1 id="headline">CTF will be live In:</h1>
+            <div id="countdown">
+                <ul>
+                    <li><span id="days"></span>days</li>
+                    <li><span id="hours"></span>Hours</li>
+                    <li><span id="minutes"></span>Minutes</li>
+                    <li><span id="seconds"></span>Seconds</li>
+                </ul>
+            </div>
+            <div class="row">
+                <h5 class="text-center mx-auto  my-4">Challenge Will Be Live on the 23rd of July at 12:00PM!</h5><br>
+
+            </div>
+            <div class="row">
+                <h5 class="text-center mx-auto my-4" style="color: rgb(110, 110, 212)"><a
+                        href="https://discord.gg/owasp" target="_blank" style="color: inherit">Join us on Discord for updates!</a></h5><br>
+
+            </div>
+
+        </div>
+    </div>
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+
+
+
+
+
+
+    </div>
+
+
+
+    <script src="{{ url_for('static', filename='ctf_static/timer/js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='ctf_static/base/js/script.js') }}"></script>
+
+
+</body>
+
+</html>

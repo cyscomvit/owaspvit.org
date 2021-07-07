@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ctf_static/register/css/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+    <title>OWASP CTF | Register</title>
+</head>
+
+<body>
+    <div class="main container-fluid">
+        <form method="POST" action="/ctf/register">
+        <div class="form">
+            <div class="subtitle text-center mx-auto d-block">Register To Get Started</div>
+            {% if flag.weak==True %}
+            <p style="color:red">Password is weak. Please try again</p>
+            {% endif %}
+            {% if flag.uname_exists==True %}
+            <p style="color:red">Username already exists. <br> Please try using different username.</p>
+            {% endif %}
+            {% if flag.invalidpass==1 %}
+            <p style="color:red">Your password is too short</p>
+            {% endif %}
+            {% if "registered" in flag.keys() %}
+            {% if flag.registered==0 %}
+            <p style="color:red">The email ID already exists<br>Or Invalid email ID</p>
+            {% endif %}
+            {% endif %}
+            <div class="input-container ic1">
+                <!--<input id="email" class="input" type="text" placeholder=" " />
+                <label for="email" class="placeholder">Email</label>-->
+                {{ form.email(class_="input", placeholder_=" ", id_="email", type_="email") }}
+                {{ form.email.label(class_="placeholder", for_="email") }}
+            </div>
+            <div class="input-container ic2">
+                <!--<input id="username" class="input" type="text" placeholder=" " />
+                <label for="username" class="placeholder">Username</label>-->
+                {{ form.uname(class_="input") }}
+                {{ form.uname.label(class_="placeholder") }}
+            </div>
+            <div class="input-container ic3">
+                <!--<input id="password" class="input" type="password" placeholder=" " />
+                <label for="password" class="placeholder">Password</label>-->
+                {{ form.password(class_="input", type_="password", id_="password") }}
+                {{ form.password.label(class_="placeholder", for_="password") }}
+                
+                <meter max="4" id="password-strength-meter"></meter>
+                <p id="password-strength-text" class="feedback"></p>
+
+            </div><br>
+
+            <!--<button class="btn-override">SUBMIT</button>-->
+                {{ form.submit(class_="btn-override") }}
+                <p class="my-2" style="color: rgb(189, 189, 189)"><a href="{{url_for('login')}}"
+                    style="text-decoration: none; color: inherit;">Already have an account? Sign in</a></p>
+        </div>
+        </form>
+    </div>
+    <script src="{{url_for('static', filename='ctf_static/register/js/script.js')}}"></script>
+</body>
+
+</html>

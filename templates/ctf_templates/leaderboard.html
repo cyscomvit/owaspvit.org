@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+        window.location.reload();
+    }
+    });
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ctf_static/leaderboard/css/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="icon" href="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>OWASP CTF | Leaderboard</title>
+</head>
+
+<body>
+
+
+    <div class="header container-fluid">
+        <div class="go-back" >
+            <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back</span></a>
+        </div>
+  
+        <img src="{{url_for('static', filename='ctf_static/leaderboard/images/ctf_logo.png')}}" class="badge_icon">
+        <h2>OWASP CTF LEADERBOARD</h2>
+    </div>
+    <div class="container-fluid table-container">
+        <table class="table table-dark">
+            <thead>
+                <tr class="headers">
+                    <th scope="col" style="width: 20%" class="to-center">
+                        <i class="fas fa-trophy" style="margin-right: 10px;"></i>Rank
+                    </th>
+                    <th scope="col" style="width: 10%" class="to-center">
+                        <i class="fas fa-ribbon"></i>
+                    </th>
+                    <th scope="col" style="width: 50%">
+                        <i class="fas fa-user" style="margin-right: 10px;"></i>Username
+                    </th>
+                    <th scope="col" style="width: 40%" class="to-center">
+                        <i class="fas fa-piggy-bank" style="margin-right: 10px;"></i>Points
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in range(vals|length) %}
+                <tr>
+                    <td class="to-center">
+                        -</td>
+                    <td class="to-center">
+                        {% if i==0 %}
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i>
+                        {% elif i==1 %}
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i>
+                        {% elif i==2 %}
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i>
+                        {% elif i==3 %}
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i>
+                        {% elif i==4 %}
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i>
+                        {% elif i==5 %}
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i>
+                        {% else %}
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i>
+                        {% endif %}
+                    </td>
+                    <td>{{ vals[i] }}</td>
+                    <td class="to-center">-</td>
+
+                </tr>
+            {% endfor %}
+                <!---<tr>
+                    <td class="to-center">
+                        2</td>
+                    <td class="to-center"> <img src="{{url_for('static', filename='leaderboard/images/second.jpg')}}"
+                            style="height: 40px;"></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center">100</td>
+
+                </tr>
+                <tr>
+                    <td class="to-center">
+                        3</td>
+                    <td class="to-center"> <img src="{{url_for('static', filename='leaderboard/images/third.jpg ')}}"
+                            style="height: 40px;"></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center">100</td>
+
+                </tr>
+                <tr>
+                    <td class="to-center">
+                        4</td>
+                    <td class="to-center">
+                        <img src="{{url_for('static', filename='leaderboard/images/trophy_gold.jpg')}}"
+                            style="height: 40px;"></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center">100</td>
+
+                </tr>
+                <tr>
+                    <td class="to-center">
+                        5</td>
+                    <td class="to-center">
+                        <img src="{{url_for('static', filename='leaderboard/images/trophy_silver.png')}}"
+                            style="height: 40px;"></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center">100</td>
+
+                </tr>
+                <tr>
+                    <td class="to-center">
+                        6</td>
+                    <td class="to-center">
+                        <img src="{{url_for('static', filename='leaderboard/images/trophy_bronze.png')}}"
+                            style="height: 40px;"></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center">100</td>
+
+                </tr>
+                <tr>
+                    <td class="to-center">
+                        7</td>
+                    <td class="to-center">
+                        <i class="fas fa-chess-knight" style="font-size: 1.8rem; color: rgb(151, 151, 149)"></i></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center"> 100</td>
+
+                </tr>
+                <tr>
+                    <td class="to-center">
+                        8</td>
+                    <td class="to-center">
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center">100</td>
+
+                </tr>
+                <tr>
+                    <td class="to-center">
+                        9</td>
+                    <td class="to-center">
+                        <i class="fas fa-chess-knight" style=" font-size: 1.8rem; color: rgb(151, 151, 149)"></i></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center">100</td>
+
+                </tr>
+                <tr>
+                    <td class="to-center">
+                        10</td>
+                    <td class="to-center">
+                        <i class="fas fa-chess-knight" style="font-size: 1.8rem; color: rgb(151, 151, 149)"></i></td>
+                    <td>NehJoshi_123</td>
+                    <td class="to-center">100</td>
+                </tr>--->
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
