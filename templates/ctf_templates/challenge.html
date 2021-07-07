@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+        window.location.reload();
+    }
+    });
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ctf_static/challenge/css/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>CTF | Challenge</title>
+</head>
+
+<body>
+    <nav class="navigation container-fluid">
+        <div class="row ">
+            <div class="col-xl-7 col-lg-12  my-2 logo-wrapper">
+                <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo">
+            </div>
+
+            <div class="col-lg-1 my-4 links">
+                <i class="fas fa-user" style="margin-top: 10px; margin-left: 20px"></i>
+                <span class="nav-link" style="margin-top: -30px;" onClick="modalControl()">{{ session.uname }}</span>
+            </div>
+            <div class="col-lg-1 my-4 links ">
+                <a href="{{url_for('leaderboard')}}" style="text-decoration: none; color: inherit;"><span
+                        class="nav-link text-center">Leaderboard</span></a>
+            </div>
+            <div class="col-lg-1 my-4 links-logout">
+                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;"><span
+                        class="nav-link">Logout</span></a>
+            </div>
+            <div class="bars my-4">
+                <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
+            </div>
+    </nav>
+
+    <div class="sidebar-container">
+        <div class="sidebar">
+            <div class="close-row">
+                <i class="fas fa-times close-icon" onClick="handleClose()"></i>
+            </div>
+            <div class="sidebar-links">
+                <i class="fas fa-user"></i>
+                <p style="display: inline; cursor: pointer;" onClick="modalControl()">{{ username }}</p>
+                <a href="{{url_for('leaderboard')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; margin-top: 13px;">Leaderboard</p>
+                </a>
+                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; ">Log Out</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal-container ">
+        <div class="modal-box">
+            <i class="fas fa-times close-icon-modal" onClick="modalControl()"></i>
+            <div class="row" style="border-bottom: 1px solid gray;">
+                <h2 class="add">Add A Profile Picture</h2>
+            </div>
+            <label for="user-flag" class="label my-2">Upload Picture</label>
+            <input type="file" class="form-control-file" id="user-flag" accept=".png, .jpg, .gif">
+            <button class="btn-override my-4">SUBMIT
+            </button>
+
+        </div>
+    </div> -->
+
+    <div class="main">
+        <div class="container-fluid main-wrapper">
+            <div class="row mx-2">
+                <div class="col-12">
+                    <h1>Challenge</h1>
+                </div>
+            </div>
+            <div class="row mx-2" style="border-bottom: 1px solid gray;">
+                <div class="col-12"><span style="color: rgb(32, 148, 99); font-size: 0.9rem;">OWASP VITCC • Launch Date:
+                        25/07/2021</span></div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-xl-8 col-lg-12 my-5 py-4" style="border: 1px solid gray; border-radius: 5px; ">
+                    <p class="lead">
+                        Note: It is quite easy to cheat your way to get flag , but try not to.</p>
+                    <p class="lead">To use it cleanly , run the command below:<br>
+                        -docker run -itd --name test tripster98/oscon-3</p>
+                    <p class="lead">I haven't included any port mapping for this challenge, you would need to run :-<br>
+                        -docker inspect test</p>
+                    <p class="lead">The ip address is the address you need to attack.
+                        To restart the environment , run :-<br>
+                        -docker rm -rf test</p>
+                    <p class="lead">And re-run the docker run command in beginning.
+                        This is a hard machine, enjoy it :)</p>
+                    </p>
+                </div>
+                <div class="col-xl-3 col-lg-12 my-5 py-4 command"
+                    style="border: 1px solid gray; height: fit-content; border-radius: 5px;">
+                    <p class="lead">
+                        Docker Command:</p>
+                    <p class="lead">
+                        <kbd class="code">docker pull owaspctf/tovc-1</kbd>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid submissions">
+            <div class="row mx-2 ">
+                <div class="col-12 ">
+                    <h1>Submission</h1>
+                </div>
+            </div>
+            <div class="row mx-2" style="border-bottom: 1px solid gray;">
+                <div class="col-12"><span style="color: rgb(32, 148, 99); font-size: 0.9rem;">Make sure to submit carefully,
+                as only one submission per user is allowed. </span></div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-xl-8 col-lg-12 my-5 py-4" style="border: 1px solid gray; border-radius: 5px; ">
+                    <form>
+                        <label for="root-flag" class="label">What is the root flag?</label>
+                        <input type="text" class="form-control" id="root-flag" placeholder="Answer Here">
+
+                        <label for="user-flag" class="label my-2">What is the user flag?</label>
+                        <input type="text" class="form-control" id="user-flag" placeholder="Answer Here">
+
+                        <label for="user-flag" class="label my-2">Upload Answer File</label>
+                        <input type="file" class="form-control-file" id="user-flag" accept=".doc, .docx, .txt">
+
+                        <div class="submit">SUBMIT</div>
+                    </form>
+                </div>
+                <div class="col-xl-3 col-lg-12 my-5 command "
+                    style="border: 1px solid gray; height: fit-content; border-radius: 5px;">
+                    <div class="circle-wrapper">
+                        <div class="warning circle"></div>
+                        <div class="icon">
+                            <i class="fa fa-exclamation"></i>
+                        </div>
+                    </div>
+                    <p class="my-4 alert">Duplicate files will NOT be considered for evaluation </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='ctf_static/challenge/js/script.js') }}"></script>
+
+
+
+</body>
+
+</html>

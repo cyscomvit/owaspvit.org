@@ -1,0 +1,283 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  background: #101018;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #101018;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.main {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url("/static/leaderboard/images/cool_bg.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/static/ctf_static/leaderboard/images/cool_bg.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form {
+  background-color: transparent;
+  border-radius: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 370px;
+  font-family: "Nunito";
+  border: 3px solid #8f8f8f;
+  padding: 40px 40px;
+}
+
+.form:hover {
+  border-color: #fff;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+}
+
+.title {
+  color: #eee;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+.subtitle {
+  color: #eee;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.input-container {
+  height: 50px;
+  position: relative;
+  width: 100%;
+}
+
+.ic1 {
+  margin-top: 40px;
+}
+
+.ic2 {
+  margin-top: 30px;
+}
+
+.ic3 {
+  margin-top: 30px;
+}
+
+.input {
+  background-color: #4c506e;
+  border-radius: 12px;
+  border: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #eee;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 420px) {
+  .input {
+    width: 90%;
+  }
+}
+
+.cut-short {
+  width: 50px;
+}
+
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+  -webkit-transform: translateY(8px);
+          transform: translateY(8px);
+}
+
+.placeholder {
+  color: #65657b;
+  font-family: sans-serif;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  -webkit-transform-origin: 0 50%;
+          transform-origin: 0 50%;
+  -webkit-transition: color 200ms, -webkit-transform 200ms;
+  transition: color 200ms, -webkit-transform 200ms;
+  transition: transform 200ms, color 200ms;
+  transition: transform 200ms, color 200ms, -webkit-transform 200ms;
+  top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+  -webkit-transform: translateY(-40px) translateX(10px) scale(0.75);
+          transform: translateY(-40px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+  color: #808097;
+}
+
+.input:focus ~ .placeholder {
+  color: #ffffff;
+}
+
+meter {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0 auto 1em;
+  width: 100%;
+  height: .5em;
+  /* Applicable only to Firefox */
+  background: none;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+meter::-webkit-meter-bar {
+  background: none;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+meter[value="1"]::-webkit-meter-optimum-value {
+  background: red;
+}
+
+meter[value="2"]::-webkit-meter-optimum-value {
+  background: yellow;
+}
+
+meter[value="3"]::-webkit-meter-optimum-value {
+  background: orange;
+}
+
+meter[value="4"]::-webkit-meter-optimum-value {
+  background: green;
+}
+
+meter[value="1"]::-moz-meter-bar {
+  background: red;
+}
+
+meter[value="2"]::-moz-meter-bar {
+  background: yellow;
+}
+
+meter[value="3"]::-moz-meter-bar {
+  background: orange;
+}
+
+meter[value="4"]::-moz-meter-bar {
+  background: green;
+}
+
+.feedback {
+  color: #ecdd00;
+  font-size: 90%;
+  margin-top: -20px;
+  font-family: inherit;
+}
+
+.btn-override {
+  border: none;
+  outline: none;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.btn-override:active {
+  border: none;
+  outline: none;
+  color: #fff;
+}
+
+.btn-override:visited {
+  border: none;
+  outline: none;
+}
+
+.btn-override:focus {
+  border: none;
+  outline: none;
+}
+
+.btn-override:hover {
+  background-color: #9e9e9e;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 420px) {
+  .btn-override {
+    width: 90%;
+  }
+}
+
+#submit_disabled {
+  -webkit-filter: brightness(0.4);
+          filter: brightness(0.4);
+}
+
+#submit_disabled:hover {
+  background-color: #eeecec;
+  cursor: auto !important;
+}
+/*# sourceMappingURL=styles.css.map */

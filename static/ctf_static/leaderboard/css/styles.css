@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Tourney&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito";
+}
+
+body {
+  background-color: lightgray !important;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 99vh;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("/static/leaderboard/images/bg.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/static/ctf_static/leaderboard/images/bg.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-width: 100%;
+  overflow-x: hidden;
+}
+
+.badge_icon {
+  height: 300px;
+  min-width: 250px;
+}
+
+@media screen and (max-width: 320px) {
+  .badge_icon {
+    height: 250px;
+  }
+}
+
+.header h2 {
+  margin-top: 20px;
+  color: #ebebeb;
+  font-size: clamp(1.1rem, 6vw, 4rem);
+  font-family: 'Tourney';
+}
+
+.go-back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #d8d8d8;
+  font-size: 1.5rem;
+}
+
+.table-container {
+  min-height: 100vh;
+  width: 100%;
+  z-index: 999;
+}
+
+table {
+  margin: 10px auto;
+  width: 90% !important;
+  font-size: 1.3rem;
+}
+
+@media screen and (max-width: 420px) {
+  table {
+    width: 98% !important;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  table .fa-trophy, table .fa-piggy-bank {
+    display: none;
+  }
+}
+
+.headers {
+  height: 100px;
+  background: #0b0b29 !important;
+}
+
+.headers th {
+  padding-bottom: 30px !important;
+  font-size: 1.3rem;
+}
+
+@media screen and (max-width: 420px) {
+  .headers th {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .headers th {
+    font-size: 0.6rem;
+    font-weight: normal;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .headers {
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  td, th {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  td, th {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  td, th {
+    font-size: 0.5rem;
+  }
+  td img, th img {
+    height: 30px !important;
+  }
+}
+
+tbody {
+  background: #0b0b29 !important;
+}
+
+tbody tr:hover {
+  background-color: #171730 !important;
+}
+
+.to-center {
+  border-right: none !important;
+  text-align: center !important;
+}
+
+.fa-chess-knight {
+  height: 40px;
+}
+
+@media screen and (max-width: 300px) {
+  .fa-chess-knight {
+    height: auto !important;
+  }
+}
+/*# sourceMappingURL=styles.css.map */

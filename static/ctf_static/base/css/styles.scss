@@ -1,0 +1,159 @@
+* {
+    margin: 0; 
+    padding: 0;
+}
+body {
+    // background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/static/home/images/bg1.jpg");
+    overflow-x: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+::-webkit-scrollbar {
+  background: rgb(16, 16, 24);
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(16, 16, 24);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.navigation {
+  color: #fff;
+  font-family: "Nunito";
+  font-size: 1.3rem;
+  position: fixed;
+  z-index: 999;
+  
+}
+.logo-wrapper {
+  z-index: 100;
+}
+.logo {
+  height: 75px;
+  @media screen and (max-width: 992px) {
+    margin: 0 auto;
+    display: block;
+  }
+  @media screen and (max-width: 420px){
+    height: 50px;
+    margin-top: 5px;
+  }
+}
+
+.nav-link {
+  transform: translate(40px);
+  &:hover {
+    color: rgb(177, 177, 177);
+    transition-duration: 0.25s;
+    cursor: pointer;
+  }
+}
+.links {
+  z-index: 100;
+  @media screen and (max-width: 992px){
+    display: none;
+  }
+}
+.bars {
+  display: none;
+  z-index: 100;
+  position: absolute;
+  right: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+  @media screen and (max-width: 992px){
+    display: block;
+  }
+}
+.sidebar-container {
+  display: none;
+}
+
+.sidebar-container-active {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  z-index: 1000 ;
+  background-color: rgba(0,0,0,0.7);
+  display: block;
+  .sidebar {
+    width: 280px;
+    height: 100%;
+    background-color: rgb(204, 200, 200);
+    animation-name: come-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    position: absolute;
+  }
+  @keyframes come-in {
+    0% {
+      left: -280px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
+  
+  .close-row {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(189, 189, 189);
+    padding: 10px 10px;
+    .close-icon {
+      position: absolute;
+      right: 10px;
+      color: rgb(43, 43, 43);
+      font-size: 2rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .sidebar-links {
+    position: relative;
+    top: 60px;
+    color: rgb(39, 38, 38);
+    font-family: "Nunito";
+    font-size: 1.4rem;
+    padding: 10px 20px;
+    font-weight: 900;
+    p {
+      height: 50px;
+    }
+  }
+  @media screen and (min-width: 992px){
+    display: none;
+  }
+}
+
+.footer {
+  position: absolute;
+  top: 267.12vh;
+  background-color: transparent;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 0.8rem;
+}
+.footer span {
+  color: #fff;
+}

@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  background: rgb(16, 16, 24);
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(16, 16, 24);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.main {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-image: url('/static/home/images/bg1.jpg');
+  // background-color: #151019;
+  // background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/static/register/images/bg.jpg');
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/static/leaderboard/images/cool_bg.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form {
+    background-color: transparent;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: fit-content;
+    width: fit-content;
+    max-width: 370px;
+    font-family: "Nunito";
+    border: 3px solid rgb(143, 143, 143);
+    
+    &:hover {
+      border-color: #fff;
+      transition-duration: 0.25s;
+    }
+    padding: 40px 40px;
+  }
+  
+  .title {
+    color: #eee;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+  
+  .subtitle {
+    color: #eee;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  
+  .input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .ic1 {
+    margin-top: 40px;
+  }
+  
+  .ic2 {
+    margin-top: 30px;
+  }
+  .ic3 {
+    margin-top: 30px;
+  }
+  
+  .input {
+    background-color: #4c506e;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+    @media screen and (max-width: 420px){
+      width: 90%;
+    }
+  }
+  
+  .cut-short {
+    width: 50px;
+  }
+  
+  .input:focus ~ .cut,
+  .input:not(:placeholder-shown) ~ .cut {
+    transform: translateY(8px);
+  }
+  
+  .placeholder {
+    color: #65657b;
+    font-family: sans-serif;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+  }
+  
+  .input:focus ~ .placeholder,
+  .input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-40px) translateX(10px) scale(0.75);
+  }
+  
+  .input:not(:placeholder-shown) ~ .placeholder {
+    color: #808097;
+  }
+  
+  .input:focus ~ .placeholder {
+    color: #ffffff;
+  }
+  
+  meter {
+    /* Reset the default appearance */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+            
+  margin: 0 auto 1em;
+  width: 100%;
+  height: .5em;
+    
+    /* Applicable only to Firefox */
+  background: none;
+  background-color: rgba(0,0,0,0.1);
+}
+
+meter::-webkit-meter-bar {
+  background: none;
+  background-color: rgba(0,0,0,0.1);
+}
+
+meter[value="1"]::-webkit-meter-optimum-value { background: red; }
+meter[value="2"]::-webkit-meter-optimum-value { background: yellow; }
+meter[value="3"]::-webkit-meter-optimum-value { background: orange; }
+meter[value="4"]::-webkit-meter-optimum-value { background: green; }
+
+meter[value="1"]::-moz-meter-bar { background: red; }
+meter[value="2"]::-moz-meter-bar { background: yellow; }
+meter[value="3"]::-moz-meter-bar { background: orange; }
+meter[value="4"]::-moz-meter-bar { background: green; }
+
+.feedback {
+  color: rgb(236, 221, 0);
+  font-size: 90%;
+  margin-top: -20px;
+  font-family: inherit;
+}
+
+
+.btn-override{
+  border: none;
+  outline: none;
+  
+  &:active{
+    border: none;
+    outline: none;
+    color: #fff;
+  }
+  &:visited {
+    border: none;
+    outline: none;
+  }
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  background-color: #fff;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  &:hover {
+      background-color: rgb(158, 158, 158);
+      transition-duration: 0.25s;
+      cursor: pointer;
+  }
+  @media screen and (max-width: 420px){
+    width: 90%;
+  }
+}
+#submit_disabled{
+  filter: brightness(0.4);
+  &:hover {
+    background-color: rgb(238, 236, 236);
+    cursor: auto !important;
+  }
+}

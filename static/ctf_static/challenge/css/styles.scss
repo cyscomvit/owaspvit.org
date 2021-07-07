@@ -1,0 +1,381 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navigation {
+    color: #fff;
+    font-family: "Nunito";
+    font-size: 1rem;
+    position: absolute;
+    z-index: 999;
+    top:0px;
+  }
+  .logo-wrapper {
+    z-index: 100;
+  }
+  .logo {
+    height: 75px;
+    @media screen and (max-width: 1200px) {
+      margin: 0 auto !important;
+      display: block !important;
+    }
+    @media screen and (max-width: 420px){
+      height: 50px;
+      margin-top: 5px;
+    }
+  }
+  
+  .nav-link {
+    transform: translate(40px);
+    &:hover {
+      color: rgb(177, 177, 177);
+      transition-duration: 0.25s;
+      cursor: pointer;
+    }
+  }
+  .no-hover {
+    &:hover {
+      cursor: auto !important;
+    }
+  }
+  .links {
+    z-index: 100;
+    margin-left: 40px;
+    @media screen and (max-width: 1200px){
+      display: none;
+    }
+  }
+  .links-logout {
+    z-index: 100;
+    margin-left: 30px;
+    @media screen and (max-width: 1200px){
+      display: none;
+    }
+  }
+  .bars {
+    display: none;
+    z-index: 100;
+    position: absolute;
+    right: 20px;
+    font-size: 1.3rem !important;
+    &:hover {
+      cursor: pointer;
+    }
+    @media screen and (max-width: 1200px){
+      display: block;
+    }
+  }
+  .sidebar-container {
+    display: none;
+  }
+  
+  .sidebar-container-active {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    z-index: 1000 ;
+    background-color: rgba(0,0,0,0.7);
+    display: block;
+    .sidebar {
+      width: 280px;
+      height: 100%;
+      background-color: rgb(204, 200, 200);
+      animation-name: come-in;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      position: absolute;
+    }
+    @keyframes come-in {
+      0% {
+        left: -280px;
+      }
+      100% {
+        left: 0px;
+      }
+    }
+    
+    .close-row {
+      position: absolute;
+      width: 100%;
+      height: 60px;
+      background-color: rgb(189, 189, 189);
+      padding: 10px 10px;
+      .close-icon {
+        position: absolute;
+        right: 10px;
+        color: rgb(43, 43, 43);
+        font-size: 2rem;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .sidebar-links {
+      position: relative;
+      top: 60px;
+      color: rgb(39, 38, 38);
+      font-family: "Nunito";
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      font-weight: 900;
+
+    }
+    @media screen and (min-width: 1200px){
+      display: none;
+    }
+  }
+
+.modal-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  z-index: 1000 ;
+  background-color: rgba(0,0,0,0.7);
+  display: none;
+  background-color: rgba(0,0,0,0.7);
+
+}
+
+.modal-box {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  padding: 10px 10px;
+  width: 50%;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(228, 228, 228);
+  border-radius: 7px;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  animation-iteration-count: 1;
+  font-family: "Nunito";
+  h1 {
+    font-weight: 900;
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @media screen and (max-width: 870px){
+    width: 90%;
+    
+  }
+
+}
+.close-icon-modal {
+  font-size: 1.7rem;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.add {
+  color: rgb(65, 65, 65);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+}
+ 
+.btn-override{
+  border: none;
+  outline: none;
+  
+  &:active{
+    border: none;
+    outline: none;
+    color: #fff;
+  }
+  &:visited {
+    border: none;
+    outline: none;
+  }
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  background-color: rgb(0, 29, 66);
+  border-radius: 12px;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  width: 40%;
+  margin: 0 auto;
+  font-size: 18px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+      background-color: rgb(1, 22, 49);
+      transition-duration: 0.25s;
+      cursor: pointer;
+  }
+  @media screen and (max-width: 640px){
+    width: 90%;
+  }
+
+}
+.main {
+    position: absolute;
+    top: 0;
+    min-height: 100vh;
+    background-color: #1e1724;
+    width: 100%;
+    color: #fff;
+    font-family: "Nunito";
+}
+.main-wrapper {
+    
+    background-color: #2c2135;
+    height: 100%;
+    margin-top: 120px;
+    border-radius: 20px;
+    width: 95% !important;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 5px 5px rgb(20, 16, 24)
+}
+.code {
+    background-color: black;
+    font-size: 0.9rem;
+    @media screen and (max-width: 310px){
+      font-size: 0.8rem;
+    }
+}
+.command {
+    margin-left: 50px;
+    border: 1px solid gray; 
+    height: fit-content; 
+    border-radius: 5px;
+    @media screen and (max-width: 1200px) {
+        margin-left: 0px;
+    }
+} 
+.main-wrapper p {
+    @media screen and (max-width: 420px){
+        font-size: 1rem;
+    }
+}
+.submissions {
+    background-color: #2c2135;
+    height: 100%;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 95% !important;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 5px 5px rgb(20, 16, 24)
+}
+#root-flag, #user-flag {
+  width: 50%;
+  background-color: rgb(204, 203, 203) !important;
+  @media screen and (max-width: 640px){
+    width: 100%;
+  }
+  @media screen and (max-width: 320px){
+    width: 95%;
+  }
+}
+.circle-wrapper {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  float: left;
+  margin-top: 20px;
+  margin-right: 10px;
+  @media screen and (max-width: 1200px){
+    margin-top: 10px;
+  }
+  @media screen and (max-width: 350px){
+    margin-top: 20px;
+  }
+}
+.icon {
+  position: absolute;
+  color: #fff;
+  font-size: 55px;
+  top: 55px;
+  left: 55px;
+  transform: translate(-50%, -50%);
+}
+.circle {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 2.5px;
+  background-clip: content-box;
+  animation: spin 10s linear infinite;
+}
+
+.circle-wrapper:active .circle {
+  animation: spin 2s linear infinite;
+}
+.warning {
+  background-color: #F0D500;
+  border: 2.5px dashed #F0D500;
+}
+@keyframes spin { 
+  100% { 
+    transform: rotateZ(360deg);
+  }
+}
+.fa-exclamation {
+  margin-left: -25px;
+  margin-bottom: 50px;
+  font-size: 3rem;
+}
+.label {
+  font-size: 1.3rem;
+  @media screen and (max-width: 310px){
+    font-size: 1rem !important;
+  }
+}
+.alert {
+  font-size: 0.9rem;
+  @media screen and (max-width: 605px){
+    font-size: 0.8rem;
+  }
+  @media screen and (max-width: 420px){
+    font-size: 0.7rem;
+  }
+}
+.submit {
+  background-color: #fff;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+  height: 45px;
+  margin-top: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  &:hover {
+      background-color: rgb(158, 158, 158);
+      transition-duration: 0.25s;
+  }
+  @media screen and (max-width: 640px){
+    width: 100%;
+  }
+
+}
