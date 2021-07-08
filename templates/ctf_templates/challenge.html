@@ -37,12 +37,14 @@
                 <span class="nav-link" style="margin-top: -30px;" onClick="modalControl()">{{ session.uname }}</span>
             </div>
             <div class="col-lg-1 my-4 links ">
-                <a href="{{url_for('leaderboard')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link text-center">Leaderboard</span></a>
+                <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;"><span
+                        class="nav-link text-center">Leaderboard</span>
+                </a>
             </div>
             <div class="col-lg-1 my-4 links-logout">
                 <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link">Logout</span></a>
+                        class="nav-link">Logout</span>
+                </a>
             </div>
             <div class="bars my-4">
                 <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
