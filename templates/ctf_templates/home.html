@@ -6,20 +6,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 {% endblock %}
 {% block title %}
-OWASP VITCC | CTF
+OWASP | CTF
 {% endblock %}
 {% block content %}
 
 <div class="hero container-fluid" id="particles-js">
   <div class="hero-wrapper">
     <div class="row">
+      <!-- <div class="area">OWASP CTF</div> -->
       <svg viewBox="0 0 1200 200">
         <symbol id="s-text">
-          <text text-anchor="middle" x="50%" y="80%">OWASP CTF</text>
+          <text text-anchor="middle" x="50%" y="80%">TOVC 1.0</text>
         </symbol>
 
         <g class="g-ants">
-          <use xlink:href="#s-text" class="text-copy"></use> 
+          <use xlink:href="#s-text" class="text-copy"></use>
           <use xlink:href="#s-text" class="text-copy"></use>
           <use xlink:href="#s-text" class="text-copy"></use>
           <use xlink:href="#s-text" class="text-copy"></use>
@@ -28,80 +29,92 @@ OWASP VITCC | CTF
       </svg>
     </div>
     <div class="row mx-auto d-block">
-      <p class="text-center" style="font-family: 'Nunito'; font-size: 1.2rem;">OWASP VITCC's first Capture The Flag
-        Event.
+      <p class="text-center" style="font-family: 'Nunito'; font-size: 1.2rem;">OWASP VITCC's first Capture The Flag.
       </p>
     </div>
-    
+
     <div class="row mx-auto d-block">
       <a href="{{url_for('register')}}" style="text-decoration: none; color: inherit;">
         <div class="button mx-auto ">Register</div>
       </a>
     </div>
-    
+
   </div>
 </div>
 
 
+</div>
 <div class="container-fluid"
   style="position: absolute; top: 100vh; background-color: #151019;  width: 100%;color:white;padding-top:80px;">
 
-  <div class="row mt-3 glitch-wrapper " >
+  <div class="row mt-3 glitch-wrapper ">
     <div class="col-12 mb-5 ">
 
-      <h1 class="glitch text-center">OWASP CTF 1.0</h1>
+      <h1 class="glitch text-center">TOVC 1.0</h1>
     </div>
   </div>
 
   <div class="row align-items-center ml-3">
     <div class="col-lg-6 col-md-12 ">
       <p class="abt_desc "><strong>Dear Cyber Security Enthusiasts, </strong></p>
-      <p class="abt_desc">Welcome to OWASP VITCC's Capture The Flag (CTF). Buckle yourselves up
-        and get yourselves registered FOR FREE on or before the 23rd of July. Do keep in mind that the challenge won't be easy,
-        but being Cyber Security Enthusiasts, nothing can be an excuse!</p>
-        <p class="abt_desc">We look forward to seeing your names on the leaderboard!</p>
-        <p class="abt_desc"> - OWASP VITCC</p>
+      <p class="abt_desc">TOVC 1.0 is VITCC's first ever capture the flag competition hosted by OWASP student chapter of
+        VIT Chennai.
+        So get your skills brushed and get ready to have an amazing experience with us for absolutely ZERO cost.
+        Register yourself in the event and join our Discord Server for further updates. All The Best!
+      </p>
+      <p class="abt_desc"> - OWASP VITCC</p>
+
+
+
+
     </div>
 
     <div class="col-lg-6 col-md-12 ">
 
-      <img src="{{ url_for('static', filename='ctf_static/home/images/ctf_logo.png') }}" class="abt_img mx-auto d-block">
+      <img src="{{ url_for('static', filename='ctf_static/home/images/ctf_logo.png') }}"
+        class="abt_img mx-auto d-block">
 
     </div>
   </div>
 
-  
-    <div class="timeline">
-      <div class="container_custom left">
-        <div class="content">
-          <h2>7th July 2021 - 22:00 PM</h2>
-          <p>Registrations Begin!</p>
-        </div>
-      </div>
-      <div class="container_custom right">
-        <div class="content">
-          <h2>23rd July 2021 - 11:00 AM</h2>
-          <p>Introductory Session by Arnav Tripathi</p>
-        </div>
-      </div>
-      <div class="container_custom left">
-        <div class="content">
-          <h2>23rd July 2021 (12:00 PM) </h2>
-          <p>Commencement of TOVC 1.0</p>
-        </div>
-      </div>
-      <div class="container_custom right">
-        <div class="content">
-          <h2>24th July 2021 - 18:00 PM</h2>
-          <p>TOVC 1.0 ends + Declaration Of Results</p>
-        </div>
+
+  <div class="timeline">
+    <div class="container_custom left">
+      <div class="content">
+        <h2>10th July 2021 - 10:00 AM</h2>
+        <p>Registrations Begin!</p>
       </div>
     </div>
+    <div class="container_custom right">
+      <div class="content">
+        <h2>24th July 2021 - 11:00 AM</h2>
+        <p>Introductory Session by Arnav Tripathy</p>
+      </div>
+    </div>
+    <div class="container_custom left">
+      <div class="content">
+        <h2>24th July 2021 - 03:00 PM </h2>
+        <p>Commencement of TOVC 1.0</p>
+      </div>
+    </div>
+    <div class="container_custom right">
+      <div class="content">
+        <h2>25th July 2021 - 09:00 AM</h2>
+        <p>TOVC 1.0 ends.</p>
+      </div>
+    </div>
+    <div class="container_custom left">
+      <div class="content">
+        <h2>26th July 2021 - 09:00 AM</h2>
+        <p>Declaration Of Results</p>
+      </div>
+    </div>
+  </div>
 
 
   <div class="row mt-5">
     <div class="col-lg-12 ">
-      <h1 class="title-heading mb-5 text-center" style="font-size: 4.5em;">Rules</h1>
+      <h1 class="title-heading mb-5 text-center" style="font-size: 4.5em; font-family: Nunito;">About The Event</h1>
 
     </div>
   </div>
@@ -110,29 +123,55 @@ OWASP VITCC | CTF
       <div class=" text-center p-3 rules_desc">
         <img src="{{ url_for('static', filename='ctf_static/home/images/flag.jfif') }}"
           class="img-fluid mx-auto d-block mb-4 rounded-circle" style="max-width: 75px;">
-        <h4 class="fw-light ">Capture the Flag</h4>
-        <p class=" f-14">Keep your write-ups neat and original and don't share your flags with others! </p>
+        <h2 class="fw-light ">Capture the Flag</h2>
+        <p class=" f-14">This is a boot-to-root event. The participants are expected
+          to submit a write-up, which will be used for evaluation.
+        </p>
       </div>
     </div>
     <div class="col-lg-4 d-inline rules_desc">
       <div class=" text-center p-3">
         <img src="{{ url_for('static', filename='ctf_static/home/images/hack1.jpg') }}"
           class="img-fluid mx-auto d-block mb-4 rounded-circle" style="max-width: 75px;">
-        <h4 class="fw-light ">Who can join</h4>
-        <p class=" f-14">The Competition is open to everyone! New to CTF's? Join the introductory session at 11:00 AM on the 24th of July! </p>
+        <h2 class="fw-light ">Who can join</h2>
+        <p class=" f-14">The Competition is open to everyone! New to CTF? – Don't worry we are going to have an
+          introductory session regarding CTF. This session will be taken by Arnav Tripathy and Lakshay Baheti. </p>
       </div>
     </div>
     <div class="col-lg-4 d-inline rules_desc">
       <div class=" text-center p-3">
         <img src="{{ url_for('static', filename='ctf_static/home/images/time.jfif') }}"
           class="img-fluid mx-auto d-block mb-4 rounded-circle" style="max-width: 75px;">
-        <h4 class="fw-light ">Time Limit</h4>
-        <p class=" f-14">The competition has a duration of 18 hours, with the number of attempts for each user limited to only 1! So 
-          proceed carefully! </p>
+        <h2 class="fw-light ">Time Limit</h2>
+        <p class=" f-14">Machine will be live from - Sat, July 24th, 2021 3:00 PM — Sun, July 25th, 2021 9:00 AM (18
+          hours). Results will be declared 24 hours after the completion of the event.
+        </p>
       </div>
     </div>
+
+
   </div>
+
+  <div class="footer_custom">
+
+    <p style="position: relative; top: 10px;">© Copyright 2021 - OWASP VITCC. All Rights Reserved.</p>
+    <p>
+      <a href="https://twitter.com/owaspvit/" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://blog.owaspvit.com/" target="_blank"><i class="fab fa-blogger-b"></i></a>
+      <a href="https://www.linkedin.com/company/owasp-vit-student-chapter/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/owaspvit/" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://instagram.com/owaspvit/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://medium.owaspvit.com/" target="_blank"><i class="fab fa-medium-m"></i></a>
+      <a href="https://discord.com/invite/owasp/" target="_blank"><i class="fab fa-discord"></i></a>
+      <a href="https://facebook.com/owaspvit/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </p>
+  </div>
+
+
+
 </div>
+
+
 
 
 <script src="{{ url_for('static', filename='ctf_static/base/js/script.js') }}"></script>
@@ -244,6 +283,10 @@ OWASP VITCC | CTF
     "retina_detect": true
   });
 </script>
+
+
+
+
 
 
 {% endblock %}

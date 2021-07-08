@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Configure the Firebase SDK.
   // This is the minimum configuration required for the API to be used.
   var config = {
-    'apiKey': "AIzaSyCLjNxUYTlrlVCG3OCLAkImONvPE7aPoNY" 
+    'apiKey': "AIzaSyB1a_4OKRPxg_B12QWEyTmzeipA0T12PdA" 
     // Copy this key from the web initialization
     // snippet found in the Firebase console.
   };

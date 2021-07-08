@@ -157,6 +157,7 @@ firebaseconf = ctfconf()
 firebase = pyrebase.initialize_app(firebaseconf)
 auth = firebase.auth()
 
+@app.route('/ctf/')
 @app.route('/ctf/home')
 def home_page():
     if "uname" in session:
