@@ -22,7 +22,7 @@
     <link rel="icon" href="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <title>CTF | Challenge</title>
+    <title>OWASP CTF | Challenge</title>
 </head>
 
 <body>
@@ -47,6 +47,7 @@
             <div class="bars my-4">
                 <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
             </div>
+        </div>
     </nav>
 
     <div class="sidebar-container">
@@ -66,20 +67,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="modal-container ">
-        <div class="modal-box">
-            <i class="fas fa-times close-icon-modal" onClick="modalControl()"></i>
-            <div class="row" style="border-bottom: 1px solid gray;">
-                <h2 class="add">Add A Profile Picture</h2>
-            </div>
-            <label for="user-flag" class="label my-2">Upload Picture</label>
-            <input type="file" class="form-control-file" id="user-flag" accept=".png, .jpg, .gif">
-            <button class="btn-override my-4">SUBMIT
-            </button>
-
-        </div>
-    </div> -->
 
     <div class="main">
         <div class="container-fluid main-wrapper">
@@ -105,7 +92,6 @@
                         -docker rm -rf test</p>
                     <p class="lead">And re-run the docker run command in beginning.
                         This is a hard machine, enjoy it :)</p>
-                    </p>
                 </div>
                 <div class="col-xl-3 col-lg-12 my-5 py-4 command"
                     style="border: 1px solid gray; height: fit-content; border-radius: 5px;">
@@ -157,6 +143,7 @@
         </div>
 
     </div>
+
     <script src="{{ url_for('static', filename='ctf_static/challenge/js/script.js') }}"></script>
 
 

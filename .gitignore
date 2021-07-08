@@ -13,3 +13,5 @@ keys.json
 firebase.json
 
 flaskapp.wsgi
+
+flask_session/

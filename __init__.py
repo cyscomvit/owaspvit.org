@@ -8,7 +8,7 @@ import urllib.request
 from PIL import Image
 import img2pdf
 from github import Github
-from bot_token import github_token
+from bot_token import github_token, ctfconf
 import sys
 import pyrebase
 import requests
@@ -16,7 +16,6 @@ from flask_session import Session
 from getpass import getpass
 from forms import *
 from zxcvbn import zxcvbn
-from bot_token import ctfconf
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -26,10 +25,6 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 Session(app)
-
-# Set the port for Flask app
-port = int(os.environ.get('PORT', 5000))
-
 
 # GitHub Access Token
 g = Github(github_token())
@@ -151,10 +146,11 @@ def landingpage():
     	return response
     return render_template('certificate.html')
 
-#CTF PART --------------------------------------------------------------------------------------
-
-ctf_cred_obj = firebase_admin.credentials.Certificate("owasp.json")
-ctf_default_app = firebase_admin.initialize_app(ctf_cred_obj, {'databaseURL':'https://wasp-ac756-default-rtdb.firebaseio.com/'},name="ctf")
+"""
+------------------------------------------------------------
+                    OWASP VITCC CTF
+------------------------------------------------------------
+"""
 
 ctf_ref = db.reference("/vitask/owasp/ctf")
 firebaseconf = ctfconf()
@@ -164,9 +160,9 @@ auth = firebase.auth()
 @app.route('/ctf/home')
 def home_page():
     if "uname" in session:
-        return redirect('./ctf/timer') 
+        return redirect(url_for('timer')) 
     else: 
-        return render_template('/ctf_templates/home.html',session=session)
+        return render_template('/ctf_templates/home.html', session=session)
 
 @app.route('/ctf/register',methods=["GET","POST"])
 def register():
@@ -178,18 +174,17 @@ def register():
         password=request.form.get("password")
         dataset=ctf_ref.get()
         results = zxcvbn(password)
-        print(dataset)
         if dataset != None:
             for keys in dataset:
                 if dataset[keys]["username"]==username:
                     flags["uname_exists"]=True
-                    return render_template('/ctf_templates/register.html', form=form,flag=flags)
+                    return render_template('/ctf_templates/register.html', form=form, flag=flags)
         if(len(password)<6):
             flags["invalidpass"]=1
-            return render_template('/ctf_templates/register.html', form=form,flag=flags)
+            return render_template('/ctf_templates/register.html', form=form, flag=flags)
         if(results["score"]<3):
             flags["weak"]=True
-            return render_template('/ctf_templates/register.html', form=form,flag=flags)
+            return render_template('/ctf_templates/register.html', form=form, flag=flags)
         try:
             user=auth.create_user_with_email_and_password(email,password)
             auth.send_email_verification(user['idToken'])
@@ -204,12 +199,11 @@ def register():
             ctf_ref.push(data)
             flags["registered"]=1
             session["registered"]=1
-            return redirect(url_for('.login'))
+            return redirect(url_for('login'))
 
         except Exception as e:
-            print(e)
             flags["registered"]=0
-    return render_template('/ctf_templates/register.html', form=form,flag=flags)
+    return render_template('/ctf_templates/register.html', form=form, flag=flags)
 
 @app.route('/ctf/leaderboard')
 def ctf_leaderboard():
@@ -218,10 +212,10 @@ def ctf_leaderboard():
         dataset=ctf_ref.get()
         for keys in dataset:
             users.append(dataset[keys]["username"])
-        print(users)
-        return render_template('/ctf_templates/leaderboard.html',vals=users) 
+
+        return render_template('/ctf_templates/leaderboard.html', vals=users) 
     else:
-        return redirect("./")
+        return redirect(url_for('home_page'))
 
 @app.route('/ctf/login',methods=["GET","POST"])
 def login():
@@ -253,28 +247,28 @@ def login():
                         session["email"]=email
                         session["uname"]=dataset[keys]["username"]
                         break
-                return redirect("./timer")
+                return redirect(url_for('timer'))
             else:
                 auth.current_user = None
                 flags["verify"]=0
         except:
             flags["credentials"]=1
-            return render_template('/ctf_templates/login.html', form=form,flag=flags)
-    return render_template('/ctf_templates/login.html', form=form,flag=flags)
+            return render_template('/ctf_templates/login.html', form=form, flag=flags)
+    return render_template('/ctf_templates/login.html', form=form, flag=flags)
 
-#@app.route('/ctf/challenge')
-#def challenge():
-#     if "uname" in session:
-#         return render_template('/ctf_templates/challenge.html') 
-#     else:
-#         return redirect("./") 
+@app.route('/ctf/challenge')
+def challenge():
+    if "uname" in session:
+        return render_template('/ctf_templates/challenge.html')
+    else:
+        return redirect(url_for('home_page')) 
 
 @app.route('/ctf/timer')
 def timer():
     if "uname" in session:
         return render_template('/ctf_templates/timer.html') 
     else:
-        return redirect("./")   
+        return redirect(url_for('home_page'))   
 
 @app.route('/ctf/reset_password',methods=["GET","POST"])
 def reset():
@@ -285,11 +279,11 @@ def reset():
         try:
             auth.send_password_reset_email(mail)
             data["success"]=1
-            return render_template('/ctf_templates/reset_password.html',value=data,form=form)
+            return render_template('/ctf_templates/reset_password.html', value=data, form=form)
         except:
             data["wrongemail"]=1
-            return render_template('/ctf_templates/reset_password.html',value=data,form=form)
-    return render_template('/ctf_templates/reset_password.html',form=form,value=data)
+            return render_template('/ctf_templates/reset_password.html', value=data, form=form)
+    return render_template('/ctf_templates/reset_password.html', form=form, value=data)
 
 @app.route('/ctf/email_verified')
 def email_verified():
@@ -301,7 +295,7 @@ def new_password():
 
 
 @app.route('/ctf/reset', methods=["GET","POST"])
-def reset1():
+def reset_password():
     return render_template('/ctf_templates/new_password.html')   
 
 

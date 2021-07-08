@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
-    <title>OWASP CTF | Register</title>
+    <title>OWASP VITCC CTF | Register</title>
 </head>
 
 <body>
@@ -34,20 +34,14 @@
             {% endif %}
             {% endif %}
             <div class="input-container ic1">
-                <!--<input id="email" class="input" type="text" placeholder=" " />
-                <label for="email" class="placeholder">Email</label>-->
                 {{ form.email(class_="input", placeholder_=" ", id_="email", type_="email") }}
                 {{ form.email.label(class_="placeholder", for_="email") }}
             </div>
             <div class="input-container ic2">
-                <!--<input id="username" class="input" type="text" placeholder=" " />
-                <label for="username" class="placeholder">Username</label>-->
                 {{ form.uname(class_="input") }}
                 {{ form.uname.label(class_="placeholder") }}
             </div>
             <div class="input-container ic3">
-                <!--<input id="password" class="input" type="password" placeholder=" " />
-                <label for="password" class="placeholder">Password</label>-->
                 {{ form.password(class_="input", type_="password", id_="password") }}
                 {{ form.password.label(class_="placeholder", for_="password") }}
                 
@@ -56,7 +50,6 @@
 
             </div><br>
 
-            <!--<button class="btn-override">SUBMIT</button>-->
                 {{ form.submit(class_="btn-override") }}
                 <p class="my-2" style="color: rgb(189, 189, 189)"><a href="{{url_for('login')}}"
                     style="text-decoration: none; color: inherit;">Already have an account? Sign in</a></p>

@@ -19,10 +19,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <title>OWASP CTF | Countdown</title>
+    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>OWASP VITCC CTF | Countdown</title>
 </head>
 
 <body>
@@ -47,6 +47,7 @@
             <div class="bars my-4">
                 <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
             </div>
+        </div>
     </nav>
 
     <div class="sidebar-container">
@@ -59,26 +60,13 @@
                 <p style="display: inline;">{{ session.uname }}</p>
                 <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;">
                     <p style="width: fit-content; margin-top: 15px;">Leaderboard</p>
-                    <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
-                        <p style="width: fit-content; ">Log Out</p>
-                    </a>
+                </a>
+                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; ">Log Out</p>
+                </a>
             </div>
         </div>
     </div>
-
-    <!-- <div class="modal-container ">
-        <div class="modal-box">
-            <i class="fas fa-times close-icon-modal" onClick="modalControl()"></i>
-            <div class="row" style="border-bottom: 1px solid gray;">
-                <h2 class="add">Add A Profile Picture</h2>
-            </div>
-            <label for="user-flag" class="label my-2">Upload A Picture</label>
-            <input type="file" class="form-control-file" id="user-flag" accept=".png, .jpg, .gif">
-            <div class="btn-override my-4">SUBMIT
-            </div>
-
-        </div>
-    </div> -->
 
     <div class="main container-fluid">
         <div class="container">
@@ -106,14 +94,6 @@
     <div id='stars'></div>
     <div id='stars2'></div>
     <div id='stars3'></div>
-
-
-
-
-
-
-    </div>
-
 
 
     <script src="{{ url_for('static', filename='ctf_static/timer/js/script.js') }}"></script>

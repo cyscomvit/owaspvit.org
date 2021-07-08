@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>OWASP CTF | Login</title>
+    <title>OWASP VITCC CTF | Login</title>
 </head>
 
 <body>
@@ -34,18 +34,12 @@
                 {% endif %}
                 {% endif %}
                 <div class="input-container ic2">
-                    <!---<input id="username" class="input" type="text" placeholder=" " />
-                <label for="username" class="placeholder">Username</label>--->
                     {{ form.email(class_="input") }}
                     {{ form.email.label(class_="placeholder") }}
-
                 </div>
                 <div class="input-container ic3">
-                    <!---<input id="password" class="input" type="password" placeholder=" " />
-                <label for="password" class="placeholder">Password</label>--->
                     {{ form.password(class_="input") }}
                     {{ form.password.label(class_="placeholder") }}
-
                 </div>
                 <button class="btn-override">SUBMIT
                 </button>
