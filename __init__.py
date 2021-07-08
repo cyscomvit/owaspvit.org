@@ -256,12 +256,14 @@ def login():
             return render_template('/ctf_templates/login.html', form=form, flag=flags)
     return render_template('/ctf_templates/login.html', form=form, flag=flags)
 
+"""
 @app.route('/ctf/challenge')
 def challenge():
     if "uname" in session:
         return render_template('/ctf_templates/challenge.html')
     else:
         return redirect(url_for('home_page')) 
+"""
 
 @app.route('/ctf/timer')
 def timer():
