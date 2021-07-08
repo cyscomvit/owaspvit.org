@@ -164,7 +164,7 @@ def home_page():
     else: 
         return render_template('/ctf_templates/home.html', session=session)
 
-@app.route('/ctf/register',methods=["GET","POST"])
+@app.route('/ctf/register', methods=["GET", "POST"])
 def register():
     form = signup()
     flags={}
@@ -217,7 +217,7 @@ def ctf_leaderboard():
     else:
         return redirect(url_for('home_page'))
 
-@app.route('/ctf/login',methods=["GET","POST"])
+@app.route('/ctf/login', methods=["GET", "POST"])
 def login():
     flags={"verify":1,"credentials":0}
     form = loginf()
@@ -270,7 +270,7 @@ def timer():
     else:
         return redirect(url_for('home_page'))   
 
-@app.route('/ctf/reset_password',methods=["GET","POST"])
+@app.route('/ctf/reset_password', methods=["GET", "POST"])
 def reset():
     form=password()
     data={"success":0,"wrongemail":0}
