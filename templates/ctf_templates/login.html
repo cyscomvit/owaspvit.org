@@ -16,6 +16,11 @@
 
 <body>
     <div class="main container-fluid">
+        <div class="back-button" style="position: absolute; top: 20px; left: 20px;">
+            <a href="{{url_for('home_page')}}" style="font-family: Nunito; color: white; text-decoration: none;">
+                <p>Back to home</p>
+            </a>
+        </div>
         <div class="form">
             <form method="post" action="/ctf/login">
                 <div class="subtitle text-center mx-auto d-block">Login to your account</div>
@@ -34,12 +39,16 @@
                 {% endif %}
                 {% endif %}
                 <div class="input-container ic2">
+
                     {{ form.email(class_="input") }}
                     {{ form.email.label(class_="placeholder") }}
+
                 </div>
                 <div class="input-container ic3">
+
                     {{ form.password(class_="input") }}
                     {{ form.password.label(class_="placeholder") }}
+
                 </div>
                 <button class="btn-override">SUBMIT
                 </button>

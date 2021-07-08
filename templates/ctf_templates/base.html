@@ -20,21 +20,27 @@
 </head>
 
 <body>
+
+    <!-- <canvas id="loader" style="display: block; position: absolute"></canvas>-->
+
     <section id="main">
         <nav class="navigation container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-md-12 my-2 logo-wrapper">
-                    <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo">
+                   
+                        <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}"
+                            class="logo">
                 </div>
 
                 <div class="col-lg-1 my-4 links">
-                    <span class="nav-link">Home</span>
+                    <a href="https://owaspvit.com" target="_blank" style="text-decoration: none; color: inherit;">
+                        <span class="nav-link">Home</span></a>
                 </div>
                 <div class="col-lg-1 my-4 links">
                     <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;"><span
                             class="nav-link">Login</span></a>
                 </div>
-                <div class="col-lg-1 my-4 links" >
+                <div class="col-lg-1 my-4 links">
                     <a href="{{url_for('register')}}" style="text-decoration: none; color: inherit;"><span
                             class="nav-link">Register</span></a>
                 </div>
@@ -50,7 +56,7 @@
                     <i class="fas fa-times close-icon" onClick="handleClose()"></i>
                 </div>
                 <div class="sidebar-links">
-                    <p>Home</p>
+                    <a href="https://owaspvit.com" target="_blank" style="text-decoration: none; color: inherit;"><p>Home</p></a>
                     <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
                         <p>Login</p>
                     </a>
@@ -66,7 +72,7 @@
 
     </section>
 
-    <script src="{{ url_for('static', filename='ctf_static/base/js/script.js') }}"></script>
+
 </body>
 
 </html>
