@@ -4,7 +4,7 @@
           hour = minute * 60,
           day = hour * 24;
   
-    let event = "Jul 24, 2021 00:00:00",
+    let event = "Jul 24, 2021 15:00:00",
         countDown = new Date(event).getTime(),
         x = setInterval(function() {    
   
@@ -32,24 +32,4 @@
         }, 0)
     }());
 
-const modal = document.querySelector(".modal-container")
-var sidebar = document.querySelector(".sidebar-container");
 
-const handleNav = () => {
-    console.log("Clicked!");
-    sidebar.className="sidebar-container-active";
-}
-const handleClose = () => {
-    sidebar.className="sidebar-container";
-}
-const modalControl = () => {
-    
-  sidebar.className="sidebar-container";
-  if (!modal.style.display || modal.style.display=="none"){
-      modal.style.display="flex";
-      console.log("called!");
-  }
-  else {
-      modal.style.display="none";
-  }
-}
