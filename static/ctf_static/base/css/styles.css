@@ -5,8 +5,6 @@
 
 body {
   overflow-x: hidden;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
 }
 
 ::-webkit-scrollbar {
