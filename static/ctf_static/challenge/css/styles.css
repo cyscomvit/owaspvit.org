@@ -518,6 +518,7 @@
       -ms-flex-align: center;
           align-items: center;
   width: 50%;
+  outline: none !important;
 }
 
 .submit:hover {
@@ -525,6 +526,7 @@
   -webkit-transition-duration: 0.25s;
           transition-duration: 0.25s;
 }
+
 
 @media screen and (max-width: 640px) {
   .submit {

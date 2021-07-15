@@ -59,8 +59,8 @@
             </div>
             <div class="sidebar-links">
                 <i class="fas fa-user"></i>
-                <p style="display: inline; cursor: pointer;" onClick="modalControl()">{{ username }}</p>
-                <a href="{{url_for('leaderboard')}}" style="text-decoration: none; color: inherit;">
+                <p style="display: inline; cursor: pointer;" onClick="modalControl()">{{ session.uname }}</p>
+                <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;">
                     <p style="width: fit-content; margin-top: 13px;">Leaderboard</p>
                 </a>
                 <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
@@ -118,17 +118,61 @@
             </div>
             <div class="row mx-2">
                 <div class="col-xl-8 col-lg-12 my-5 py-4" style="border: 1px solid gray; border-radius: 5px; ">
-                    <form>
-                        <label for="root-flag" class="label">What is the root flag?</label>
-                        <input type="text" class="form-control" id="root-flag" placeholder="Answer Here">
+                    <form method="POST" action="/ctf/challenge" enctype="multipart/form-data">
+                        {{ form.csrf_token }}
+                        <!--<label for="root-flag" class="label">What is the root flag?</label>
+                        <input type="text" class="form-control" id="root-flag" placeholder="Answer Here" disabled>-->
+                        {{ form.user.label(class_="label") }}
+                        {% if "userflag" in flag %}
+                        {% if flag.userflag==True %}
+                        <p style="color:green">Successfully submitted the user flag</p>
+                        {% elif flag.userflag==False %}
+                        <p style="color:red">Try again</p>
+                        {% endif %}
+                        {% endif %}
+                        {% if session.isUserflag==True %}
+                        {{ form.user(class_="form-control",disabled=True,id="user-flag") }}
+                        {% elif session.isUserflag==False %}
+                        {{ form.user(class_="form-control",id="user-flag") }}
+                        {% endif %}
+                        <!--<label for="user-flag" class="label my-2">What is the user flag?</label>
+                        <input type="text" class="form-control" id="user-flag" placeholder="Answer Here">-->
+                        {{ form.root.label(class_="label my-2") }}
+                        {% if "rootflag" in flag %}
+                        {% if flag.rootflag==True %}
+                        <p style="color:green">Successfully submitted the user flag</p>
+                        {% elif flag.rootflag==False %}
+                        <p style="color:red">Try again</p>
+                        {% endif %}
+                        {% endif %}
+                        {% if session.isRootflag==True %}
+                        {{ form.root(class_="form-control",id="root-flag",disabled=True) }}
+                        {% elif session.isRootflag==False %}
+                        {{ form.root(class_="form-control",id="root-flag") }}
+                        {% endif %}
 
-                        <label for="user-flag" class="label my-2">What is the user flag?</label>
-                        <input type="text" class="form-control" id="user-flag" placeholder="Answer Here">
 
-                        <label for="user-flag" class="label my-2">Upload Answer File</label>
-                        <input type="file" class="form-control-file" id="user-flag" accept=".doc, .docx, .txt">
+                        <!--<label for="write-up" class="label my">Upload File</label>
+                        <input type="file" class="form-control-file" id="write-up" placeholder="Answer Here" disabled>-->
+                        {{ form.file.label(class_="label my") }}
+                        {% if "fileflag" in flag %}
+                        {% if flag.fileflag==True %}
+                        <p style="color:green">Successfully submitted the File</p>
+                        {% elif flag.fileflag==False %}
+                        <p style="color:red">Try again</p>
+                        {% endif %}
+                        {% endif %}
+                        {% if session.isFile==True %}
+                        {{ form.file(class_="form-control-file",id="user-flag",disabled=True) }}
+                        {% elif session.isFile==False %}
+                        {{ form.file(class_="form-control-file",id="user-flag") }}
+                        {% endif %}
 
-                        <div class="submit">SUBMIT</div>
+
+                        <!-- <label for="user-flag" class="label my-2">Upload Answer File</label> -->
+                        <!-- <input type="file" class="form-control-file" id="user-flag" accept=".doc, .docx, .txt"> -->
+
+                        <button name="sub" class="submit">SUBMIT</button>
                     </form>
                 </div>
                 <div class="col-xl-3 col-lg-12 my-5 command "

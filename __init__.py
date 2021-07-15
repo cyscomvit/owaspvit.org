@@ -14,8 +14,11 @@ import pyrebase
 import requests
 from flask_session import Session
 from getpass import getpass
+from datetime import datetime
+from requests.sessions import DEFAULT_REDIRECT_LIMIT
 from forms import *
 from zxcvbn import zxcvbn
+from werkzeug.utils import secure_filename
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -27,6 +30,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # GitHub Access Token
+
 g = Github(github_token())
 
 
@@ -146,15 +150,16 @@ def landingpage():
     	return response
     return render_template('certificate.html')
 
+
 """
 ------------------------------------------------------------
                     OWASP VITCC CTF
 ------------------------------------------------------------
 """
-
 ctf_ref = db.reference("/vitask/owasp/ctf")
 firebaseconf = ctfconf()
 firebase = pyrebase.initialize_app(firebaseconf)
+storage = firebase.storage()
 auth = firebase.auth()
 
 @app.route('/ctf/')
@@ -201,7 +206,6 @@ def register():
             flags["registered"]=1
             session["registered"]=1
             return redirect(url_for('login'))
-
         except Exception as e:
             flags["registered"]=0
     return render_template('/ctf_templates/register.html', form=form, flag=flags)
@@ -211,9 +215,37 @@ def ctf_leaderboard():
     if "uname" in session:
         users=[]
         dataset=ctf_ref.get()
-        for keys in dataset:
-            users.append(dataset[keys]["username"])
-
+        final={}
+        for keys1 in dataset:
+            subuser=[]
+            subuser.append(dataset[keys1]["scores"])
+            subuser.append(dataset[keys1]["username"])
+            subfinal={}
+            if dataset[keys1]["isFile"]==True:
+                subfinal["isFile"]=True
+            else:
+                subfinal["isFile"]=False
+            if dataset[keys1]["isRootflag"]==True or dataset[keys1]["isUserflag"]==True or dataset[keys1]["isFile"]==True:
+                subfinal["time"]=dataset[keys1]["time"]
+            final[dataset[keys1]["username"]]=subfinal
+            users.append(subuser)
+        for i in range(len(users)):
+            for j in range(i+1,len(users)):
+                if(users[i][0]==users[j][0] and users[i][0]==0):
+                    continue
+                if(users[i][0]==users[j][0] and (users[i][0]==20 or users[i][0]==30 or users[i][0]==50)):
+                    if(final[users[i][1]]["isFile"]==False and final[users[j][1]]["isFile"]==True and users[i][0]==50):
+                        temp=users[i]
+                        users[i]=users[j]
+                        users[j]=temp
+                    elif(datetime.strptime(final[users[i][1]]["time"],"%Y-%m-%d %H:%M:%S.%f")>datetime.strptime(final[users[j][1]]["time"],"%Y-%m-%d %H:%M:%S.%f")):
+                        temp=users[i]
+                        users[i]=users[j]
+                        users[j]=temp
+                if(users[i][0]<users[j][0]):
+                    temp=users[i]
+                    users[i]=users[j]
+                    users[j]=temp
         return render_template('/ctf_templates/leaderboard.html', vals=users) 
     else:
         return redirect(url_for('home_page'))
@@ -229,6 +261,9 @@ def login():
         del session["logged"]
         del session["email"]
         del session["uname"]
+        del session["isUserflag"]
+        del session["isRootflag"]
+        del session["isFile"]
     try:
         if(session["registered"]==1):
             flags["registered"]=1
@@ -240,13 +275,16 @@ def login():
         password=request.form.get("password")
         try:
             user=auth.sign_in_with_email_and_password(email,password)
-            if(auth.get_account_info(user["idToken"])["users"][0]["emailVerified"]==True):
+            if(auth.get_account_info(user["idToken"])["users"][0]["emailVerified"]==False):
                 dataset=ctf_ref.get()
                 for keys in dataset:
                     if(dataset[keys]["emailid"]==email):
                         session["logged"]=True
                         session["email"]=email
                         session["uname"]=dataset[keys]["username"]
+                        session["isUserflag"]=dataset[keys]["isUserflag"]
+                        session["isRootflag"]=dataset[keys]["isRootflag"]
+                        session["isFile"]=dataset[keys]["isFile"]
                         break
                 return redirect(url_for('timer'))
             else:
@@ -257,14 +295,84 @@ def login():
             return render_template('/ctf_templates/login.html', form=form, flag=flags)
     return render_template('/ctf_templates/login.html', form=form, flag=flags)
 
-"""
-@app.route('/ctf/challenge')
+
+@app.route('/ctf/challenge230721', methods=["GET", "POST"])
 def challenge():
+    userans="USER FLAG"
+    rootans="ROOT FLAG"
+    forms=challengeform()
+    flags={}
     if "uname" in session:
-        return render_template('/ctf_templates/challenge.html')
+        if(request.method=="POST"):
+            userflag=request.form.get("user")
+            rootflag=request.form.get("root")
+            upload = request.form.get("file")
+            vals=ctf_ref.get()
+            if(userflag==userans and session["isUserflag"]==False):
+                for keys,values in vals.items():
+                    if(values["username"]==session["uname"]):
+                        temptime=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+                        ctf_ref.child(keys).update({"isUserflag":True,
+                        "time":temptime,
+                        "usertime":temptime})
+                        dic={"scores":values["scores"]+20}
+                        ctf_ref.child(keys).update(dic)
+                        flags["userflag"]=True
+                        newvalues=ctf_ref.get()
+                        session["isUserflag"]=newvalues[keys]["isUserflag"]
+                        session["isRootflag"]=newvalues[keys]["isRootflag"]
+                        session["isFile"]=newvalues[keys]["isFile"]
+                if "userflag" not in flags:
+                    flags["userflag"]=False
+            elif(userflag!="" and session["isUserflag"]==False):
+                flags["userflag"]=False
+            vals=ctf_ref.get()
+            if(rootflag==rootans and session["isRootflag"]==False):
+                for keys,values in vals.items():
+                    if(keys=="file" or keys=="user" or keys=="root"):
+                        continue
+                    if(values["username"]==session["uname"]):
+                        temptime=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+                        ctf_ref.child(keys).update({"isRootflag":True,
+                        "time":temptime,
+                        "roottime":temptime})
+                        flags["rootflag"]=True
+                        dic={"scores":values["scores"]+30}
+                        ctf_ref.child(keys).update(dic)
+                        newvalues=ctf_ref.get()
+                        session["isUserflag"]=newvalues[keys]["isUserflag"]
+                        session["isRootflag"]=newvalues[keys]["isRootflag"]
+                        session["isFile"]=newvalues[keys]["isFile"]
+                if "rootflag" not in flags:
+                    flags["rootflag"]=False
+            elif(rootflag!="" and session["isRootflag"]==False):
+                flags["rootflag"]=False
+            vals=ctf_ref.get()
+            try:
+                for keys,values in vals.items():
+                    if(keys=="file" or keys=="user" or keys=="root"):
+                        continue
+                    if(values["username"]==session["uname"]):
+                        if forms.validate_on_submit():
+                            file_upload = forms.file.data
+                            file_name = secure_filename(file_upload.filename)
+                            storage.child('TOVC').child(file_name).put(file_upload)
+                            temptime=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+                            ctf_ref.child(keys).update({"isFile":True,
+                            "time":temptime,
+                            "filetime":temptime})
+                            flags["fileflag"]=True
+                            newvalues=ctf_ref.get()
+                            session["isUserflag"]=newvalues[keys]["isUserflag"]
+                            session["isRootflag"]=newvalues[keys]["isRootflag"]
+                            session["isFile"]=newvalues[keys]["isFile"]
+            except Exception as e:
+                print(e)
+
+        return render_template('/ctf_templates/challenge.html',form=forms,flag=flags,session=session)
     else:
         return redirect(url_for('home_page')) 
-"""
+
 
 @app.route('/ctf/timer')
 def timer():
