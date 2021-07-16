@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from flask import Flask, render_template, url_for, request, redirect, session, make_response
 import firebase_admin
 from firebase_admin import credentials, db, storage
@@ -408,7 +407,12 @@ def new_password():
 @app.route('/ctf/reset', methods=["GET","POST"])
 def reset_password():
     return render_template('/ctf_templates/new_password.html')   
-
+@app.route('/ctf/rules')
+def rules():
+    if "uname" in session:
+        return render_template('/ctf_templates/rules.html') 
+    else:
+        return redirect(url_for('home_page'))   
 
 if __name__ == '__main__':
     app.run(debug=True)
