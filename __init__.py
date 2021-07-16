@@ -209,7 +209,21 @@ def register():
             flags["registered"]=0
     return render_template('/ctf_templates/register.html', form=form, flag=flags)
 
+
 @app.route('/ctf/leaderboard')
+def ctf_leaderboard():
+    if "uname" in session:
+        users=[]
+        dataset=ctf_ref.get()
+        for keys in dataset:
+            users.append(dataset[keys]["username"])
+
+        return render_template('/ctf_templates/leaderboard.html', vals=users) 
+    else:
+        return redirect(url_for('home_page'))
+
+
+@app.route('/ctf/leaderboard/testing')
 def ctf_leaderboard():
     if "uname" in session:
         users=[]
@@ -274,7 +288,7 @@ def login():
         password=request.form.get("password")
         try:
             user=auth.sign_in_with_email_and_password(email,password)
-            if(auth.get_account_info(user["idToken"])["users"][0]["emailVerified"]==False):
+            if(auth.get_account_info(user["idToken"])["users"][0]["emailVerified"]==True):
                 dataset=ctf_ref.get()
                 for keys in dataset:
                     if(dataset[keys]["emailid"]==email):
@@ -295,7 +309,7 @@ def login():
     return render_template('/ctf_templates/login.html', form=form, flag=flags)
 
 
-@app.route('/ctf/challenge230721', methods=["GET", "POST"])
+@app.route('/ctf/challenge/testing', methods=["GET", "POST"])
 def challenge():
     userans="USER FLAG"
     rootans="ROOT FLAG"
