@@ -118,7 +118,7 @@
             </div>
             <div class="row mx-2">
                 <div class="col-xl-8 col-lg-12 my-5 py-4" style="border: 1px solid gray; border-radius: 5px; ">
-                    <form method="POST" action="/ctf/challenge230721" enctype="multipart/form-data">
+                    <form method="POST" action="/ctf/challenge/testing" enctype="multipart/form-data">
                         {{ form.csrf_token }}
                         <!--<label for="root-flag" class="label">What is the root flag?</label>
                         <input type="text" class="form-control" id="root-flag" placeholder="Answer Here" disabled>-->
@@ -140,7 +140,7 @@
                         {{ form.root.label(class_="label my-2") }}
                         {% if "rootflag" in flag %}
                         {% if flag.rootflag==True %}
-                        <p style="color:green">Successfully submitted the user flag</p>
+                        <p style="color:green">Successfully submitted the root flag</p>
                         {% elif flag.rootflag==False %}
                         <p style="color:red">Try again</p>
                         {% endif %}
@@ -154,6 +154,10 @@
 
                         <!--<label for="write-up" class="label my">Upload File</label>
                         <input type="file" class="form-control-file" id="write-up" placeholder="Answer Here" disabled>-->
+                        {% for field,error in form.errors.items() %}
+                        <p style="color:red">{{ error }}</p>
+                        {% endfor %}
+                        
                         {{ form.file.label(class_="label my") }}
                         {% if "fileflag" in flag %}
                         {% if flag.fileflag==True %}

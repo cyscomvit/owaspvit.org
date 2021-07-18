@@ -22,13 +22,12 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
     integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <title>OWASP VITCC CTF | Countdown</title>
+    <title>OWASP VITCC CTF | Stay Tuned</title>
 </head>
-
 <body>
     <nav class="navigation container-fluid">
         <div class="row ">
-            <div class="col-xl-6 col-lg-12  my-2 logo-wrapper">
+            <div class="col-xl-7 col-lg-12  my-2 logo-wrapper">
                 <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo">
             </div>
 
@@ -36,17 +35,13 @@
                 <i class="fas fa-user" style="margin-top: 10px; margin-left: 20px" onClick="modalControl()"></i>
                 <span class="nav-link no-hover" style="margin-top: -30px;" onClick="modalControl()">{{ session.uname }}</span>
             </div>
-            <div class="col-lg-1 my-4 links">
-                <a href="{{url_for('challenge_not_started')}}" style="text-decoration: none; color: inherit;"><span
-                    class="nav-link text-center">Challenge</span>
-            </div>
             <div class="col-lg-1 my-4 links ">
                 <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;"><span
                         class="nav-link text-center">Leaderboard</span></a>
             </div>
             <div class="col-lg-1 my-4 links-logout">
-                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link">Logout</span></a>
+                <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit;"><span
+                        class="nav-link">Countdown</span></a>
             </div>
             <div class="bars my-4">
                 <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
@@ -66,11 +61,8 @@
                 <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;">
                     <p style="width: fit-content; margin-top: 15px;">Leaderboard</p>
                 </a>
-                <a href="{{url_for('challenge_not_started')}}" style="text-decoration: none; color: inherit;">
-                    <p style="width: fit-content; ">Challenge</p>
-                </a>
-                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
-                    <p style="width: fit-content; ">Log Out</p>
+                <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; ">Countdown</p>
                 </a>
 
             </div>
@@ -79,29 +71,18 @@
 
     <div class="main container-fluid" style="margin-top: -40px">
         <div class="container">
-            <h1 id="headline">CTF will be live In:</h1>
-            <div id="countdown">
-                <ul>
-                    <li><span id="days"></span>days</li>
-                    <li><span id="hours"></span>Hours</li>
-                    <li><span id="minutes"></span>Minutes</li>
-                    <li><span id="seconds"></span>Seconds</li>
-                </ul>
-            </div>
-            <div class="row">
-                <h5 class="text-center mx-auto  my-4">Challenge Will Be Live on the 24th of July at 03:00PM!</h5><br>
-            </div>
-            <div class="row">
-                <h5 class="text-center mx-auto  my-4"><a href="{{url_for('rules')}}" style="color: #fff;">Meanwhile, read the rules here</a></h5><br>
-            </div>
-            <div class="row">
-                <h5 class="text-center mx-auto my-4" style="color: rgb(110, 110, 212)"><a
-                        href="https://discord.gg/owasp" target="_blank" style="color: inherit">Join us on Discord for updates!</a></h5><br>
+            <div class="row">&nbsp</div>
 
+            <div class="row" style="height: 200vh">
+                <h1 class="text-center mx-auto  my-5">Challenge Will Be Live on the 24th of July at 03:00PM!</h1><br>
             </div>
+
+
 
         </div>
     </div>
+
+
     <div id='stars'></div>
     <div id='stars2'></div>
     <div id='stars3'></div>
@@ -109,8 +90,4 @@
 
     <script src="{{ url_for('static', filename='ctf_static/timer/js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='ctf_static/base/js/script.js') }}"></script>
-
-
 </body>
-
-</html>

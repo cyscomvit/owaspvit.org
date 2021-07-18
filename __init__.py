@@ -22,7 +22,7 @@ from werkzeug.utils import secure_filename
 # Initialize Flask app
 app = Flask(__name__)
 application = app
-app.secret_key = "secret key"
+app.secret_key = "secretKey1234#Abc"
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
@@ -214,17 +214,17 @@ def register():
 def ctf_leaderboard():
     if "uname" in session:
         users=[]
-        dataset=ctf_ref.get()
-        for keys in dataset:
-            users.append(dataset[keys]["username"])
-
+        dataset=ctf_ref.get().items()
+        for keys, value in dataset:
+        	users.append(value["username"])
+        
         return render_template('/ctf_templates/leaderboard.html', vals=users) 
     else:
         return redirect(url_for('home_page'))
 
-
+'''
 @app.route('/ctf/leaderboard/testing')
-def ctf_leaderboard():
+def ctf_leaderboard_testing():
     if "uname" in session:
         users=[]
         dataset=ctf_ref.get()
@@ -259,10 +259,11 @@ def ctf_leaderboard():
                     temp=users[i]
                     users[i]=users[j]
                     users[j]=temp
-        return render_template('/ctf_templates/leaderboard.html', vals=users) 
+        print(users)
+        return render_template('/ctf_templates/leaderboard_testing.html', vals=users) 
     else:
         return redirect(url_for('home_page'))
-
+'''
 @app.route('/ctf/login', methods=["GET", "POST"])
 def login():
     flags={"verify":1,"credentials":0}
@@ -308,7 +309,7 @@ def login():
             return render_template('/ctf_templates/login.html', form=form, flag=flags)
     return render_template('/ctf_templates/login.html', form=form, flag=flags)
 
-
+'''
 @app.route('/ctf/challenge/testing', methods=["GET", "POST"])
 def challenge():
     userans="USER FLAG"
@@ -386,7 +387,7 @@ def challenge():
     else:
         return redirect(url_for('home_page')) 
 
-
+'''
 @app.route('/ctf/timer')
 def timer():
     if "uname" in session:
@@ -428,5 +429,12 @@ def rules():
     else:
         return redirect(url_for('home_page'))   
 
+@app.route('/ctf/not_started')
+def challenge_not_started():
+    if "uname" in session:
+        return render_template('/ctf_templates/challenge_not_started.html')
+    else:
+        return redirect(url_for('home_page'))
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
