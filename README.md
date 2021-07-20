@@ -11,6 +11,7 @@ The official open-source initiative and corresponding discord bot for OWASP VITC
   <li>The leaderboard is live on: <a href="https://owaspvit.org/leaderboard">https://owaspvit.org/leaderboard</a></li>
   <li>The projects page is live on: <a href="https://owaspvit.org/projects">https://owaspvit.org/projects</a></li>
   <li>The digital locker is live on: <a href="https://owaspvit.org/locker">https://owaspvit.org/locker</a></li>
+  <li>The CTF competition page is live on: <a href="https://owaspvit.org/ctf">https://owaspvit.org/ctf</a></li>
 </ul>
 
 ### Discord Bot
