@@ -31,9 +31,10 @@ firebase_admin.initialize_app(cred, {
 
 ref = db.reference('vitask')
 tut_ref = ref.child('owasp')
-new_ref = tut_ref.child('leaderboard')
+new_ref = tut_ref.child('leaderboard-act2')
 proj_ref = tut_ref.child('projects')
 cert_ref = tut_ref.child('certificates')
+ctf_ref = tut_ref.child('ctf')
 
 bucket = storage.bucket()
 blob = bucket.blob('dynamic certificate/')
@@ -53,7 +54,7 @@ async def sum(ctx, numOne: int, numTwo: int):
 @commands.has_any_role("Board Member")
 async def add_data(ctx, name, discord_name, rating=0, contributions=0):
     try:
-        data = ref.child("owasp").child("leaderboard").get()
+        data = ref.child("owasp").child("leaderboard-act2").get()
         count = 0
         for i in data:
             # Check if already added
@@ -93,12 +94,12 @@ async def add_data(ctx, name, discord_name, rating=0, contributions=0):
 @commands.has_any_role("Board Member")
 async def update_data(ctx, name, discord_name, rating=0, contributions=0):
     try:
-        data = ref.child("owasp").child("leaderboard").get()
+        data = ref.child("owasp").child("leaderboard-act2").get()
         count = 0
         for i in data:
             # Check if already added
             if(data[i]["Name"].casefold()==name.casefold() and data[i]["Discord"].casefold()==discord_name.casefold()):
-                selector = ref.child("owasp").child("leaderboard").child(i)
+                selector = ref.child("owasp").child("leaderboard-act2").child(i)
                 selector.update({
                     'Rating': rating,
                     'Name': name,
@@ -121,13 +122,13 @@ async def update_data(ctx, name, discord_name, rating=0, contributions=0):
 @commands.has_any_role("Leaderboard")
 async def contribution(ctx, name, discord_name, task):
     try:
-        data = ref.child("owasp").child("leaderboard").get()
+        data = ref.child("owasp").child("leaderboard-act2").get()
         count = 0
         for i in data:
             # Check if already added
             if(data[i]["Name"].casefold()==name.casefold() and data[i]["Discord"].casefold()==discord_name.casefold()):
-                selector = ref.child("owasp").child("leaderboard").child(i).get()
-                selector_update = ref.child("owasp").child("leaderboard").child(i)
+                selector = ref.child("owasp").child("leaderboard-act2").child(i).get()
+                selector_update = ref.child("owasp").child("leaderboard-act2").child(i)
                 points = 0
                 if(task.casefold()=="pull request".casefold()):
                     points = 20
@@ -193,7 +194,7 @@ async def contribution(ctx, name, discord_name, task):
     
 @bot.command()
 async def fetch_data(ctx, name, discord_name):
-    data = ref.child("owasp").child("leaderboard").get()
+    data = ref.child("owasp").child("leaderboard-act2").get()
     for i in data:
         if(data[i]["Name"].casefold()==name.casefold() and data[i]["Discord"].casefold()==discord_name.casefold()):
             embed = discord.Embed(title=f"{ctx.guild.name}", description="Fetched OWASP Leaderboard profile.", color=discord.Color.blue())
@@ -247,7 +248,65 @@ async def cleanup(ctx,arg):
     elif arg == "Web-dev":
         sheet_range = "Web-dev!C2:U"
     clear(sheet_range)
+
+@bot.command()
+async def fix_leaderboard(ctx):
+  values = fix()
+  for i in values:
+    name = i[0]
+    disc_name = i[1]
+    points = i[2]
+    contributions = i[3]
+    finale = "!owasp update_data " + name + " " + disc_name + " " + points + " " + contributions
+    await ctx.send(finale)
+    await update_data(ctx, name, disc_name, int(points), int(contributions))
+
+
+@bot.command()
+async def delete_data(ctx, name, discord_name):
+	for key, value in new_ref.get().items():
+		if( value["Name"].casefold()==name.casefold() and value["Discord"].casefold()==discord_name.casefold() ):
+			#print(value["Name"] + " " + value["Discord"] + " " + key)
+			embed = discord.Embed(title=f"{ctx.guild.name}", description="Deleted data to the OWASP Leaderboard.", color=discord.Color.blue())
+			embed.add_field(name="Name", value=f"{name}")
+			embed.add_field(name="Discord Name", value=f"{discord_name}")
+			embed.set_thumbnail(url="https://owaspvit.com/assets/owasp-logo.png")
+			new_ref.child(key).set({})
+			await ctx.send(embed=embed)
         
+ 
+@bot.command()
+async def delete_testing_data(ctx, username):
+	for key, value in ctf_ref.get().items():
+		if(value['username'].casefold() == username.casefold()):
+			embed = discord.Embed(title=f"{ctx.guild.name}", description="Deleted testing data to the OWASP Leaderboard.", color=discord.Color.blue())
+			embed.add_field(name="Name", value=f"{value['username']}")
+			embed.add_field(name="emailid", value=f"{value['emailid']}")
+			embed.add_field(name="isFile", value=f"False")
+			embed.add_field(name="isRootflag", value=f"False")
+			embed.add_field(name="isUserflag", value=f"False")
+			embed.add_field(name="scores", value=f"0")
+			ctf_ref.child(key).set({'emailid':value['emailid'], 'isFile': False, 'isRootflag': False, 'isUserflag' : False, 'scores' : 0, 'username' : value['username']})
+			await ctx.send(embed=embed)
+
+done = []
+
+@bot.command()
+async def get_email_data(ctx):
+	for key, value in ctf_ref.get().items():
+		if value['emailid'] not in done:
+			await ctx.send(value['emailid'])
+			#print(value['emailid'])
+			done.append(value['emailid'])
+	await ctx.send("The whole list!")
+
+@bot.command()
+async def get_user_data(ctx, check):
+
+	for key, value in ctf_ref.get().items():
+		if value['emailid'].casefold() == check.casefold() or value['username'].casefold() == check.casefold():
+			print(value)
+			print(key)
         
 @bot.command(pass_context=True)
 @commands.has_any_role("Board Member")
@@ -294,7 +353,7 @@ async def add_project(ctx, project_name, username, repo_name, project_tag):
 async def add_certificate(ctx, name, discord_name, year):
     maincounter=0
     Fname = ''
-    data = ref.child("owasp").child("leaderboard").get()
+    data = ref.child("owasp").child("leaderboard-act2").get()
     for i in data:
         if(data[i]["Name"].casefold()==name.casefold() and data[i]["Discord"].casefold()==discord_name.casefold()):
             Fname = name
