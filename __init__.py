@@ -45,7 +45,8 @@ blob = bucket.blob('dynamic certificate/')
 
 def fetch_data():
     data = ref.child("owasp").child("leaderboard").get()
-    return data
+    data_act2 = ref.child("owasp").child("leaderboard-act2").get()
+    return (data, data_act2)
 
 def project_data():
     data = ref.child("owasp").child("projects").get()
@@ -61,17 +62,24 @@ def index():
 
 @app.route('/leaderboard', methods=['GET','POST'])
 def leaderboard():
-    users = fetch_data()
+    users, users_act2 = fetch_data()
     ranking = []
+    ranking_act2 = []
     for i in users:
         ranking.append(users[i])
+        ranking_act2.append(users_act2[i])
         
     for i in range(0,len(ranking)):
         for j in range(0,len(ranking)-i-1):
             if(ranking[j]["Rating"]<ranking[j+1]["Rating"]):
                 ranking[j], ranking[j+1] = ranking[j+1], ranking[j]
+                
+    for i in range(0,len(ranking_act2)):
+        for j in range(0,len(ranking_act2)-i-1):
+            if(ranking_act2[j]["Rating"]<ranking_act2[j+1]["Rating"]):
+                ranking_act2[j], ranking_act2[j+1] = ranking_act2[j+1], ranking_act2[j]
     
-    return render_template('index.html', users = ranking)
+    return render_template('index.html', users = ranking, users_act2 = ranking_act2)
 
 
 @app.route('/projects', methods=['GET','POST'])

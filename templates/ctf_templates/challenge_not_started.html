@@ -25,29 +25,34 @@
     <title>OWASP VITCC CTF | Stay Tuned</title>
 </head>
 <body>
-    <nav class="navigation container-fluid">
-        <div class="row ">
-            <div class="col-xl-7 col-lg-12  my-2 logo-wrapper">
-                <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo">
-            </div>
+    <nav class="navigation">
+        <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo">
+        <ul class="nav-links">
 
-            <div class="col-lg-1 my-4 links">
-                <i class="fas fa-user" style="margin-top: 10px; margin-left: 20px" onClick="modalControl()"></i>
-                <span class="nav-link no-hover" style="margin-top: -30px;" onClick="modalControl()">{{ session.uname }}</span>
-            </div>
-            <div class="col-lg-1 my-4 links ">
+            <li>
+                <i class="fas fa-user" style="display: inline"></i>
+                <h5 class="text" style="display: inline">{{ session.uname }}</h5>
+            </li>
+            <li>
+                <a href="{{url_for('timer')}}" style="text-decoration: none;"><span
+                        class="text" style="color: blu">Countdown</span></a>
+            </li>
+            <li>
+                <a href="{{url_for('rules')}}" style="text-decoration: none; color: inherit; "><span
+                        class="text">Rules</span>
+            </li>
+            <li>
                 <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link text-center">Leaderboard</span></a>
-            </div>
-            <div class="col-lg-1 my-4 links-logout">
-                <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link">Countdown</span></a>
-            </div>
-            <div class="bars my-4">
-                <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
-            </div>
-        </div>
+                        class="text">Leaderboard</span></a>
+            </li>
+            <li>
+                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;"><span
+                        class="text">Logout</span></a>
+            </li>
+        </ul>
+        <i class="fas fa-bars bars" style="color: #fff; display: none" onClick="handleNav()"></i>
     </nav>
+
 
     <div class="sidebar-container">
         <div class="sidebar">
@@ -57,12 +62,17 @@
             <div class="sidebar-links">
                 <i class="fas fa-user"></i>
                 <p style="display: inline;">{{ session.uname }}</p>
-                
+
                 <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;">
                     <p style="width: fit-content; margin-top: 15px;">Leaderboard</p>
                 </a>
-                <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit;">
-                    <p style="width: fit-content; ">Countdown</p>
+                <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit">
+                    <p style="width: fit-content; margin-top: 15px;">Countdown</p>
+                <a href="{{url_for('rules')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; ">Rules</p>
+                </a>
+                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; ">Log Out</p>
                 </a>
 
             </div>

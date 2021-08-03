@@ -40,7 +40,7 @@ h1 {
   font-size: 5.0em !important;
 }
 
-li {
+.timer-li {
   display: inline-block;
   font-size: 1.5em;
   list-style-type: none;
@@ -53,7 +53,7 @@ li {
   font-family: "lato", sans-serif;
 }
 
-li span {
+.timer-li span {
   display: block;
   font-size: 4.5rem;
   background: -webkit-linear-gradient(white, #38495a);
@@ -71,7 +71,7 @@ li span {
     font-size: 1.125rem;
     padding: .75rem;
   }
-  li span {
+  .timer-li span {
     font-size: 3.375rem;
   }
   .container {

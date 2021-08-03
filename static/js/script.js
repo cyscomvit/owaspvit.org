@@ -12,3 +12,20 @@ $(window).scroll(function() {
 $(window).resize(function() {
   parallax_height();
 });
+
+
+
+$(document).ready(function(){
+  $('#act').on('change', function() {
+    if (this.value == 'act2')
+    {
+      $("#act2").show();
+      $("#act1").hide();
+    }
+    else if(this.value == 'act1')
+    {
+      $("#act2").hide();
+      $("#act1").show();
+    }
+  });
+});

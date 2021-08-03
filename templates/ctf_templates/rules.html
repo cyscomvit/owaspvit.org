@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ctf_static/challenge/css/styles.css') }}">
+
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='ctf_static/challenge/css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ctf_static/rules/rules.css') }}">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,36 +15,39 @@
     <link rel="icon" href="{{ url_for('static', filename='home/images/owasp-logo.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <title>OWASP CTF | Countdown</title>
+    <title>OWASP CTF | Rules</title>
 </head>
 
-<body >
-    <nav class="navigation container-fluid">
-        <div class="row ">
-            <div class="col-xl-7 col-lg-12  my-2 logo-wrapper">
-                <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo">
-            </div>
+<body>
+    <nav class="navigation">
+        <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo"
+            style="margin-top: 10px">
+        <ul class="nav-links" style="margin-top: 30px">
 
-            <div class="col-lg-1 my-4 links">
-                <i class="fas fa-user" style="margin-top: 10px; margin-left: 20px"></i>
-                <span class="nav-link" style="margin-top: -30px;" onClick="modalControl()">{{ session.uname }}</span>
-            </div>
-            <div class="col-lg-1 my-4 links ">
-                <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link text-center">Countdown</span>
-                </a>
-            </div>
-            <div class="col-lg-1 my-4 links-logout">
+            <li>
+                <i class="fas fa-user" style="display: inline"></i>
+                <h5 class="text" style="display: inline">{{ session.uname }}</h5>
+            </li>
+            <li>
+                <a href="{{url_for('challenge')}}" style="text-decoration: none;"><span
+                        class="text">Challenge</span></a>
+            </li>
+            <li>
+                <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit; "><span
+                        class="text">Countdown</span>
+            </li>
+            <li>
                 <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link">Leaderboard</span>
-                </a>
-            </div>
-            <div class="bars my-4">
-                <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
-            </div>
-        </div>
+                        class="text">Leaderboard</span></a>
+            </li>
+            <li>
+                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;"><span
+                        class="text">Logout</span></a>
+            </li>
+        </ul>
+        <i class="fas fa-bars bars" style="color: #fff; display: none; top: 20px" onClick="handleNav()"></i>
     </nav>
 
     <div class="sidebar-container">
@@ -57,65 +61,77 @@
                 <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit;">
                     <p style="width: fit-content; margin-top: 13px;">Countdown</p>
                 </a>
+                <a href="{{url_for('challenge')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; margin-top: 13px;">Challenge</p>
+                </a>
                 <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;">
                     <p style="width: fit-content; ">Leaderboard</p>
+                </a>
+                <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;">
+                    <p style="width: fit-content; ">Log Out</p>
                 </a>
             </div>
         </div>
     </div>
 
-   
+
     <div class="main container-fluid">
-       
-       
-           <div class="container">
+
+
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12 mt-5 ">
                     <h1 id="heading">Rules and Guidelines</h1>
                     <ol class="guidelines">
                         <li>Flag format is TOVC{…}, unless specified otherwise.</li>
-                        <li>Sharing flags or solutions during the CTF is prohibited and may result in disqualification</li>
-                        <li>If you find a bug in any of the challenges - please report it in the queries channel of Discord server.</li>
+                        <li>Sharing flags or solutions during the CTF is prohibited and may result in disqualification
+                        </li>
+                        <li>If you find a bug in any of the challenges - please report it in the queries channel of
+                            Discord server.</li>
                         <li>Register as an individual as this is a solo event.</li>
-                        <li> If you have any query regarding the challenge, post it in the queries channel of the Discord server.</li>
-                        <li>The challenge will be a docker(which will be hosted locally), so it is advised to have docker installed in your machines before the CTF. (Link to install docker - <a href="https://docs.docker.com/engine/install/">Here</a>)</li>
-                        <li>The Leaderboard rankings are NOT FINAL as your writeups will be evaluated as well.</li> 
+                        <li> If you have any query regarding the challenge, post it in the queries channel of the
+                            Discord server.</li>
+                        <li>The challenge will be a docker(which will be hosted locally), so it is advised to have
+                            docker installed in your machines before the CTF. (Link to install docker - <a
+                                href="https://docs.docker.com/engine/install/">Here</a>)</li>
+                        <li>The Leaderboard rankings are NOT FINAL as your writeups will be evaluated as well.</li>
                         <li>The marking scheme is as follows with a maximum score of –
                             <ul>
                                 <li>User Flag – 20</li>
                                 <li>Root Flag – 20</li>
                                 <li>Writeup – 30 (10 points each to screenshots, way to user flag and root flag).</li>
+                                <li><span style="color:#005ce6;">Writeup - File name must be your username.</span></li>
                                 <li>First writeup (After getting the user and root flags the machine) – 10</li>
                                 <li>Best Writeup – 10</li>
                                 <li>Rooting without using Metasploit – 10</li>
                             </ul>
-                          
-                            </li>
-                         <li>The top 3 individuals will be declared as winners.</li>   
-                         <li>Keep a clean, positive competition.</li>
-                         <li>Don't forget to have fun!</li>
+
+                        </li>
+                        <li>The top 3 individuals will be declared as winners.</li>
+                        <li>Keep a clean, positive competition.</li>
+                        <li>Don't forget to have fun!</li>
                     </ol>
                 </div>
 
-        <div id='stars'></div>
-        <div id='stars2'></div>
-        <div id='stars3'></div> 
-               
-           </div>
-            
-                
-          
-           
-            
-    </div>
-    
-   
-       
-      
-   
-</div>
+                <div id='stars'></div>
+                <div id='stars2'></div>
+                <div id='stars3'></div>
 
-<script src="{{ url_for('static', filename='ctf_static/base/js/script.js') }}"></script>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+    <script src="{{ url_for('static', filename='ctf_static/base/js/script.js') }}"></script>
 
 
 </body>

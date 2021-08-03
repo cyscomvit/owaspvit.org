@@ -26,32 +26,34 @@
 </head>
 
 <body>
-    <nav class="navigation container-fluid">
-        <div class="row ">
-            <div class="col-xl-7 col-lg-12  my-2 logo-wrapper">
-                <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo">
-            </div>
+    <nav class="navigation">
+        <img src="{{ url_for('static', filename='ctf_static/home/images/owasp-logo.png') }}" class="logo"
+            style="margin-top: 10px">
+        <ul class="nav-links" style="margin-top: 30px">
 
-            <div class="col-lg-1 my-4 links">
-                <i class="fas fa-user" style="margin-top: 10px; margin-left: 20px"></i>
-                <span class="nav-link" style="margin-top: -30px;" onClick="modalControl()">{{ session.uname }}</span>
-            </div>
-            <div class="col-lg-1 my-4 links ">
-                <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link text-center">Leaderboard</span>
-                </a>
-            </div>
-            <div class="col-lg-1 my-4 links-logout">
+            <li>
+                <i class="fas fa-user" style="display: inline"></i>
+                <h5 class="text" style="display: inline">{{ session.uname }}</h5>
+            </li>
+            <li>
+                <a href="{{url_for('ctf_leaderboard')}}" style="text-decoration: none;"><span
+                        class="text">Leaderboard</span></a>
+            </li>
+            <li>
+                <a href="{{url_for('timer')}}" style="text-decoration: none; color: inherit; "><span
+                        class="text">Countdown</span>
+            </li>
+            <li>
+                <a href="{{url_for('rules')}}" style="text-decoration: none; color: inherit;"><span
+                        class="text">Rules</span></a>
+            </li>
+            <li>
                 <a href="{{url_for('login')}}" style="text-decoration: none; color: inherit;"><span
-                        class="nav-link">Logout</span>
-                </a>
-            </div>
-            <div class="bars my-4">
-                <i class="fas fa-bars" style="color: #fff" onClick="handleNav()"></i>
-            </div>
-        </div>
+                        class="text">Logout</span></a>
+            </li>
+        </ul>
+        <i class="fas fa-bars bars" style="color: #fff; display: none; top: 20px" onClick="handleNav()"></i>
     </nav>
-
     <div class="sidebar-container">
         <div class="sidebar">
             <div class="close-row">
@@ -79,28 +81,27 @@
             </div>
             <div class="row mx-2" style="border-bottom: 1px solid gray;">
                 <div class="col-12"><span style="color: rgb(32, 148, 99); font-size: 0.9rem;">OWASP VITCC • Launch Date:
-                        25/07/2021</span></div>
+                        24/07/2021</span></div>
             </div>
             <div class="row mx-2">
                 <div class="col-xl-8 col-lg-12 my-5 py-4" style="border: 1px solid gray; border-radius: 5px; ">
                     <p class="lead">
                         Note: It is quite easy to cheat your way to get flag , but try not to.</p>
                     <p class="lead">To use it cleanly , run the command below:<br>
-                        -docker run -itd --name test tripster98/oscon-3</p>
+                        docker run -itd --name test owaspvit/tovc-1.0</p>
                     <p class="lead">I haven't included any port mapping for this challenge, you would need to run :-<br>
                         -docker inspect test</p>
                     <p class="lead">The ip address is the address you need to attack.
                         To restart the environment , run :-<br>
                         -docker rm -rf test</p>
-                    <p class="lead">And re-run the docker run command in beginning.
-                        This is a hard machine, enjoy it :)</p>
+                    <p class="lead">Happy hacking :)</p>
                 </div>
                 <div class="col-xl-3 col-lg-12 my-5 py-4 command"
                     style="border: 1px solid gray; height: fit-content; border-radius: 5px;">
                     <p class="lead">
                         Docker Command:</p>
                     <p class="lead">
-                        <kbd class="code">docker pull owaspctf/tovc-1</kbd>
+                        <kbd class="code">docker pull owaspvit/tovc-1.0</kbd>
                     </p>
                 </div>
             </div>
@@ -113,12 +114,11 @@
                 </div>
             </div>
             <div class="row mx-2" style="border-bottom: 1px solid gray;">
-                <div class="col-12"><span style="color: rgb(32, 148, 99); font-size: 0.9rem;">Make sure to submit carefully,
-                as only one submission per user is allowed. </span></div>
+                <div class="col-12"><span style="color: rgb(32, 148, 99); font-size: 0.9rem;">Make sure to include all necessary screenshots/commands in your writeup.</span></div>
             </div>
             <div class="row mx-2">
                 <div class="col-xl-8 col-lg-12 my-5 py-4" style="border: 1px solid gray; border-radius: 5px; ">
-                    <form method="POST" action="/ctf/challenge/testing" enctype="multipart/form-data">
+                    <form method="POST" action="/ctf/challenge" enctype="multipart/form-data">
                         {{ form.csrf_token }}
                         <!--<label for="root-flag" class="label">What is the root flag?</label>
                         <input type="text" class="form-control" id="root-flag" placeholder="Answer Here" disabled>-->

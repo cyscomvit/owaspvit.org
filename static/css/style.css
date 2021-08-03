@@ -83,6 +83,7 @@ th, td {
 
 .special-black-right {
     text-align: center;
+    width: 25%;
 }
 
 .special-black-left {
@@ -146,4 +147,34 @@ th, td {
 .seperate {
     text-align: center;
     font-size: 2.4rem;
+}
+
+.box{
+  width: 100%;
+}
+
+.box select {
+  background-color: #0f1923;
+  padding: 12px;
+  border: none;
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  font-family: "Rajdhani", sans-serif;
+  color: #DBD9D2;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.box select option {
+  padding: 30px;
+  font-family: "Rajdhani", sans-serif;
+  color: #DBD9D2;
+  font-weight: bold;
+}
+
+
+.box select:focus {
+  min-width: 150px;
+  width: auto;
 }
