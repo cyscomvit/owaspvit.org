@@ -112,7 +112,7 @@ def data():
         except Exception as e:
             error = "Invalid Identifier"
             return render_template('locker.html', error = error)
-    users = fetch_data()
+    users_act1, users = fetch_data()
     for i in users:
         if(users[i]["Name"].casefold()==name.casefold() and users[i]["Discord"].casefold()==discord_name.casefold()):
             session.clear()
