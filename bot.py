@@ -15,16 +15,15 @@ import img2pdf
 from uuid import uuid4
 from urllib import parse, request
 import re
-from bot_token import get_token
+from config import *
 import aiocron
 import asyncio
-
 from sheet import *
 
 cred = credentials.Certificate("firebase.json")
 firebase_admin.initialize_app(cred, {
-    'databaseURL':'https://vitask.firebaseio.com/',
-    'storageBucket': 'vitask.appspot.com',
+    'databaseURL': databaseURL(),
+    'storageBucket': storageURL(),
 })
 
 ref = db.reference('vitask')
@@ -204,15 +203,14 @@ async def fetch_data(ctx, name, discord_name):
 
             await ctx.send(embed=embed)
 
-
-#sheet commands
+#Sheet commands
 @bot.command()
 async def sheets(ctx, arg):
     if arg == "Technical":
         sheet_range = "Technical!a1:u23"
 
     elif arg == "Operations":
-        sheet_range = "Operations!a1:u30"
+        sheet_range = "Operations!a1:u31"
 
     elif arg == "Design":
         sheet_range = "Design!a1:u11"
@@ -259,19 +257,16 @@ async def fix_leaderboard(ctx):
         await ctx.send(finale)
         await update_data(ctx, name, disc_name, int(points), int(contributions))
 
-
 @bot.command()
 async def delete_data(ctx, name, discord_name):
 	for key, value in new_ref.get().items():
 		if( value["Name"].casefold()==name.casefold() and value["Discord"].casefold()==discord_name.casefold() ):
-			#print(value["Name"] + " " + value["Discord"] + " " + key)
 			embed = discord.Embed(title=f"{ctx.guild.name}", description="Deleted data to the OWASP Leaderboard.", color=discord.Color.blue())
 			embed.add_field(name="Name", value=f"{name}")
 			embed.add_field(name="Discord Name", value=f"{discord_name}")
 			embed.set_thumbnail(url="https://owaspvit.com/assets/owasp-logo.png")
 			new_ref.child(key).set({})
 			await ctx.send(embed=embed)
-
 
 @bot.command()
 async def delete_testing_data(ctx, username):
@@ -294,13 +289,11 @@ async def get_email_data(ctx):
 	for key, value in ctf_ref.get().items():
 		if value['emailid'] not in done:
 			await ctx.send(value['emailid'])
-			#print(value['emailid'])
 			done.append(value['emailid'])
 	await ctx.send("The whole list!")
 
 @bot.command()
 async def get_user_data(ctx, check):
-
 	for key, value in ctf_ref.get().items():
 		if value['emailid'].casefold() == check.casefold() or value['username'].casefold() == check.casefold():
 			print(value)
@@ -344,7 +337,6 @@ async def add_project(ctx, project_name, username, repo_name, project_tag):
 
     except Exception as e:
         print(e)
-
 
 @bot.command(pass_context=True)
 @commands.has_any_role("Board Member")
@@ -468,11 +460,10 @@ async def on_message(message):
         await message.channel.send('Our Website is https://owaspvit.com')
         await bot.process_commands(message)
 
-
 #crontab
 @aiocron.crontab('0 0 * * 0')
 async def five():
-    ctx = bot.get_channel(838206269533323304)
+    ctx = bot.get_channel(getChannel())
     await sheets(ctx,'Technical')
     await cleanup(ctx, 'Technical')
 

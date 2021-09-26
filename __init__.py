@@ -7,7 +7,7 @@ import urllib.request
 from PIL import Image
 import img2pdf
 from github import Github
-from bot_token import *
+from config import *
 import sys
 import pyrebase
 import requests
