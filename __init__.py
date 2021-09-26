@@ -22,7 +22,7 @@ from werkzeug.utils import secure_filename
 # Initialize Flask app
 app = Flask(__name__)
 application = app
-app.secret_key = "secretKey1234#Abc"
+app.secret_key = "your_secret_key_here"
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
@@ -32,14 +32,15 @@ Session(app)
 
 g = Github(github_token())
 
-
 # Initialize Firebase app
 cred = credentials.Certificate("firebase.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL':'https://vitask.firebaseio.com/',
     'storageBucket': 'vitask.appspot.com',
 })
+
 ref = db.reference('vitask')
+ip_ref = ref.child('owasp/ip')
 bucket = storage.bucket()
 blob = bucket.blob('dynamic certificate/')
 
@@ -68,17 +69,17 @@ def leaderboard():
     for i in users:
         ranking.append(users[i])
         ranking_act2.append(users_act2[i])
-        
+
     for i in range(0,len(ranking)):
         for j in range(0,len(ranking)-i-1):
             if(ranking[j]["Rating"]<ranking[j+1]["Rating"]):
                 ranking[j], ranking[j+1] = ranking[j+1], ranking[j]
-                
+
     for i in range(0,len(ranking_act2)):
         for j in range(0,len(ranking_act2)-i-1):
             if(ranking_act2[j]["Rating"]<ranking_act2[j+1]["Rating"]):
                 ranking_act2[j], ranking_act2[j+1] = ranking_act2[j+1], ranking_act2[j]
-    
+
     return render_template('index.html', users = ranking, users_act2 = ranking_act2)
 
 
@@ -88,12 +89,12 @@ def projects():
     projects = []
     for i in project_all:
         projects.append(project_all[i])
-        
+
     for i in projects:
         repo = g.get_repo(f"{i['Username']}/{i['RepoName']}")
         i['stars'] = repo.stargazers_count
         i['views'] = repo.get_views_traffic()['count']
-        
+
     projects = random.sample(projects, len(projects))
     return render_template('projects.html', projects = projects)
 
@@ -119,7 +120,7 @@ def data():
             session['name'] = users[i]['Name']
             session['discord'] = users[i]['Discord']
             return redirect(url_for('dashboard'))
-        
+
     error = "Invalid Identifier"
     return render_template('locker.html', error = error)
 
@@ -141,7 +142,7 @@ def dashboard():
                 user['year'].append(year)
                 url = baseurl + middle + "-" + year + "?alt=media"
                 user['url'].append(url)
-    
+
     return render_template('dashboard.html', user = user)
 
 @app.route("/certificate", methods=["POST", "GET"])
@@ -160,9 +161,10 @@ def landingpage():
 
 """
 ------------------------------------------------------------
-                    OWASP VITCC CTF
+                    TOVC
 ------------------------------------------------------------
 """
+
 ctf_ref = db.reference("/vitask/owasp/ctf")
 firebaseconf = ctfconf()
 firebase = pyrebase.initialize_app(firebaseconf)
@@ -173,8 +175,8 @@ auth = firebase.auth()
 @app.route('/ctf/home')
 def home_page():
     if "uname" in session:
-        return redirect(url_for('timer')) 
-    else: 
+        return redirect(url_for('timer'))
+    else:
         return render_template('/ctf_templates/home.html', session=session)
 
 @app.route('/ctf/register', methods=["GET", "POST"])
@@ -217,7 +219,12 @@ def register():
             flags["registered"]=0
     return render_template('/ctf_templates/register.html', form=form, flag=flags)
 
+@app.route('/ctf/verify_again')
+def verify_again():
+	ip_ref.push(request.remote_addr)
+	return render_template('/ctf_templates/home.html')
 
+"""
 @app.route('/ctf/leaderboard')
 def ctf_leaderboard():
     if "uname" in session:
@@ -225,14 +232,14 @@ def ctf_leaderboard():
         dataset=ctf_ref.get().items()
         for keys, value in dataset:
         	users.append(value["username"])
-        
-        return render_template('/ctf_templates/leaderboard.html', vals=users) 
+
+        return render_template('/ctf_templates/leaderboard.html', vals=users)
     else:
         return redirect(url_for('home_page'))
+"""
 
-'''
-@app.route('/ctf/leaderboard/testing')
-def ctf_leaderboard_testing():
+@app.route('/ctf/leaderboard')
+def ctf_leaderboard ():
     if "uname" in session:
         users=[]
         dataset=ctf_ref.get()
@@ -267,11 +274,10 @@ def ctf_leaderboard_testing():
                     temp=users[i]
                     users[i]=users[j]
                     users[j]=temp
-        print(users)
-        return render_template('/ctf_templates/leaderboard_testing.html', vals=users) 
+        return render_template('/ctf_templates/leaderboard.html', vals=users)
     else:
         return redirect(url_for('home_page'))
-'''
+
 @app.route('/ctf/login', methods=["GET", "POST"])
 def login():
     flags={"verify":1,"credentials":0}
@@ -317,11 +323,11 @@ def login():
             return render_template('/ctf_templates/login.html', form=form, flag=flags)
     return render_template('/ctf_templates/login.html', form=form, flag=flags)
 
-'''
-@app.route('/ctf/challenge/testing', methods=["GET", "POST"])
+"""
+@app.route('/ctf/challenge', methods=["GET", "POST"])
 def challenge():
-    userans="USER FLAG"
-    rootans="ROOT FLAG"
+    userans="TOVC{user_infiltrated_in_tovc}"
+    rootans="TOVC{I_am_king_rooter}"
     forms=challengeform()
     flags={}
     if "uname" in session:
@@ -393,15 +399,15 @@ def challenge():
 
         return render_template('/ctf_templates/challenge.html',form=forms,flag=flags,session=session)
     else:
-        return redirect(url_for('home_page')) 
+        return redirect(url_for('home_page'))
+"""
 
-'''
 @app.route('/ctf/timer')
 def timer():
     if "uname" in session:
-        return render_template('/ctf_templates/timer.html') 
+        return render_template('/ctf_templates/timer.html')
     else:
-        return redirect(url_for('home_page'))   
+        return redirect(url_for('home_page'))
 
 @app.route('/ctf/reset_password', methods=["GET", "POST"])
 def reset():
@@ -429,20 +435,118 @@ def new_password():
 
 @app.route('/ctf/reset', methods=["GET","POST"])
 def reset_password():
-    return render_template('/ctf_templates/new_password.html')   
+    return render_template('/ctf_templates/new_password.html')
 @app.route('/ctf/rules')
 def rules():
     if "uname" in session:
-        return render_template('/ctf_templates/rules.html') 
+        return render_template('/ctf_templates/rules.html')
     else:
-        return redirect(url_for('home_page'))   
-
+        return redirect(url_for('home_page'))
+        
+"""
 @app.route('/ctf/not_started')
 def challenge_not_started():
     if "uname" in session:
         return render_template('/ctf_templates/challenge_not_started.html')
     else:
         return redirect(url_for('home_page'))
+
+"""
+
+"""
+------------------------------------------------------------
+                    Valowasp
+------------------------------------------------------------
+"""
+
+app.config["MONGO_URI"]="your_mongo_uri"
+client = pymongo.MongoClient("your_mongo_uri")
+db = client.valo
+
+"""
+@app.route("/valowasp/register",methods=["POST","GET"])
+def valo_register():
+    message=''
+    phone_no=''
+    discord_id=''
+    valorant_id=''
+    success=''
+    data={}
+    if request.method=="POST":
+        data['Team_name']=request.form['TeamName']
+        data['No_members']=request.form['No_mem']
+
+        data['Email_id_1']=request.form['Email_1']
+        data['Discord_id1']=request.form['Did1']
+        data['Valo_id1']=request.form['Vid1']
+        data['Player_level']=request.form['playerLevel1']
+
+        data['Email_id_2']=request.form['Email_2']
+        data['Discord_id2']=request.form['Did2']
+        data['Valo_id2']=request.form['Vid2']
+        data['Player_leve2']=request.form['playerLevel2']
+
+        data['Email_id_3']=request.form['Email_3']
+        data['Discord_id3']=request.form['Did3']
+        data['Valo_id3']=request.form['Vid3']
+        data['Player_level3']=request.form['playerLevel3']
+
+        data['Email_id_4']=request.form['Email_4']
+        data['Discord_id4']=request.form['Did4']
+        data['Valo_id4']=request.form['Vid4']
+        data['Player_level4']=request.form['playerLevel4']
+
+        data['Email_id_5']=request.form['Email_5']
+        data['Discord_id5']=request.form['Did5']
+        data['Valo_id5']=request.form['Vid5']
+        # email_found = db.valo_owasp.find_one({"email": email})
+
+        Pattern = re.compile("^.{3,32}#[0-9]{4}$")
+
+        for i in range(1,int(data['No_members'])+1):
+            dis_id='Discord_id'+str(i)
+            if (Pattern.match(data[dis_id])):
+                pass
+
+            else:
+                discord_id='Enter Valid Discord ID for Player '+str(i)
+                return render_template('valo/data.html',discord_id = discord_id)
+
+
+        db.valo_owasp.insert_one(data)
+        success='registration succesfull'
+        return render_template('valo/data.html',success=success)
+
+    return render_template('valo/data.html')
+"""
+
+@app.route('/valowasp/')
+@app.route('/valowasp')
+def valowasp():
+    return render_template('valo/index.html')
+
+@app.route('/valowasp/schedule')
+def valo_schedule():
+    return render_template('valo/schedule.html')
+
+
+@app.route('/valowasp/rules')
+def valo_rules():
+    return render_template('valo/Rules.html')
+
+@app.route('/valowasp/FAQ')
+def valo_faqs():
+    return render_template('valo/FAQ.html')
+
+@app.route('/valowasp/Timeline')
+def valo_timeline():
+    return render_template('valo/Timeline.html')
+
+"""
+@app.route('/valowasp/Instructions')
+def valo_instructions():
+    return render_template('valo/Instructions.html')
+"""
 
 if __name__ == '__main__':
     app.run()
