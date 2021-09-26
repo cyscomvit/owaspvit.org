@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="/static/valo/assets/css/data.css" />
+    <script src="https://kit.fontawesome.com/06e095749f.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  
+    <div class="container">
+      <form id="form" class="form" method="POST" action="/valowasp/register">
+        <h1 style="color: white">Let's Ace the Battle!</h1>
+        <!--lead member of team-->
+
+            {% if discord_id  %}
+            <div class="alert alert-danger" role="alert" style="color: white;text-align: center">
+              <div class="error">
+          
+                <p><i class="fas fa-exclamation-circle"></i> {{ discord_id }}</p>
+              </div>
+            </div>
+            {% endif %}
+
+          {% if success  %}
+          <div class="alert alert-success" role="alert" style="color: white;text-align: center">
+            <div class="error">
+              <p><i class="fas fa-check-circle"></i> {{ success }}</p>
+            </div>
+          </div>
+          {% endif %}
+        
+        <div class="form-control">
+          <label for="teamname"
+            ><span style="color: yellow">*</span>Team Name</label
+          >
+          <input
+            type="text"
+            id="teamname"
+            placeholder="Enter Team Name"
+            name="TeamName"
+            required
+          />
+        </div>
+        
+        <div class="form-control">
+          <label for="members"
+            ><span style="color: yellow">*</span>Number Of Members</label
+          >
+          <select name="No_mem" id="Totalmembers">
+            <option value="0" selected>Select one</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <!--1st member-->
+        <div class="memberContainer">
+          <h3 style="text-align: center">Team's 1st Member Details</h3>
+
+          <div class="form-control">
+          <label for="leadEmail"
+            ><span style="color: yellow">*</span>Email-id</label
+          >
+          <input
+            type="email"
+            id="leadEmail"
+            placeholder="Enter Email-id Of The 1st Member"
+            name="Email_1"
+            required
+          />
+        </div>
+          <div class="form-control">
+            <label for="Did1"
+              ><span style="color: yellow">*</span>Discord Id Of 1st Member
+              <br />(for example: root#1234)
+            </label>
+            <input
+              type="text"
+              id="Did1"
+              placeholder="Enter Discord Id Of The 1st Member"
+              name="Did1"
+              required
+            />
+          </div>
+          <div class="form-control">
+            <label for="Vid1"
+              ><span style="color: yellow">*</span>Valorant Id Of 1st Member
+              <br />(for example: virtualRoot#2610)</label
+            >
+            <input
+              type="text"
+              id="Vid1"
+              placeholder="Enter Valorant ID of 1st Member"
+              name="Vid1"
+              required
+            />
+          </div>
+          <div class="form-control">
+            <label for="playerLevel1"
+              ><span style="color: yellow">*</span>Player Level</label
+            >
+            <select name="playerLevel1" id="playerLevel1">
+              <option value="Radiant">Radiant</option>
+              <option value="Immortal">Immortal</option>
+              <option value="Diamond">Diamond</option>
+              <option value="Platinum">Platinum</option>
+              <option value="Gold">Gold</option>
+              <option value="Silver">Silver</option>
+              <option value="Bronze">Bronze</option>
+              <option value="Iron">Iron</option>
+              <option value="No Level">No Level</option>
+            </select>
+          </div>
+        </div>
+
+        <!--2nd member-->
+        <div class="memberContainer">
+          <h3 style="text-align: center">Team's 2nd Member Details</h3>
+
+          <div class="form-control">
+          <label for="leadEmail"
+            ><span style="color: yellow">*</span>Email-id</label
+          >
+          <input
+            type="email"
+            id="leadEmail"
+            placeholder="Enter Email-id Of The 2nd Member"
+            name="Email_2"
+          />
+        </div>
+          <div class="form-control">
+            <label for="Did2"
+              >Discord Id Of 2nd Member <br />(for example: root#1234)
+            </label>
+            <input
+              type="text"
+              id="Did2"
+              placeholder="Enter Discord Id Of The 2nd Member"
+              name="Did2"
+            />
+          </div>
+          <div class="form-control">
+            <label for="Vid2"
+              >Valorant Id Of 2nd Member <br />(for example:
+              virtualRoot#2610)</label
+            >
+            <input
+              type="text"
+              id="Vid2"
+              placeholder="Enter Valorant ID of 2nd Member"
+              name="Vid2"
+            />
+          </div>
+          <div class="form-control">
+            <label for="playerLevel2">Player Level</label>
+            <select name="playerLevel2" id="playerLevel2">
+              <option value="Radiant">Radiant</option>
+              <option value="Immortal">Immortal</option>
+              <option value="Diamond">Diamond</option>
+              <option value="Platinum">Platinum</option>
+              <option value="Gold">Gold</option>
+              <option value="Silver">Silver</option>
+              <option value="Bronze">Bronze</option>
+              <option value="Iron">Iron</option>
+              <option value="No Level">No Level</option>
+            </select>
+          </div>
+        </div>
+
+        <!--3rd member-->
+        <div class="memberContainer">
+          <h3 style="text-align: center">Team's 3rd Member Details</h3>
+
+          <div class="form-control">
+          <label for="leadEmail"
+            ><span style="color: yellow">*</span>Email-id</label
+          >
+          <input
+            type="email"
+            id="leadEmail"
+            placeholder="Enter Email-id Of The 3rd Member"
+            name="Email_3"
+          />
+        </div>
+          <div class="form-control">
+            <label for="Did3"
+              >Discord Id Of 3rd Member <br />(for example: root#1234)
+            </label>
+            <input
+              type="text"
+              id="Did3"
+              placeholder="Enter Discord Id Of The 3rd Member"
+              name="Did3"
+            />
+          </div>
+          <div class="form-control">
+            <label for="Vid3"
+              >Valorant Id Of 3rd Member <br />(for example:
+              virtualRoot#2610)</label
+            >
+            <input
+              type="text"
+              id="Vid2"
+              placeholder="Enter Valorant ID of 3rd Member"
+              name="Vid3"
+            />
+          </div>
+          <div class="form-control">
+            <label for="playerLevel3">Player Level</label>
+            <select name="playerLevel3" id="playerLevel3">
+              <option value="Radiant">Radiant</option>
+              <option value="Immortal">Immortal</option>
+              <option value="Diamond">Diamond</option>
+              <option value="Platinum">Platinum</option>
+              <option value="Gold">Gold</option>
+              <option value="Silver">Silver</option>
+              <option value="Bronze">Bronze</option>
+              <option value="Iron">Iron</option>
+              <option value="No Level">No Level</option>
+            </select>
+          </div>
+        </div>
+
+        <!--4th member-->
+        <div class="memberContainer">
+          <h3 style="text-align: center">Team's 4th Member Details</h3>
+
+          <div class="form-control">
+          <label for="leadEmail"
+            ><span style="color: yellow">*</span>Email-id</label
+          >
+          <input
+            type="email"
+            id="leadEmail"
+            placeholder="Enter Email-id Of The 4th Member"
+            name="Email_4"
+          />
+        </div>
+          <div class="form-control">
+            <label for="Did4"
+              >Discord Id Of 4th Member <br />(for example: root#1234)
+            </label>
+            <input
+              type="text"
+              id="Did4"
+              placeholder="Enter Discord Id Of The 4th Member"
+              name="Did4"
+            />
+          </div>
+          <div class="form-control">
+            <label for="Vid4"
+              >Valorant Id Of 4th Member <br />(for example:
+              virtualRoot#2610)</label
+            >
+            <input
+              type="text"
+              id="Vid2"
+              placeholder="Enter Valorant ID of 4th Member"
+              name="Vid4"
+            />
+          </div>
+          <div class="form-control">
+            <label for="playerLevel4">Player Level</label>
+            <select name="playerLevel4" id="playerLevel4">
+              <option value="Radiant">Radiant</option>
+              <option value="Immortal">Immortal</option>
+              <option value="Diamond">Diamond</option>
+              <option value="Platinum">Platinum</option>
+              <option value="Gold">Gold</option>
+              <option value="Silver">Silver</option>
+              <option value="Bronze">Bronze</option>
+              <option value="Iron">Iron</option>
+              <option value="No Level">No Level</option>
+            </select>
+          </div>
+        </div>
+
+        <!--5th member-->
+        <div class="memberContainer">
+          <h3 style="text-align: center">Team's 5th Member Details</h3>
+          
+          <div class="form-control">
+          <label for="leadEmail"
+            ><span style="color: yellow">*</span>Email-id</label
+          >
+          <input
+            type="email"
+            id="leadEmail"
+            placeholder="Enter Email-id Of The Team Lead"
+            name="Email_5"
+          />
+        </div>
+          <div class="form-control">
+            <label for="Did3"
+              >Discord Id Of 5th Member <br />(for example: root#1234)
+            </label>
+            <input
+              type="text"
+              id="Did5"
+              placeholder="Enter Discord Id Of The 5th Member"
+              name="Did5"
+            />
+          </div>
+          <div class="form-control">
+            <label for="Vid3"
+              >Valorant Id Of 5th Member <br />(for example:
+              virtualRoot#2610)</label
+            >
+            <input
+              type="text"
+              id="Vid5"
+              placeholder="Enter Valorant ID of 5th Member"
+              name="Vid5"
+            />
+          </div>
+          <div class="form-control">
+            <label for="playerLevel5">Player Level</label>
+            <select name="playerLevel5" id="playerLevel5">
+              <option value="Radiant">Radiant</option>
+              <option value="Immortal">Immortal</option>
+              <option value="Diamond">Diamond</option>
+              <option value="Platinum">Platinum</option>
+              <option value="Gold">Gold</option>
+              <option value="Silver">Silver</option>
+              <option value="Bronze">Bronze</option>
+              <option value="Iron">Iron</option>
+              <option value="No Level">No Level</option>
+            </select>
+          </div>
+        </div>
+
+        <h4 style="text-align: left; color: white">
+          <span style="color: yellow">*</span> marked are required fields.
+        </h4>
+        <div>
+          <a href="#">
+            <button class="btn btn--light">
+              <span class="btn__inner">
+                <span class="btn__slide"></span>
+                <span class="btn__content"> Complete Registrations </span>
+              </span>
+            </button>
+          </a>
+        </div>
+      </form>
+    </div>
+    <script src="/static/valo/assets/js/form.js"></script>
+  </body>
+</html>

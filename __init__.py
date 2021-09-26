@@ -7,7 +7,7 @@ import urllib.request
 from PIL import Image
 import img2pdf
 from github import Github
-from bot_token import github_token, ctfconf
+from bot_token import *
 import sys
 import pyrebase
 import requests
@@ -18,25 +18,27 @@ from requests.sessions import DEFAULT_REDIRECT_LIMIT
 from forms import *
 from zxcvbn import zxcvbn
 from werkzeug.utils import secure_filename
+import pymongo
+import re
 
 # Initialize Flask app
 app = Flask(__name__)
 application = app
-app.secret_key = "your_secret_key_here"
+app.secret_key = secret()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["MONGO_URI"]=mongo_uri()
 
 Session(app)
 
 # GitHub Access Token
-
 g = Github(github_token())
 
 # Initialize Firebase app
 cred = credentials.Certificate("firebase.json")
 firebase_admin.initialize_app(cred, {
-    'databaseURL':'https://vitask.firebaseio.com/',
-    'storageBucket': 'vitask.appspot.com',
+    'databaseURL': databaseURL(),
+    'storageBucket': storageURL(),
 })
 
 ref = db.reference('vitask')
@@ -81,7 +83,6 @@ def leaderboard():
                 ranking_act2[j], ranking_act2[j+1] = ranking_act2[j+1], ranking_act2[j]
 
     return render_template('index.html', users = ranking, users_act2 = ranking_act2)
-
 
 @app.route('/projects', methods=['GET','POST'])
 def projects():
@@ -161,7 +162,7 @@ def landingpage():
 
 """
 ------------------------------------------------------------
-                    TOVC
+                    TOVC 1.0
 ------------------------------------------------------------
 """
 
@@ -223,20 +224,6 @@ def register():
 def verify_again():
 	ip_ref.push(request.remote_addr)
 	return render_template('/ctf_templates/home.html')
-
-"""
-@app.route('/ctf/leaderboard')
-def ctf_leaderboard():
-    if "uname" in session:
-        users=[]
-        dataset=ctf_ref.get().items()
-        for keys, value in dataset:
-        	users.append(value["username"])
-
-        return render_template('/ctf_templates/leaderboard.html', vals=users)
-    else:
-        return redirect(url_for('home_page'))
-"""
 
 @app.route('/ctf/leaderboard')
 def ctf_leaderboard ():
@@ -323,7 +310,6 @@ def login():
             return render_template('/ctf_templates/login.html', form=form, flag=flags)
     return render_template('/ctf_templates/login.html', form=form, flag=flags)
 
-"""
 @app.route('/ctf/challenge', methods=["GET", "POST"])
 def challenge():
     userans="TOVC{user_infiltrated_in_tovc}"
@@ -400,7 +386,6 @@ def challenge():
         return render_template('/ctf_templates/challenge.html',form=forms,flag=flags,session=session)
     else:
         return redirect(url_for('home_page'))
-"""
 
 @app.route('/ctf/timer')
 def timer():
@@ -443,7 +428,6 @@ def rules():
     else:
         return redirect(url_for('home_page'))
         
-"""
 @app.route('/ctf/not_started')
 def challenge_not_started():
     if "uname" in session:
@@ -451,19 +435,15 @@ def challenge_not_started():
     else:
         return redirect(url_for('home_page'))
 
-"""
 
 """
 ------------------------------------------------------------
                     Valowasp
 ------------------------------------------------------------
 """
-
-app.config["MONGO_URI"]="your_mongo_uri"
-client = pymongo.MongoClient("your_mongo_uri")
+client = pymongo.MongoClient(mongo_uri())
 db = client.valo
 
-"""
 @app.route("/valowasp/register",methods=["POST","GET"])
 def valo_register():
     message=''
@@ -499,7 +479,6 @@ def valo_register():
         data['Email_id_5']=request.form['Email_5']
         data['Discord_id5']=request.form['Did5']
         data['Valo_id5']=request.form['Vid5']
-        # email_found = db.valo_owasp.find_one({"email": email})
 
         Pattern = re.compile("^.{3,32}#[0-9]{4}$")
 
@@ -512,13 +491,11 @@ def valo_register():
                 discord_id='Enter Valid Discord ID for Player '+str(i)
                 return render_template('valo/data.html',discord_id = discord_id)
 
-
         db.valo_owasp.insert_one(data)
         success='registration succesfull'
         return render_template('valo/data.html',success=success)
 
     return render_template('valo/data.html')
-"""
 
 @app.route('/valowasp/')
 @app.route('/valowasp')
@@ -528,7 +505,6 @@ def valowasp():
 @app.route('/valowasp/schedule')
 def valo_schedule():
     return render_template('valo/schedule.html')
-
 
 @app.route('/valowasp/rules')
 def valo_rules():
@@ -542,11 +518,9 @@ def valo_faqs():
 def valo_timeline():
     return render_template('valo/Timeline.html')
 
-"""
 @app.route('/valowasp/Instructions')
 def valo_instructions():
     return render_template('valo/Instructions.html')
-"""
 
 if __name__ == '__main__':
     app.run()

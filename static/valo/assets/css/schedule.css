@@ -1,0 +1,71 @@
+/* ------------Imported Fonts ---------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Sorts+Mill+Goudy&display=swap'); /* font-family: 'Cinzel Decorative', cursive;
+font-family: 'Sorts Mill Goudy', serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');   /* font-family: 'Black Ops One', cursive; */
+
+
+*{
+    margin:0;
+    padding:0;
+}
+
+
+
+
+
+/* -------------------Navbar---------------------- */
+logo img{
+    max-height:100px;
+    background:transparent;
+}
+
+
+/* Navbar */
+.nav-item{
+    font-family: 'Roboto', sans-serif;
+}
+
+@media screen and (min-width:200px) {
+    .nav-item{
+        font-size:1rem;
+    }
+    h1{
+        font-size:1.4rem;
+    }
+}
+
+@media screen and (min-width:370px) {
+    .nav-item{
+        font-size:1.5em;
+    }
+    
+}
+
+@media screen and (min-width:780px) {
+    .nav-item{
+        font-size:2rem;
+    }
+    
+}
+@media screen and (min-width:1000px) {
+  .nav-item{
+    padding:2rem;
+  }
+}
+
+
+/* ---------------------Section--------------------------------- */
+body{
+    background-image: url('../img/val33.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.coming{
+    color:white;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Black Ops One', cursive;
+}

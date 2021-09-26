@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" class="scrollBar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Boot Strap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/07b09dcc76.js" crossorigin="anonymous"></script>
+<!-- CSS -->
+    <link href="/static/valo/assets/css/index.css" rel="stylesheet">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<!-- Fav icon -->
+<link rel="shortcut icon" type="image/jpg" href="/static/valo/assets/img/owasp-logo.png"/>
+<!-- <img src="{{url_for('static', filename='assets/img/owasp-logo.png')}}"> -->
+
+
+    <title>OWASP VITC | VALOWASP</title>
+</head>
+<body>
+  <!-- {% if message  %}
+  <div class="error">
+      <p>{{ message }}</p>
+  </div>
+{% endif %}
+
+{% if phone_no  %}
+<div class="error">
+    <p>{{ phone_no }}</p>
+</div>
+{% endif %}
+
+
+{% if discord_id  %}
+<div class="error">
+    <p>{{ discord_id }}</p>
+</div>
+{% endif %} -->
+
+  
+<!-- Header -->
+    <header class="main-header">
+        <navbar>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-transparent navbar-custom">
+            <div class="container-fluid">
+              <logo><a href="https://owaspvit.com/"><img src="/static/valo/assets/img/OWASP_Logo_White.png"></a></logo>
+              <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button> -->
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+                  </li>
+                  <li class="nav-item">
+                    <!-- <a class="nav-link active" aria-current="page" href="#">Rules</a> -->
+                  </li>
+                  <li class="nav-item">
+                    <div style="font-family: 'Cinzel Decorative', cursive;">
+                      <!-- <a class="nav-link active" aria-current="page" href="https://owaspvit.com/"><i class="fas fa-file-signature"></i>Register</a> -->
+                    </div>
+                  </li>
+              </div>
+            </div>
+          </nav>
+        </navbar>
+<!-- homepage central content -->
+        <div class="content">
+            <h1>
+              <div style="font-family: 'Cinzel Decorative', cursive;">OWASP VITC presents</div> <div style="font-family: 'Cinzel Decorative', cursive;"><b>"VALOWASP"</b></div>
+            </h1>
+            <div>
+              <div>
+                <a href="#explore">
+                <button class="btn-home">
+                  <span class="btn__inner">
+                    <span class="btn__slide"></span>
+                    <span class="btn__content"><div style="font-family: 'Cinzel Decorative', cursive;">Explore!</div></div></span>
+                  </span>
+                </button></a>
+              </div>
+          </div>
+    </header>
+<!-------------Sections------------------>
+<section id="explore">
+<!-- cards -->
+<div class="main">
+  <ul class="cards">
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="/static/valo/assets/img/val4.jpg"></div>
+        <div class="card_content">
+          <h2 class="card_title">Schedule</h2>
+          <p class="card_text"><br>Feeling bored staying home? Wishing you could meet your friends and have fun together?<br>
+            "Here comes the party!", <b>OWASP VITC</b> presents the most lethal Valorant tournament - <B>"VALOWASP"</B> <bR>
+            So what are you waiting for? Register for our fun filled gaming event!<br><br>
+            Blend your style and experience on a competitive stage. Get your squad or come solo and be part of this exhilarating event.<br>
+            <br><B>Date: 04-09-2021(Saturday)</B><br><br>
+            <b>Fee: Rs.50 per individual</b><br><br>
+            <b>Time: 12:00PM</b></p><br>
+        <a href="/valowasp/Timeline">
+          <button class="btn-home">
+            <span class="btn__inner">
+              <span class="btn__slide"></span>
+              <span class="btn__content card_btn">View</span>
+            </span>
+          </button>
+        </a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="/static/valo/assets/img//val10.jpg"></div>
+        <div class="card_content">
+          <h2 class="card_title">Rules & Winner Perks</h2>
+          <p class="card_text"><br>
+            •    All event-related queries are handled on Discord, so once registered join the channel for more information.<br><br>
+              <br><br>
+            <b>Winner perks:</b><br><br>
+            • <b>Cash prize of Rs.1000.</b><br>
+            • <b>Get featured on Hall of OWASP.</b><br>
+            • <b>Instagram shoutout by owaspvit handle.</b><br><br><br><br>
+            <br>
+          </p>
+          <a href="/valowasp/rules">
+          <button class="btn-home">
+            <span class="btn__inner">
+              <span class="btn__slide"></span>
+              <span class="btn__content card_btn">Read rules</span>
+            </span>
+          </button>
+        </a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="/static/valo/assets/img/val3.png"></div>
+        <div class="card_content">
+          <h2 class="card_title">FAQs</h2>
+          <p class="card_text">
+            <br>What type of tournament is this?<br>
+            For the Qualification Round, it is a knockout tournament. Later, depending on the teams for the semi-finals round, we will have fixtures based on your team's average combact score.<br><br>
+                    For Example:<br>
+                    <b>Match 1</b><br>
+                    TEAM A VS TEAM B <br>{(A WINNER) - Total Combact Score - 2200}<br>
+                    <b>Match 2</b><br>
+                    TEAM C VS TEAM D <br>(C WINNER) - Total Combact Score - 2300}<br>
+                    So TEAM C will be the table topper's followed by TEAM A.<br>
+          </p>
+          <a href="/valowasp/FAQ">
+          <button class="btn-home">
+            <span class="btn__inner">
+              <span class="btn__slide"></span>
+              <span class="btn__content card_btn">See more</span>
+            </span>
+          </button>
+        </a>
+        </div>
+      </div>
+    </li>
+    <div class="section_2">
+      <div class="banner container">
+        <p>
+          To check out your Team Details and your opponents, head over to the link below.
+          <div>
+            <div>
+              <a href="https://owaspvit.com/Valowasp/teamDetails.html">
+              <button class="btn-home btn-blue">
+                <span class="btn__inner">
+                  <span class="btn__slide"></span>
+                  <span class="btn__content"><div style="font-family: 'Cinzel Decorative', cursive;">Team Details</div></span>
+                </span>
+              </button>
+            </a>
+            </div>
+        </div>
+        </p>
+      </div>
+      <div class="container register">
+        <p>
+          To check out the Fixtures, head over to the link below.
+          <div>
+            <div>
+              <a href="https://owaspvit.com/Valowasp/fixture.html">
+              <button class="btn-home btn-blue">
+                <span class="btn__inner">
+                  <span class="btn__slide"></span>
+                  <span class="btn__content"><div style="font-family: 'Cinzel Decorative', cursive;">Fixtures</div></span>
+                </span>
+              </button>
+            </a>
+            </div>
+        </div>
+        </p>
+      </div>
+    </div>
+
+  
+      
+  </div>
+
+  </section>
+
+<!-- -----------Footer-------------- -->
+    <footer>
+      <ul class="social-media-links">
+        <li>
+          <a href="https://discord.gg/sHTakBsv">
+            <i class="fab fa-discord fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/owaspvit/">
+            <i class="fab fa-instagram fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/owaspvit">
+            <i class="fab fa-twitter fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://blog.owaspvit.com/">
+            <i class="fab fa-blogger-b fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/owasp-vit-student-chapter/">
+            <i class="fab fa-linkedin-in fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/owaspvit">
+            <i class="fab fa-github fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://medium.owaspvit.com/">
+            <i class="fab fa-medium-m fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://m.facebook.com/owaspvit/">
+            <i class="fab fa-facebook fa-2x"></i>
+          </a>
+        </li>
+      </ul>
+            
+            
+        <p>OWASP VITC &copy;, 2021 All rights reserved.</p>
+    </footer>
+
+
+
+
+
+
+<!-- Java Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>

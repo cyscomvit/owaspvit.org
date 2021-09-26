@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+:root {
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+  }
+
+  /* ------------------------------ScrollBar---------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #870000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #870000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+
+  body{
+    background-image: url("../img/valorant-form.jpg");
+    background-size:  contain;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  
+  .container {
+    
+    border-radius: 5px;
+    box-shadow: 0 20px 100px rgba(0, 0, 0, 0.3);
+    width: 800px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  h1{
+    font-family: 'Jolly Lodger', cursive;
+    text-align: center;
+    margin: 0 0 20px;
+    color: white;
+    font-size: 50px;
+    text-shadow: 2px 2px red;
+    
+  }
+
+  h3{
+    text-align: center;
+    margin: 0 0 20px;
+    color: white;
+    font-family: 'Jolly Lodger', cursive;
+    font-size: 30px;
+    text-shadow: 2px 2px red;
+  }
+
+  .form {
+    padding: 30px 40px;
+      
+  }
+  
+  .form-control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+   font-family: 'Metal Mania', cursive;
+    font-size: 21px;
+  }
+  
+  .form-control label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:  white;
+  }
+  
+  .form-control input {
+    border: 2px solid #f0f0f0;
+    background-color: rgba(250,68,84,0.6);
+    color:  white;
+    /*color: rgba(200, 34, 34,0.8);*/
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 14px;
+  }
+  
+  .form-control input:focus {
+    outline: 0;
+    border-color: white;
+    border: 3px solid #f0f0f0;
+  }
+  
+  .form-control.success input {
+    border-color: var(--success-color);
+  }
+  
+  .form-control.error input {
+    border-color: var(--error-color);
+  }
+  
+  .form-control small {
+    color: var(--error-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+  }
+  
+  .form-control.error small {
+    visibility: visible;
+  }
+  
+select{
+  width: 100%;
+  height: 2.5rem;
+  background-color: rgba(250,68,84,0.6);
+  color:  white;
+  padding: 8px;
+}
+
+select option {
+  background-color: white;  
+  color:  black;
+}
+
+/* button valorant*/
+
+.btn {
+  /* Clean style */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin-left: 16.5rem;
+  color: var(--button-text-color);
+  cursor: pointer;
+  /* Clean style */
+  
+  --button-text-color: var(--background-color);
+  --button-text-color-hover: var(--button-background-color);
+  --border-color: #7D8082;
+  --button-background-color: #ece8e1;
+  --highlight-color: #ff4655;
+  --button-inner-border-color: transparent;
+  --button-bits-color: var(--background-color);
+  --button-bits-color-hover: var(--button-background-color);
+  
+  position: relative;
+  padding: 8px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all .15s ease;
+}
+
+.btn::before,
+.btn::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0; left: 0;
+  height: calc(50% - 5px);
+  border: 1px solid var(--border-color);
+  transition: all .15s ease;
+}
+
+.btn::before {
+  top: 0;
+  border-bottom-width: 0;
+}
+
+.btn::after {
+  bottom: 0;
+  border-top-width: 0;
+}
+
+.btn:active,
+.btn:focus {
+  outline: none;
+}
+
+.btn:active::before,
+.btn:active::after {
+  right: 3px;
+  left: 3px;
+}
+
+.btn:active::before {
+  top: 3px;
+}
+
+.btn:active::after {
+  bottom: 3px;
+}
+
+.btn__inner {
+  position: relative;
+  display: block;
+  padding: 20px 30px;
+  background-color: var(--button-background-color);
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1px var(--button-inner-border-color);
+}
+
+.btn__inner::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: var(--button-bits-color);
+}
+
+.btn__inner::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 4px;
+  height: 4px;
+  background-color: var(--button-bits-color);
+  transition: all .2s ease;
+}
+
+.btn__slide {
+  display: block;
+  position: absolute;
+  top: 0; bottom: -1px; left: -8px;
+  width: 0;
+  background-color: var(--highlight-color);
+  transform: skew(-15deg);
+  transition: all .2s ease;
+}
+
+.btn__content {
+  position: relative;
+}
+
+.btn:hover {
+  color: var(--button-text-color-hover);
+}
+
+.btn:hover .btn__slide {
+  width: calc(100% + 15px);
+}
+
+.btn:hover .btn__inner::after {
+  background-color: var(--button-bits-color-hover);
+}
+
+.btn--light {
+  --button-background-color: var(--background-color);
+  --button-text-color: var(--highlight-color);
+  --button-inner-border-color: var(--highlight-color);
+  --button-text-color-hover: #ece8e1;
+  --button-bits-color-hover: #ece8e1;
+}
+
+.memberContainer {
+  display: none;
+}
+
+.alert-danger {
+  background-color: rgba(250,68,84,0.6);
+  font-family :'Metal Mania', cursive;
+  font-size: 21px;
+  padding: 8px;
+  margin: 10px 0;
+
+}
+
+.alert-success{
+
+  background-color: rgba(34, 199, 78,0.6);
+  font-family :'Metal Mania', cursive;
+  font-size: 21px;
+  padding: 5px;
+  margin: 10px 0;
+
+
+}

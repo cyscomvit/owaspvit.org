@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap'); /*font-family: 'Sorts Mill Goudy', serif;*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ------------------------------ScrollBar---------------------------------------------------- */
+.scrollBar::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .scrollBar::-webkit-scrollbar-thumb {
+    background: #870000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  
+  .scrollBar::-webkit-scrollbar-thumb:hover {
+    background: #870000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("../img/val9.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    color: rgb(255, 255, 255);
+}
+
+.main-heading p{
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 4rem;
+    font-family: 'Sorts Mill Goudy', serif;
+}
+
+.accordion {
+    width: 90%;
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+.accordion-item {
+    /* background-color: rgb(27, 1, 255); */
+    background: #333333;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #dd1818, #333333);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #dd1818, #333333); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    
+
+    color: rgb(255, 255, 255);
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px 0 rgba(14, 5, 5, 0.644);
+}
+
+.accordion-item-header {
+    padding: 0.5rem 3rem 0.5rem 1rem;
+    min-height: 3.5rem;
+    line-height: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.accordion-item-header::after {
+    content: "\002B";
+    font-size: 2rem;
+    position: absolute;
+    right: 1rem;
+}
+
+.accordion-item-header.active::after {
+    content: "\2212";
+}
+
+.accordion-item-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accordion-item-body-content {
+    padding: 1rem;
+    line-height: 1.5rem;
+    border-top: 1px solid;
+    border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+
+@media screen and(max-width:767px) {
+    html {
+        font-size: 14px;
+        font-size: 10vw;
+    }
+}
+
+/* -------------------Navbar---------------------- */
+logo img{
+    max-height:100px;
+    background-color:transparent;
+}
+/* Navbar */
+.nav-item{
+    font-family: 'Roboto', sans-serif;
+}
+
+@media screen and (min-width:200px) {
+    .nav-item{
+        font-size:1rem;
+    }
+    h1{
+        font-size:1.4rem;
+    }
+}
+
+@media screen and (min-width:370px) {
+    .nav-item{
+        font-size:1.5em;
+    }
+    
+}
+
+@media screen and (min-width:780px) {
+    .nav-item{
+        font-size:2rem;
+    }
+    
+}
+@media screen and (min-width:1000px) {
+  .nav-item{
+    padding:2rem;
+  }
+}
