@@ -15,15 +15,19 @@ import img2pdf
 from uuid import uuid4
 from urllib import parse, request
 import re
-from config import *
 import aiocron
 import asyncio
 from sheet import *
+import toml
 
+# Read configurations
+config = toml.load('config.toml')
+
+# Initialize Firebase app
 cred = credentials.Certificate("firebase.json")
 firebase_admin.initialize_app(cred, {
-    'databaseURL': databaseURL(),
-    'storageBucket': storageURL(),
+    'databaseURL': config["database"]["firebaseDB"],
+    'storageBucket': config["database"]["firebaseStorage"],
 })
 
 ref = db.reference('vitask')
@@ -282,15 +286,14 @@ async def delete_testing_data(ctx, username):
 			ctf_ref.child(key).set({'emailid':value['emailid'], 'isFile': False, 'isRootflag': False, 'isUserflag' : False, 'scores' : 0, 'username' : value['username']})
 			await ctx.send(embed=embed)
 
-done = []
-
 @bot.command()
 async def get_email_data(ctx):
-	for key, value in ctf_ref.get().items():
-		if value['emailid'] not in done:
-			await ctx.send(value['emailid'])
-			done.append(value['emailid'])
-	await ctx.send("The whole list!")
+    done = []
+    for key, value in ctf_ref.get().items():
+        if value['emailid'] not in done:
+            await ctx.send(value['emailid'])
+            done.append(value['emailid'])
+    await ctx.send("The whole list!")
 
 @bot.command()
 async def get_user_data(ctx, check):
@@ -460,20 +463,20 @@ async def on_message(message):
         await message.channel.send('Our Website is https://owaspvit.com')
         await bot.process_commands(message)
 
-#crontab
+# Cron
 @aiocron.crontab('0 0 * * 0')
 async def five():
-    ctx = bot.get_channel(getChannel())
-    await sheets(ctx,'Technical')
+    ctx = bot.get_channel(config["bot"]["channel"])
+    await sheets(ctx, 'Technical')
     await cleanup(ctx, 'Technical')
 
-    await sheets(ctx,'Operations')
+    await sheets(ctx, 'Operations')
     await cleanup(ctx, 'Operations')
 
-    await sheets(ctx,'Design')
+    await sheets(ctx, 'Design')
     await cleanup(ctx, 'Design')
 
-    await sheets(ctx,'Web-dev')
+    await sheets(ctx, 'Web-dev')
     await cleanup(ctx, 'Web-dev')
 
-bot.run(get_token())
+bot.run(config["bot"]["token"])

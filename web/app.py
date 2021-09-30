@@ -7,7 +7,6 @@ import urllib.request
 from PIL import Image
 import img2pdf
 from github import Github
-from config import *
 import sys
 import pyrebase
 import requests
@@ -20,25 +19,29 @@ from zxcvbn import zxcvbn
 from werkzeug.utils import secure_filename
 import pymongo
 import re
+import toml
+
+# Read configurations
+config = toml.load('config.toml')
 
 # Initialize Flask app
 app = Flask(__name__)
 application = app
-app.secret_key = secret()
+app.secret_key = config["app"]["secret"]
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-app.config["MONGO_URI"]=mongo_uri()
+app.config["MONGO_URI"] = config["database"]["mongoURI"]
 
 Session(app)
 
 # GitHub Access Token
-g = Github(github_token())
+g = Github(config["app"]["github"])
 
 # Initialize Firebase app
 cred = credentials.Certificate("firebase.json")
 firebase_admin.initialize_app(cred, {
-    'databaseURL': databaseURL(),
-    'storageBucket': storageURL(),
+    'databaseURL': config["database"]["firebaseDB"],
+    'storageBucket': config["database"]["firebaseStorage"],
 })
 
 ref = db.reference('vitask')
@@ -167,7 +170,9 @@ def landingpage():
 """
 
 ctf_ref = db.reference("/vitask/owasp/ctf")
-firebaseconf = ctfconf()
+
+firebaseconf = {"apiKey": config["ctf"]["apiKey"], "authDomain": config["ctf"]["authDomain"], "databaseURL": config["ctf"]["databaseURL"], "projectId": config["ctf"]["projectId"], "storageBucket": config["ctf"]["storageBucket"], "messagingSenderId": config["ctf"]["messagingSenderId"], "appId": config["ctf"]["appId"], "measurementId": config["ctf"]["measurementId"]}
+
 firebase = pyrebase.initialize_app(firebaseconf)
 storage = firebase.storage()
 auth = firebase.auth()
@@ -417,7 +422,6 @@ def email_verified():
 def new_password():
     return render_template('/ctf_templates/new_password.html')
 
-
 @app.route('/ctf/reset', methods=["GET","POST"])
 def reset_password():
     return render_template('/ctf_templates/new_password.html')
@@ -427,7 +431,7 @@ def rules():
         return render_template('/ctf_templates/rules.html')
     else:
         return redirect(url_for('home_page'))
-        
+
 @app.route('/ctf/not_started')
 def challenge_not_started():
     if "uname" in session:
@@ -441,7 +445,7 @@ def challenge_not_started():
                     Valowasp
 ------------------------------------------------------------
 """
-client = pymongo.MongoClient(mongo_uri())
+client = pymongo.MongoClient(config["database"]["mongoURI"])
 db = client.valo
 
 @app.route("/valowasp/register",methods=["POST","GET"])
@@ -523,4 +527,4 @@ def valo_instructions():
     return render_template('valo/Instructions.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', debug=True)
