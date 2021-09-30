@@ -30,7 +30,7 @@ jobs:
         pipenv install
     - name: Install dependencies for owaspvit-bot
       run: |
-        cd ../bot
+        cd bot
         pipenv install
     - name: Install flask8 and pytest
       run: |
