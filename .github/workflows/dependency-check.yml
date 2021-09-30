@@ -16,16 +16,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.9
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9
-    - name: Install dependencies
+        python-version: 3.8
+    - name: Upgrade pip and install pipenv
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install flake8 pytest
+        pip install pipenv
+    - name: Install dependencies for owaspvit-web
+      run: |
+        cd web
         pipenv install
+    - name: Install dependencies for owaspvit-bot
+      run: |
+        cd ../bot
+        pipenv install
+    - name: Install flask8 and pytest
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
