@@ -63,7 +63,7 @@ firebaseStorage = "your_firebase_storage_url"
 [bot]
 token = "your_discord_bot_token"
 sheet = "your_google_sheet_id"
-channel = discord_target_channel_id
+channel = "your_target_channel_id_as_integer"
 
 # OWASP VITCC CTF Configuration
 [ctf]
