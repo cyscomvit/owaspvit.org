@@ -6,7 +6,7 @@
   <br />
   <p>
     <a href="https://discord.gg/aMgWPApkyS"><img src="https://img.shields.io/discord/738109119671566447?color=5865F2&logo=discord&logoColor=white" alt="Discord server" /></a>
-    <a href="https://github.com/owaspvit/owaspvit.org"><img src="https://github.com/owaspvit/owaspvit.org/actions/workflows/dependency-check.yml/badge.svg" alt="Python Requirements Test" /></a>
+    <a href="https://github.com/owaspvit/owaspvit.org/actions"><img src="https://github.com/owaspvit/owaspvit.org/actions/workflows/dependency-check.yml/badge.svg" alt="Python Requirements Test" /></a>
     <a href="https://owaspvit.org"><img src="https://img.shields.io/website/https/owaspvit.org" alt="Website status" /></a>
     <a href="https://github.com/owaspvit/owaspvit.org/blob/main/LICENSE"><img src="https://img.shields.io/github/license/owaspvit/owaspvit.org" alt="LICENSE" /></a>
     <a href="https://github.com/owaspvit/owaspvit.org"><img src="https://img.shields.io/github/languages/count/owaspvit/owaspvit.org" alt="Language count" /></a>
