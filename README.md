@@ -24,6 +24,7 @@ These modules provide a wide range of functionalities for managing the chapter m
 - Projects showcase integrated with the discord bot
 - CTF event management integrated with the discord bot
 - Gaming event management
+- Easy dockerized setup
 
 ### Requirements
 
