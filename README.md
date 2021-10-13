@@ -108,7 +108,7 @@ You can view the OWASP VITCC Bot commands by executing `!owasp help`
 - [CTF Event Management](https://owaspvit.org/ctf)
 - [Gaming Event Management](https://owaspvit.org/valowasp)
 
-## Contributing
+## Contributing Guidelines
 
 Before creating an issue, please ensure that it hasn't already been reported/suggested.
 
