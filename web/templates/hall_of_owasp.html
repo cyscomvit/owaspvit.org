@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>OWASP VITCC | HallOfFame</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://owaspvit.com/assets/owasp-logo.png" rel="icon">
+    <meta name="author" content="Joyeeta Dey">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="The official leaderboard for OWASP VITCC.">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/customScrollBar.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+    <div id="particle">
+        <div class="sample-header">
+            <div class="sample-header-section">
+                <div id="wrapper">
+                    <div id="app" style="position: absolute; margin-left:25%; margin-top: 20%; width:50%; height:auto; background-color: rgba(0,0,0,0)">
+
+                        <a href="https://owaspvit.com" style="text-decoration: none;">
+                            <h1 class="glitch fonttime" data-text="OWASP VITCC" style="padding:1vw; font-size:clamp(30px , 60px ,80px ); color: white; text-align: center">OWASP VITCC</h1>
+                        </a>
+
+
+                    </div>
+                </div>
+                <canvas style="width: 100%; height: 500px" id="canv" />
+                <script src="/static/js/matrix.js"></script>
+            </div>
+        </div>
+        <div class="sample-section-wrap">
+            <div class="sample-section">
+                <h1 style="text-align:center; margin-left:5vw"><b>Our Shining Stars🌟🌟</b></h1><br>
+            </div>
+            {% for event in data %}
+                <div class="container-fluid">
+                    <h2 style="text-align: center; font-size: 4vw">Winners of {{event.event_name}}</h2>
+                    <h2 style="text-align: center; font-size: 4vw">{{event.alt_heading}}</h2>
+                    <div class="row row-centered justify-content-center">
+                    {% for key, value in event.details.items() %}
+                    {% if event.team %}
+                    <div class="col-sm-4 col-centered">
+                        <div class="card justify-content-center">
+                            <h3 class="card-title justify-content-center">{{key}}🥇</h3>
+                            <div class="card-image-top snip1344"><img src="/static/images/11.png" alt="profile-sample1" class="background" />
+                                <img src="/static/images/10.png" alt="profile-sample1" class="profile" style="margin-top: 50%" />
+                            </div>
+                            <div class="card-body">
+                                {% for name in value %}
+                                <h3>{{name}}</h3>
+                                {% endfor %}    
+                            </div>
+                         </div>   
+                        </div>
+
+                    {% else %}
+                       <div class="col-sm-4 col-centered">
+                        <div class="card justify-content-center">
+                            <h3 class="card-title justify-content-center">{{key}}🥇</h3>
+                            <div class="card-image-top snip1344"><img src="/static/images/11.png" alt="profile-sample1" class="background" />
+                                <img src="/static/images/10.png" alt="profile-sample1" class="profile" style="margin-top: 50%" />
+                            </div>
+                            <div class="card-body">
+                                <h3>{{value}}</h3>
+                            </div>
+                         </div>   
+                        </div>
+                    {% endif %}    
+                    {% endfor %}
+                        </div>
+                    <br>
+                <div class="row row-centered justify-content-center">
+                    <div class="col-md-6 justify-content-center">
+                        <img src="/static/images/babyYoda.png" class="yoda" style=" margin-left: 50px;">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="container-fluid justify-content-center">
+                            <h3>Jedis of Hackathon</h3><br>
+                            <a href={{event.jedi_url}}><button class="button" type="button">The Jedis</button></a>
+                        </div>
+                    </div>
+                </div><br>    
+                    </div>
+            {% endfor %}
+            </div>
+
+    <div id="scrollToTop" class="scrollToTop">
+        <div class="scrollToTop-circle">
+            <div class="scrollToTop-icon"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src='https://code.jquery.com/jquery-latest.min.js'></script>
+    <script src="/static/js/particles.js"></script>
+    <script>
+        function resize() {
+            $("#canv").outerHeight($(window).height() - $("#canv").offset().top - Math.abs($("#canv").outerHeight(true) - $("#canv").outerHeight()));
+        }
+        $(document).ready(function() {
+            resize();
+            $(window).on("resize", function() {
+                resize();
+            });
+        });
+    </script>
+    <!--<script src="js/script.js"></script>-->
+</body>
+
+</html>

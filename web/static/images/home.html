@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+        body{
+            background-color: #2b1a4b;
+            color:white;
+        }
+        :root {
+            --header-height: 3rem;
+            --nav-width: 68px;
+            --first-color: #18161d;
+            --first-color-light: #AFA5D9;
+            --white-color: #F7F6FB;
+            --body-font: 'Nunito', sans-serif;
+            --normal-font-size: 1rem;
+            --z-fixed: 100
+        }
+
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .header {
+            width: 100%;
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            background-color: black;
+            z-index: var(--z-fixed);
+            transition: .5s
+
+        }
+
+        .l-navbar {
+            position: fixed;
+            top: 0;
+            left: -30%;
+            width: var(--nav-width);
+            height: 100vh;
+            background-color: var(--first-color);
+            padding: .5rem 1rem 0 0;
+            transition: .5s;
+            z-index: var(--z-fixed)
+        }
+        .fa{
+            font-size: 20px;
+        }
+        .nav {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden
+        }
+
+        .nav_logo,
+        .nav_link {
+            display: grid;
+            grid-template-columns: max-content max-content;
+            align-items: center;
+            column-gap: 1rem;
+            padding: .5rem 0 .5rem 1.5rem
+        }
+
+        .nav_logo {
+            margin-bottom: 2rem
+        }
+
+        .nav_logo-icon {
+            font-size: 1.25rem;
+            color: var(--white-color)
+        }
+
+        .nav_link {
+            position: relative;
+            color: var(--first-color-light);
+            margin-bottom: 1.5rem;
+            transition: .3s
+        }
+
+        .nav_link:hover {
+            color: var(--white-color)
+        }
+
+        .nav_icon {
+            font-size: 1.25rem
+        }
+
+        .active {
+            color: var(--white-color)
+        }
+
+        .active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 2px;
+            height: 32px;
+            background-color: var(--white-color)
+        }
+
+        @media screen and (min-width: 768px) {
+            body {
+                margin: calc(var(--header-height) + 1rem) 0 0 0;
+                padding-left: calc(var(--nav-width) + 2rem)
+            }
+
+            .header {
+                height: calc(var(--header-height) + 1rem);
+                padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
+            }
+
+            .l-navbar {
+                left: 0;
+                padding: 1rem 1rem 0 0
+            }
+
+        }
+        .col-2{
+            background-color: #2b1a4b;
+            height: 800px;
+        }
+        .col-10{
+            background-color: #635890;
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+<header class="header" id="header">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: white">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav" style="color: white">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#" style="color: white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: white">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: white">Pricing</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-item dropdown" style="float: right;margin-right:20px">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" style="color: white"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="profile.php">Profile</a>
+                <a class="dropdown-item" href="logout.php">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="l-navbar" id="nav-bar">
+    <nav class="nav">
+        <div>
+            <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i></span> </a>
+            <div class="nav_list">
+                <a href="#" class="nav_link active">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span class="nav_name"></span>
+                </a>
+                <a href="#" class="nav_link">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="nav_link">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="nav_link">
+                    <i class="fa fa-comments-o" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="nav_link">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="nav_link">
+                    <i class="fa fa-files-o" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+<!--Container Main end-->
+<div class="row">
+    <div class="col-2">
+        <div class="sidebar">
+            <div class="sidebar-wrapper">
+                <a href="#" class="nav_logo"></a>
+                <div class="nav_list">
+                    <img src="https://zbyhoo.files.wordpress.com/2011/07/me_pixel_bright_bg.png?w=584"><br><br>
+                    <h2><b>Title</b></h2>
+                    <a href="#" style="font-size: 20px; color: white">Any link text</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-10 shadow-lg p-3 mb-5">
+        <h1>hello</h1>
+    </div>
+</div>
+</body>
+</html>

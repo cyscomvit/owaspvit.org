@@ -1,0 +1,16 @@
+::-webkit-scrollbar {
+	width: 12px;
+	background-color: black;
+}
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(#00a70b,#006000 );
+	border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(#006000, #00a70b);
+	border-radius: 6px;
+}
+.scroller {
+	scrollbar-color: #00a70b #006000;
+	scrollbar-width: thin;
+}

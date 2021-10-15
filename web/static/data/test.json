@@ -1,0 +1,59 @@
+[  
+    {  
+        "event_name": "TOVC 1.0",
+        "team": false,   
+        "details": {
+            "First Prize": "Kaushik Sivashankar",
+            "Best Write-up": "Kaushik Sivashankar"  
+        }
+    },
+    {  
+        "event_name": "Tetraflip",
+        "alt_heading": "Ideathon",
+        "jedi_url": "starwars-tetra-ideathon",
+        "team": true,
+        "details": {
+            "First Prize": ["Team - Iron Man 4.0", "Archit Jain", "Swatik Grover", "Rishabh Verma", "Sankalp Bangwal"],
+            "Second Prize": ["Team - Doge", "Shaunak Deshpande", "Nikhil Chapre", "Saumitra Lohokare"]  
+        } 
+    },
+    {  
+        "event_name": "Tetraflip",
+        "alt_heading": "Hackathon",
+        "jedi_url": "starwars-tetra-hackathon",
+        "team": true,
+        "details": {
+            "First Prize": ["Team - Knights", "Ayush Pandya", "Prathmesh Bhalekar"],
+            "Second Prize": ["Team - Hocus Focus", "Faerie Mattins R", "Ashvath Narayan", "Srivarshan S"],
+            "Third Prize": ["Team - Eternity","Mudit Sharma","Aryan Pandey"]
+        } 
+    },
+    {  
+        "event_name": "Design Event",
+        "team": true,
+        "jedi_url": "starwars-design",
+        "details": {
+            "First Prize": ["Team - Builders", "Leader Saswat Panda"],
+            "Second Prize": ["Team - Autobot", "Leader - Surya S"],
+            "Third Prize": ["Team - Maas","Leader - Ayush Anupam Gupta"]
+        } 
+    },
+    {  
+        "event_name": "Quiz Event",
+        "team": false,
+        "jedi_url": "starwars-quiz",
+        "details": {
+            "First Prize": "Gyandipta Mohanty",
+            "Second Prize": "Amitesh Roy",
+            "Third Prize": "Gautham Sriram"
+        } 
+    },
+    {  
+        "event_name": "Valowasp",
+        "team": true,
+        "jedi_url": "starwars-valowasp",
+        "details": {
+            "First Prize": ["Team - Shinigami","Aravind A","Sachin","Suriya","Varun","Madhesh"]
+        } 
+    }
+] 

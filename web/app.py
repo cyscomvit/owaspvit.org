@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, session, make_response
+from flask import Flask, render_template, url_for, request, redirect, session, make_response, json
 import firebase_admin
 from firebase_admin import credentials, db, storage
 import os
@@ -525,6 +525,46 @@ def valo_timeline():
 @app.route('/valowasp/Instructions')
 def valo_instructions():
     return render_template('valo/Instructions.html')
+
+
+"""
+------------------------------------------------------------
+                    Hall of Fame
+------------------------------------------------------------
+"""
+
+@app.route('/hall_of_owasp')
+def hall_of_owasp():
+    #static/data/test_data.json
+    filename = os.path.join(app.static_folder, "data",'test.json')
+    print(filename)
+
+    with open(filename) as test_file:
+        data = json.load(test_file)
+
+    return render_template('hall_of_owasp.html',data=data)  
+
+@app.route('/starwars-tetra-hackathon')
+def tetra_hackathon():
+    return render_template('starwars/starwars-hackathon.html')
+
+@app.route('/starwars-tetra-ideathon')
+def tetra_ideathon():
+    return render_template('starwars/starwars-ideathon.html')
+
+@app.route('/starwars-design')
+def design_event():
+    return render_template('starwars/starwars-design.html')
+
+@app.route('/starwars-quiz')
+def quiz_event():
+    return render_template('starwars/starwars-quiz.html')
+
+@app.route('/starwars-valowasp')
+def starwars_valowasp():
+    return render_template('starwars/starwars-valowasp.html')
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
